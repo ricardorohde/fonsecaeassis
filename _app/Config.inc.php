@@ -7,7 +7,7 @@ date_default_timezone_set("America/Manaus");
 define('HOST', 'localhost');
 define('USER', 'root');
 define('PASS', '1234');
-define('DBSA', '_painel_2016');
+define('DBSA', '_fonsecaeassis_2016');
 
 // DEFINE SERVIDOR DE E-MAIL ################
 define('MAILUSER', 'email@dominio.com.br');
@@ -16,7 +16,7 @@ define('MAILPORT', 'postadeenvio');
 define('MAILHOST', 'servidordeenvio');
 
 // DEFINE IDENTIDADE DO SITE ################
-define('SITENAME', 'CW Digital');
+define('SITENAME', 'Fonseca & Assis - Advogados Associados');
 define('SITEDESC', 'Desenvolvimento de websites e sistemas web, tudo que você e sua empresa precisa para estar na web moderna.');
 
 // DEFINE A BASE DO SITE ####################
