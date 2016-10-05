@@ -20,8 +20,8 @@ define('SITENAME', 'CW Digital');
 define('SITEDESC', 'Desenvolvimento de websites e sistemas web, tudo que você e sua empresa precisa para estar na web moderna.');
 
 // DEFINE A BASE DO SITE ####################
-define('HOME', 'http://localhost/servidor/_painel_cwdigital/CWADMIN/');
-define('THEME', 'imobiliaria');
+define('HOME', 'http://localhost/servidor/fonsecaeassis/2016');
+define('THEME', 'fonsecaeassis');
 
 define('INCLUDE_PATH', HOME . DIRECTORY_SEPARATOR . 'themes' . DIRECTORY_SEPARATOR . THEME);
 define('REQUIRE_PATH', 'themes' . DIRECTORY_SEPARATOR . THEME);
