@@ -16,7 +16,7 @@ define('MAILPORT', 'postadeenvio');
 define('MAILHOST', 'servidordeenvio');
 
 // DEFINE IDENTIDADE DO SITE ################
-define('SITENAME', 'Fonseca & Assis - Advogados Associados');
+define('SITENAME', 'Fonseca & Assis');
 define('SITEDESC', 'Desenvolvimento de websites e sistemas web, tudo que você e sua empresa precisa para estar na web moderna.');
 
 // DEFINE A BASE DO SITE ####################

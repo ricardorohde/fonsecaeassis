@@ -3,7 +3,7 @@
 /**
  * Seo [ MODEL ]
  * Classe de apoio para o modelo LINK. Pode ser utilizada para gerar SSEO para as páginas do sistema!
- * 
+ *
  * @copyright (c) 2014, Robson V. Leite UPINSIDE TECNOLOGIA
  */
 class Seo {
@@ -25,7 +25,7 @@ class Seo {
     /**
      * <b>Obter MetaTags:</b> Execute este método informando os valores de navegação para que o mesmo obtenha
      * todas as metas como title, description, og, itemgroup, etc.
-     * 
+     *
      * <b>Deve ser usada com um ECHO dentro da tag HEAD!</b>
      * @return HTML TAGS =  Retorna todas as tags HEAD
      */
@@ -37,7 +37,7 @@ class Seo {
     /**
      * <b>Obter Dados:</b> Este será automaticamente povoado com valores de uma tabela single para arquivos
      * como categoria, artigo, etc. Basta usar um extract para obter as variáveis da tabela!
-     * 
+     *
      * @return ARRAY = Dados da tabela
      */
     public function getData() {
@@ -142,14 +142,9 @@ class Seo {
                 endif;
                 break;
 
-            //SEO:: CADASTRA EMPRESA
-            case 'cadastra-empresa':
-                $this->Data = ["Cadastre sua Empresa - " . SITENAME, "Página modelo para cadastro de empresas via Front-End do curso Work Series - PHP Orientado a Objetos!", HOME . '/cadastra-empresa/' . $this->Link, INCLUDE_PATH . '/images/site.png'];
-                break;
-
             //SEO:: INDEX
             case 'index':
-                $this->Data = [SITENAME . " - Desenvolvimento Web e Sistemas", SITEDESC, HOME, INCLUDE_PATH . '/images/logo-topo.png'];
+                $this->Data = [SITENAME . " - Advogados Associados", SITEDESC, HOME, INCLUDE_PATH . '/images/logo.png'];
                 break;
 
             //SEO:: DIRETORIA
@@ -223,7 +218,7 @@ class Seo {
             case 'painel_candidato':
                 $this->Data = [SITENAME . " - Painel Candidato", "A ACIRM oferece o contato entre o candidato e o empregador para facilitar a contratação.", HOME . '/painel_candidato', INCLUDE_PATH . '/images/logo-topo.png'];
                 break;
-            
+
             //SEO:: VIDEOS
             case 'videos':
                 $this->Data = [SITENAME . " - Galeria de Videos", "Galeria de Videos da ACIRM", HOME . '/videos', INCLUDE_PATH . '/images/logo-topo.png'];

@@ -10,7 +10,7 @@
                         <span class="icon-bar"></span>
                     </button>
                     <div class="logo">
-                        <a href="index"><img class="img-responsive logo-responsivo"src="themes/fonsecaeassis/images/logo.png"></a>
+                        <a href="<?= HOME; ?>"><img class="img-responsive logo-responsivo"src="themes/fonsecaeassis/images/logo.png"></a>
                     </div>
                 </div>
                 <div class="collapse navbar-collapse" id="menu">

@@ -17,7 +17,7 @@ require('../_app/Config.inc.php');
 
         <!--     Fonts and icons     -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" />
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
         <link rel="stylesheet" href="login/assets/css/font-icons/entypo/css/entypo.css">
 
@@ -78,7 +78,7 @@ require('../_app/Config.inc.php');
                                     </div>
                                     <?php
                                 endif;
-                                ?>  
+                                ?>
                             </div>
                             <div class="card card-signup">
                                 <form method="post" role="form" id="login" name="AdminLoginForm" action="">
@@ -91,7 +91,7 @@ require('../_app/Config.inc.php');
                                             <span class="input-group-addon">
                                                 <i class="entypo-user"></i>
                                             </span>
-                                            <input type="text" class="form-control" name="login" id="username" placeholder="Digite seu Usuário...">     
+                                            <input type="text" class="form-control" name="login" id="username" placeholder="Digite seu Usuário...">
                                         </div>
                                         <div class="input-group">
                                             <span class="input-group-addon">
@@ -104,7 +104,7 @@ require('../_app/Config.inc.php');
                                                 <input type="checkbox" name="optionsCheckboxes" checked>
                                                 Lembrar Usuário
                                             </label>
-                                        </div> 
+                                        </div>
                                     </div>
                                     <div class="footer text-center">
                                         <button  type="submit" name="AdminLogin"  class="btn btn-success btn-lg" value="Entrar">Entrar</button>
@@ -138,7 +138,7 @@ require('../_app/Config.inc.php');
 
     <!-- Control Center for Material Kit: activating the ripples, parallax effects, scripts from the example pages etc -->
     <script src="login2/assets/js/material-kit.js" type="text/javascript"></script>
-    <script src = "dist/js/script.js"></script>   
+    <script src = "dist/js/script.js"></script>
 </html>
 <?php
 ob_end_flush();
