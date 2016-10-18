@@ -1,6 +1,7 @@
 <?php
 
 //CONFIGURAÇÕES NO PHP
+setlocale(LC_TIME, 'portuguese');
 date_default_timezone_set("America/Manaus");
 
 // CONFIGURAÇÕES DO BANCO ####################
@@ -17,7 +18,9 @@ define('MAILHOST', 'servidordeenvio');
 
 // DEFINE IDENTIDADE DO SITE ################
 define('SITENAME', 'Fonseca & Assis');
-define('SITEDESC', 'Desenvolvimento de websites e sistemas web, tudo que você e sua empresa precisa para estar na web moderna.');
+define('SITEDESC', 'Instituto de Terapias e Naturologia, trabalha com vários cursos, eventos e tratramentos para pessoas que buscam saúde e qualidade de vida');
+define('CIDADE', 'Rolim de Moura');
+define('UF', 'RO');
 
 // DEFINE A BASE DO SITE ####################
 define('HOME', 'http://localhost/servidor/fonsecaeassis/2016');
@@ -25,10 +28,6 @@ define('THEME', 'fonsecaeassis');
 
 define('INCLUDE_PATH', HOME . DIRECTORY_SEPARATOR . 'themes' . DIRECTORY_SEPARATOR . THEME);
 define('REQUIRE_PATH', 'themes' . DIRECTORY_SEPARATOR . THEME);
-
-// DEFINE SISTEMA CW IMOB ####################
-define('CW_VERSION', 'v1.0.1');
-define('CW_HOME', HOME . DIRECTORY_SEPARATOR . 'cwimob');
 
 // AUTO LOAD DE CLASSES ####################
 function __autoload($Class) {
@@ -48,15 +47,15 @@ function __autoload($Class) {
 
 // TRATAMENTO DE ERROS #####################
 //CSS constantes :: Mensagens de Erro
-define('WS_ACCEPT', 'sucesso');
+define('WS_ACCEPT', 'success');
 define('WS_INFOR', 'info');
-define('WS_ALERT', 'erro');
-define('WS_ERROR', 'erro');
+define('WS_ALERT', 'warning');
+define('WS_ERROR', 'danger');
 
 //WSErro :: Exibe erros lançados :: Front
 function WSErro($ErrMsg, $ErrNo, $ErrDie = null) {
     $CssClass = ($ErrNo == E_USER_NOTICE ? WS_INFOR : ($ErrNo == E_USER_WARNING ? WS_ALERT : ($ErrNo == E_USER_ERROR ? WS_ERROR : $ErrNo)));
-    echo "<p class=\"alert alerta-{$CssClass} text-center\">{$ErrMsg}</p>";
+    echo "<p class=\"alert alert-{$CssClass} text-center\">{$ErrMsg}</p>";
 
     if ($ErrDie):
         die;
@@ -66,11 +65,10 @@ function WSErro($ErrMsg, $ErrNo, $ErrDie = null) {
 //PHPErro :: personaliza o gatilho do PHP
 function PHPErro($ErrNo, $ErrMsg, $ErrFile, $ErrLine) {
     $CssClass = ($ErrNo == E_USER_NOTICE ? WS_INFOR : ($ErrNo == E_USER_WARNING ? WS_ALERT : ($ErrNo == E_USER_ERROR ? WS_ERROR : $ErrNo)));
-    echo "<p class=\"trigger {$CssClass}\">";
+    echo "<p class=\"alert alert-{$CssClass} \">";
     echo "<b>Erro na Linha: #{$ErrLine} ::</b> {$ErrMsg}<br>";
     echo "<small>{$ErrFile}</small>";
-    echo "<span class=\"ajax_close\"></span></p>";
-
+    echo "</p>";
     if ($ErrNo == E_USER_ERROR):
         die;
     endif;

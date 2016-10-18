@@ -1,6 +1,6 @@
 <section class="content-header">
     <h1>
-        Cadastrar Colunistas 
+        Cadastrar Colunistas
         <small>Cadastros de Novos Colunistas</small>
     </h1>
     <ol class="breadcrumb">
@@ -27,10 +27,6 @@
                 else:
                     header("Location: painel.php?exe=colunistas/listar&acao=cadastrar&id={$cadastra->getResult()}");
                 endif;
-
-                echo "<pre>";
-                var_dump($cadastra);
-                echo "</pre>";
             endif;
             ?>
             <form role="form" name="UserCreateForm" action="" method="post" enctype="multipart/form-data">

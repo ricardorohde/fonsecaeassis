@@ -3,7 +3,7 @@
 /**
  * Contacao.class [ HELPER ]
  * Classe responável por capturar a contação do dolar e euro!
- *
+ * 
  * @copyright (c) 2016, Gean M S Bertani CREATIVE WEBSITES
  */
 class Cotacao {
@@ -15,45 +15,48 @@ class Cotacao {
     private $Result;
 
     //Url da API
-    const ApiUrl = 'http://api.promasters.net.br/cotacao/v1/valores?moedas=USD,EUR&alt=json';
-    //Tabela
+    const ApiUrl = 'http://developers.agenciaideias.com.br/cotacoes/json';
+    //Tabela 
     const Entity = 'cotacao';
 
     /**
      * <b>Iniciar Classe:</b> Captura as informações vinda da API.
      * Armazena no Array $Data.
-     * @param STRING $Tipo = Tipo de cotação.
+     * @param STRING $Tipo = Tipo de cotação. 
      */
     function __construct($Tipo) {
-        $this->Data = json_decode($this->getPage(self::ApiUrl), TRUE);
+        $this->Data = file_get_contents(self::ApiUrl);
         $this->Tipo = $Tipo;
-        if ($this->Data['status'] === FALSE):
+        if (!$this->Data):
             $this->Error = ["Não foi possivel estabelecer conexão com a API.", WS_ALERT];
             $this->Result = false;
         else:
-            $this->Data = $this->Data['valores'];
+            $this->Data = json_decode($this->Data, TRUE);
             $this->Result = true;
         endif;
     }
 
     /**
      * <b>Seta o Tipo:</b> Altera o tipo conforme o valor informando no param.
-     * @param STRING $Tipo = Tipo de cotação.
+     * @param STRING $Tipo = Tipo de cotação. 
      */
     public function setTipo($Tipo) {
         $this->Tipo = $Tipo;
     }
 
     /**
-     * <b>Obtem Cotação:</b> Lê a cotação e executa Create.
+     * <b>Obtem Cotação:</b> Lê a cotação e executa Create. 
      */
     public function getCotacao() {
         if ($this->Result):
-            $this->Data[$this->Tipo]['valor'] = $this->toReal($this->Data[$this->Tipo]['valor']);
+            $this->Data[$this->Tipo]['cotacao'] = $this->toReal($this->Data[$this->Tipo]['cotacao']);
+            $this->setDate();
             $this->Data = [
                 "tipo" => $this->Tipo,
-                "cotacao" => $this->Data[$this->Tipo]['valor'],
-                "atualizado" => date('Y-m-d', $this->Data[$this->Tipo]['ultima_consulta'])
+                "cotacao" => $this->Data[$this->Tipo]['cotacao'],
+                "variacao" => $this->Data[$this->Tipo]['variacao'],
+                "status" => $this->getVariacao($this->Data[$this->Tipo]['variacao']),
+                "atualizado" => $this->Date
             ];
             $this->Create();
         endif;
@@ -82,21 +85,27 @@ class Cotacao {
      * ***************************************
      */
 
+    //Obtem a variação down ou up.
+    private function getVariacao($variation) {
+        $var = floatval($variation);
+        if ($var < 0):
+            return 'down';
+        else:
+            return 'up';
+        endif;
+    }
+
     //Converte cotacao para real
     private function toReal($valor) {
         $convMoeda = number_format($valor, 2, '.', ',');
         return $convMoeda;
     }
 
-    //GetPage
-    private function getPage($url) {
-        $curl = curl_init();
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, True);
-        curl_setopt($curl, CURLOPT_URL, $url);
-        curl_setopt($curl, CURLOPT_USERAGENT, 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7; rv:7.0.1) Gecko/20100101 Firefox/7.0.1');
-        $return = curl_exec($curl);
-        curl_close($curl);
-        return $return;
+    //Converte a Data de Atualização para dd/mm/aaaa.
+    private function setDate() {
+        $this->Data['atualizacao'] = explode(' ', $this->Data['atualizacao']);
+        $this->Data['atualizacao'] = Check::Data($this->Data['atualizacao'][0]);
+        $this->Date = $this->Data['atualizacao'];
     }
 
     //Cadastrar Cotacao

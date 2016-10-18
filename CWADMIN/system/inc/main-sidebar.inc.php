@@ -1,33 +1,26 @@
+<!-- Left side column. contains the logo and sidebar -->
+<aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+        <!-- Sidebar user panel -->
+        <div class="user-panel">
+            <div class="pull-left image">
+                <img src="../uploads/<?= $userlogin['foto']; ?>" class="img-circle" alt="User Image" />
+            </div>
+            <div class="pull-left info">
+                <p><?= $userlogin['nome']; ?></p>
 
-<div class="sidebar-panel offscreen-left">
-    <div class="brand">
-        <div class="brand-logo">
-            <img src="dist/images/logo.png" height="28" alt="">
+                <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+            </div>
         </div>
 
-
-        <a href="javascript:;" class="toggle-sidebar hidden-xs hamburger-icon v3" data-toggle="layout-small-menu">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-        </a>
-    </div>
-
-
-
-    <nav role="navigation">
-        <ul class="nav">
-            <br><br>
+        <!-- sidebar menu: : style can be found in sidebar.less -->
+        <ul class="sidebar-menu">
             <li <?= empty($getexe) ? 'class="active"' : '' ?>>
                 <a href="painel.php">
-                    <i class="fa fa-toggle-on"></i> <span>Dashboard</span>
+                    <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                 </a>
             </li>
-            <li>
-
-            </li>
-
             <?php
             //SQL Menu
             $menu = new Read;
@@ -38,11 +31,12 @@
                     $case = explode('/', $getexe);
                     ?>
                     <li class="treeview <?= $case[0] == $mn['case'] ? 'active' : ''; ?>">
-                        <a href="javascript:;">
+                        <a href="#">
                             <i class="fa <?= $mn['ico_menu']; ?>"></i>
-                            <span><?= $mn['titulo']; ?></span>    
+                            <span><?= $mn['titulo']; ?></span>
+                            <i class="fa fa-angle-left pull-right"></i>
                         </a>
-                        <ul class="sub-menu" >
+                        <ul class="treeview-menu">
                             <?php
                             //SQL Sub Menu
                             $subMenu = new Read;
@@ -57,12 +51,12 @@
                                     if ($navSubMenu->getResult()):
                                         ?>
                                         <li>
-                                            <a href="#"><i class="fa <?= $sm['ico_menu']; ?>"></i><?= $sm['titulo']; ?><i class="     "></i></a>
-                                            <ul class="sub-menu">
+                                            <a href="#"><i class="fa <?= $sm['ico_menu']; ?>"></i> <?= $sm['titulo']; ?> <i class="fa fa-angle-left pull-right"></i></a>
+                                            <ul class="treeview-menu">
                                                 <?php
                                                 foreach ($navSubMenu->getResult() as $nsm):
                                                     ?>
-                                                    <li><a href="painel.php?exe=<?= $nsm['case'] . '/' . $nsm['pagina'] ?>"><i class="fa <?= $nsm['ico_menu'] ?>"></i><?= $nsm['titulo']; ?></a></li>
+                                                    <li><a href="painel.php?exe=<?= $nsm['case'] . '/' . $nsm['pagina'] ?>"><i class="fa <?= $nsm['ico_menu'] ?>"></i> <?= $nsm['titulo']; ?></a></li>
                                                     <?php
                                                 endforeach;
                                                 ?>
@@ -85,13 +79,7 @@
                 endforeach;
             endif;
             ?>
-
-
-
-
-
-
         </ul>
-    </nav>
-
-</div>
+    </section>
+    <!-- /.sidebar -->
+</aside>

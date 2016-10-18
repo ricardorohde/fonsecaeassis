@@ -76,7 +76,7 @@ class Login {
             $this->Error = ['Informe seu Login e senha para efetuar o login!', WS_INFOR];
             $this->Result = false;
         elseif (!$this->getUser()):
-            $this->Error = ['Usuário ou Senha Incorretos! Tente Novamente.', WS_ALERT];
+            $this->Error = ['Os dados informados não são compatíveis!', WS_ALERT];
             $this->Result = false;
         elseif ($this->Result['nivel'] < $this->Level):
             $this->Error = ["Desculpe {$this->Result['user_name']}, você não tem permissão para acessar esta área!", WS_ERROR];

@@ -28,41 +28,41 @@ endif;
     <head>
         <meta charset="UTF-8">
         <link rel="shortcut icon" type="image/x-icon" href="http://www.creativewebsites.com.br/midia/favicon.ico" />
-        <title>CW Admin - Cw Digital</title>
+        <title> CW ADMIN v.4.0 - Dashboard</title>
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
-
-
-        <link rel="stylesheet" href="dist/assets/css/font-icons/entypo/css/entypo.css">
-        <link rel="stylesheet" href="dist/assets/css/font-icons/font-awesome/css/font-awesome.min.css">
-        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic">
-
-
-
-
-        <link rel="stylesheet" href="dist/vendor/bootstrap/dist/css/bootstrap.css">
-        <link rel="stylesheet" href="dist/vendor/perfect-scrollbar/css/perfect-scrollbar.css">
-        <link rel="stylesheet" href="dist/styles/roboto.css">
-        <link rel="stylesheet" href="dist/styles/font-awesome.css">
-        <link rel="stylesheet" href="dist/styles/panel.css">
-        <link rel="stylesheet" href="dist/styles/feather.css">
-        <link rel="stylesheet" href="dist/styles/animate.css">
-        <link rel="stylesheet" href="dist/styles/urban.css">
-        <link rel="stylesheet" href="dist/styles/urban.skins.css">
-        <link rel="stylesheet" href="dist/styles/style.css">
-
-        
-<!--         HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries 
-         WARNING: Respond.js doesn't work if you view the page via file:// 
-        [if lt IE 9]>
--->            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script><!--
+        <!-- Bootstrap 3.3.2 -->
+        <link type="text/css" rel="stylesheet" href="bootstrap/css/bootstrap.min.css"/>
+        <!-- Font Awesome Icons -->
+        <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
+        <!-- Ionicons -->
+        <link type="text/css" rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.0/css/ionicons.min.css" />
+        <!-- Morris chart -->
+        <link type="text/css" rel="stylesheet" href="plugins/morris/morris.css" />
+        <!-- jvectormap -->
+        <link type="text/css" rel="stylesheet" href="plugins/jvectormap/jquery-jvectormap-1.2.2.css" />
+        <!-- Datepicker -->
+        <link type="text/css" rel="stylesheet" href="plugins/datepicker/datepicker3.css" />
+        <!-- Data Tables -->
+        <link type="text/css" rel="stylesheet" href="plugins/datatables/dataTables.bootstrap.css" />
+        <!-- DropZone -->
+        <link type="text/css" rel="stylesheet" href="plugins/dropzone/dropzone.css" />
+        <!-- Theme style -->
+        <link type="text/css" rel="stylesheet" href="dist/css/AdminLTE.min.css" />
+        <!-- AdminLTE Skins. Choose a skin from the css/skins folder instead of downloading all of them to reduce the load. -->
+        <link type="text/css" rel="stylesheet" href="dist/css/skins/_all-skins.min.css" />
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
         <![endif]-->
+        <!-- jQuery 2.1.3 -->
+        <script type="text/javascript" src="plugins/jQuery/jQuery-2.1.3.min.js"></script>
+        <!-- DropZone -->
+        <script type="text/javascript" src="plugins/dropzone/dropzone.js"></script>
     </head>
-    <body>
-        <div class="app layout-fixed-header">
-
-
-
+    <body class="skin-blue">
+        <div class="wrapper">
             <?php
             //Main Menu
             include(__DIR__ . DIRECTORY_SEPARATOR . 'system' . DIRECTORY_SEPARATOR . 'inc' . DIRECTORY_SEPARATOR . 'main-menu.inc.php');
@@ -70,7 +70,7 @@ endif;
             include(__DIR__ . DIRECTORY_SEPARATOR . 'system' . DIRECTORY_SEPARATOR . 'inc' . DIRECTORY_SEPARATOR . 'main-sidebar.inc.php');
             ?>
             <!-- Content Wrapper. Contains page content -->
-            <div class="content">
+            <div class="content-wrapper">
                 <?php
                 //QUERY STRING
                 if (!empty($getexe)):
@@ -92,34 +92,40 @@ endif;
             //Footer
             include(__DIR__ . DIRECTORY_SEPARATOR . 'system' . DIRECTORY_SEPARATOR . 'inc' . DIRECTORY_SEPARATOR . 'footer.inc.php');
             ?>
-        </div>
-
-
-        <script src="dist/scripts/extentions/modernizr.js"></script>
-        <script src="dist/vendor/jquery/dist/jquery.js"></script>
-        <script src="dist/vendor/bootstrap/dist/js/bootstrap.js"></script>
-        <script src="dist/vendor/jquery.easing/jquery.easing.js"></script>
-        <script src="dist/vendor/fastclick/lib/fastclick.js"></script>
-        <script src="dist/vendor/onScreen/jquery.onscreen.js"></script>
-        <script src="dist/vendor/jquery-countTo/jquery.countTo.js"></script>
-        <script src="dist/vendor/perfect-scrollbar/js/perfect-scrollbar.jquery.js"></script>
-        <script src="dist/scripts/ui/accordion.js"></script>
-        <script src="dist/scripts/ui/animate.js"></script>
-        <script src="dist/scripts/ui/link-transition.js"></script>
-        <script src="dist/scripts/ui/panel-controls.js"></script>
-        <script src="dist/scripts/ui/preloader.js"></script>
-        <script src="dist/scripts/ui/toggle.js"></script>
-        <script src="dist/scripts/urban-constants.js"></script>
-        <script src="dist/scripts/extentions/lib.js"></script>
-        <script src="dist/vendor/jquery.maskedinput/dist/jquery.maskedinput.min.js"></script>
-        <script src="dist/scripts/pages/form-masks.js"></script>
-        <script src="dist/js/script.js"></script>  
-        
-
-
-
-
-
+        </div><!-- ./wrapper -->
+        <!-- Bootstrap 3.3.2 JS -->
+        <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+        <!-- InputMask -->
+        <script type="text/javascript" src="plugins/input-mask/jquery.inputmask.js"></script>
+        <script type="text/javascript" src="plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+        <script type="text/javascript" src="plugins/input-mask/jquery.inputmask.extensions.js"></script>
+        <!-- Data Tables -->
+        <script type="text/javascript" src="plugins/datatables/jquery.dataTables.js"></script>
+        <script type="text/javascript" src="plugins/datatables/dataTables.bootstrap.js"></script>
+        <!-- CKEditor-->
+        <script type="text/javascript" src="plugins/ckeditor/ckeditor.js"></script>
+        <!-- FastClick -->
+        <script type="text/javascript" src='plugins/fastclick/fastclick.min.js'></script>
+        <!-- Sparkline -->
+        <script type="text/javascript" src="plugins/sparkline/jquery.sparkline.min.js"></script>
+        <!-- jvectormap -->
+        <script type="text/javascript" src="plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
+        <script type="text/javascript" src="plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+        <!-- daterangepicker -->
+        <script type="text/javascript" src="plugins/daterangepicker/daterangepicker.js"></script>
+        <!-- datepicker -->
+        <script type="text/javascript" src="plugins/datepicker/bootstrap-datepicker.js"></script>
+        <script type="text/javascript" src="plugins/datepicker/locales/bootstrap-datepicker.pt-BR.js"></script>
+        <!-- iCheck -->
+        <script type="text/javascript" src="plugins/iCheck/icheck.min.js"></script>
+        <!-- SlimScroll 1.3.0 -->
+        <script type="text/javascript" src="plugins/slimScroll/jquery.slimscroll.min.js"></script>
+        <!-- ChartJS 1.0.1 -->
+        <script type="text/javascript" src="plugins/chartjs/Chart.min.js"></script>
+        <!-- AdminLTE App -->
+        <script type="text/javascript" src="dist/js/app.min.js"></script>
+        <!-- Page script -->
+        <script type="text/javascript" src="plugins/custom.js"></script>
     </body>
 </html>
 <?php

@@ -63,6 +63,68 @@ class Check {
     }
 
     /**
+     * <b>Data por extenso:</b> Converte a data por extenso no formato "dd de mm de yyyy' !
+     * @param STRING $Data = String de data para converter
+     */
+    public static function DataExt($Data) {
+        self::$Data = trim($Data);
+        $ArrDate = explode('-', self::$Data);
+        $dia = $ArrDate[2];
+        $mes = $ArrDate[1];
+        $ano = $ArrDate[0];
+
+        switch ($mes):
+            case 1: $mes = "Janeiro";
+                break;
+            case 2: $mes = "Fevereiro";
+                break;
+            case 3: $mes = "Março";
+                break;
+            case 4: $mes = "Abril";
+                break;
+            case 5: $mes = "Maio";
+                break;
+            case 6: $mes = "Junho";
+                break;
+            case 7: $mes = "Julho";
+                break;
+            case 8: $mes = "Agosto";
+                break;
+            case 9: $mes = "Setembro";
+                break;
+            case 10: $mes = "Outubro";
+                break;
+            case 11: $mes = "Novembro";
+                break;
+            case 12: $mes = "Dezembro";
+                break;
+        endswitch;
+
+        $Result = $dia . ' de ' . $mes . ' de ' . $ano;
+        return $Result;
+    }
+
+    /**
+     * <b>Data por intervalo:</b> Adiciona um intervalo de dias e cria uma data válida!
+     * @param STRING $Data = String de data para converter
+     * @param INT $Dias = Integer de dias do intervalo
+     */
+    public static function DataDias($Data, $Dias, $Tipo) {
+        if ($Tipo === 'data'):
+            self::$Data = trim($Data);
+            $timestamp = strtotime(self::$Data . '+' . $Dias . ' days');
+            $Result = date('d/m/Y H:i:s', $timestamp);
+        elseif ($Tipo === 'dias'):
+            $DataIni = strtotime($Data);
+            $DataFim = strtotime($Dias);
+            $diferenca = $DataFim - $DataIni;
+            $dias = (int) floor($diferenca / (60 * 60 * 24));
+            $Result = $dias > 0 ? $dias : 0;
+        endif;
+        return $Result;
+    }
+
+    /**
      * <b>Limita os Palavras:</b> Limita a quantidade de palavras a serem exibidas em uma string!
      * @param STRING $String = Uma string qualquer
      * @return INT = $Limite = String limitada pelo $Limite
@@ -116,14 +178,39 @@ class Check {
      * uploads. Se existir retorna a imagem redimensionada!
      * @return HTML = imagem redimencionada!
      */
-    public static function Image($ImageUrl, $ImageDesc, $ImageW = null, $ImageH = null) {
+    public static function Image($ImageUrl, $ImageDesc, $ImageW = null, $ImageH = null, $CWAdmin = null) {
 
         self::$Data = $ImageUrl;
+        $patch = HOME;
 
-        if (file_exists(self::$Data) && !is_dir(self::$Data)):
-            $patch = HOME;
-            $imagem = self::$Data;
-            return "<img src=\"{$patch}/tim.php?src={$imagem}&w={$ImageW}&h={$ImageH}\" alt=\"{$ImageDesc}\" title=\"{$ImageDesc}\"/>";
+        if ($CWAdmin):
+            if (file_exists('../' . self::$Data) && !is_dir('../' . self::$Data)):
+                $imagem = self::$Data;
+                return "<img src=\"{$patch}/tim.php?src={$imagem}&w={$ImageW}&h={$ImageH}\" alt=\"{$ImageDesc}\" title=\"{$ImageDesc}\"/>";
+            else:
+                return false;
+            endif;
+        else:
+            if (file_exists(self::$Data) && !is_dir(self::$Data)):
+                $imagem = self::$Data;
+                return "<img src=\"{$patch}/tim.php?src={$imagem}&w={$ImageW}&h={$ImageH}\" alt=\"{$ImageDesc}\" title=\"{$ImageDesc}\"/>";
+            else:
+                return false;
+            endif;
+        endif;
+    }
+
+    /**
+     * <b>ytVideo:</b> este HELPER serve para exibir a ID do video do YOUTUBE.
+     * @return HTML = imagem redimencionada!
+     */
+    public static function ytVideo($video) {
+        self::$Data = $video;
+        $videoId = array();
+        preg_match('/(v=)([^&]+)/', self::$Data, $videoId);
+        self::$Data = $videoId[2];
+        if (!empty(self::$Data)):
+            return self::$Data;
         else:
             return false;
         endif;

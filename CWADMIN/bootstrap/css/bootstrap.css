@@ -43,7 +43,6 @@ audio:not([controls]) {
 template {
   display: none;
 }
-body {background: #eaeaea;}
 a {
   background-color: transparent;
 }

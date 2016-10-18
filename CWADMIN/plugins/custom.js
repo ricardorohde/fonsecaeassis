@@ -32,16 +32,13 @@ $(document).ready(function () {
     /*Esconde dados de acesso*/
     $('.dadosAcess').hide();
 
+    /*InputMask*/
+    $(":input").inputmask();
+
     /*Iniciar o DatePicker*/
     $('.datepicker').datepicker({
         language: 'pt-BR'
     });
-});
-
-$(function () {
-    $("[data-mask]").inputmask("dd/mm/yyyy", {"placeholder": "dd/mm/aaaa"});
-    $("[datetime-mask]").inputmask("datetime");
-    $("[phone-mask]").inputmask("(99) 9999-9999");
 });
 
 //Exibi ou Esconde os dados de acesso

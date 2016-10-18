@@ -1,25 +1,6 @@
-
-<footer class="content-footer">
-
-      <nav class="footer-right">
-        <ul class="nav">
-          <li>
-            <a href="javascript:;">Versão 1.0 Beta</a>
-          </li>
-          <li>
-            <a href="javascript:;" class="scroll-up">
-              <i class="fa fa-angle-up"></i>
-            </a>
-          </li>
-        </ul>
-      </nav>
-
-      <nav class="footer-left">
-        <ul class="nav">
-          <li>
-              <a href="javascript:;">Copyright <small><b>CW Digital - Brasil</b></small> <i class="fa fa-copyright"></i> <span><b>CW Admin</b></span> </a>
-          </li>
-        </ul>
-      </nav>
-
-    </footer>
+<footer class="main-footer">
+    <div class="pull-right hidden-xs">
+        <b>Version</b> 4.0
+    </div>
+    <strong>Copyright &copy; 2009-<?= date('Y'); ?> <a href="http://www.creativewebsites.com.br">Creative Websites</a>.</strong> All rights reserved.
+</footer>

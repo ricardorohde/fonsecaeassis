@@ -63,214 +63,17 @@ class Seo {
         $ReadSeo = new Read;
 
         switch ($this->File):
-            //SEO:: POST
-            case 'artigo':
-                $Admin = (isset($_SESSION['userlogin']['user_level']) && $_SESSION['userlogin']['user_level'] == 3 ? true : false);
-                $Check = ($Admin ? '' : 'post_status = 1 AND');
-
-                $ReadSeo->ExeRead("ws_posts", "WHERE {$Check} post_name = :link", "link={$this->Link}");
-                if (!$ReadSeo->getResult()):
-                    $this->seoData = null;
-                    $this->seoTags = null;
-                else:
-                    $extract = extract($ReadSeo->getResult()[0]);
-                    $this->seoData = $ReadSeo->getResult()[0];
-                    $this->Data = [$post_title . ' - ' . SITENAME, $post_content, HOME . "/artigo/{$post_name}", HOME . "/uploads/{$post_cover}"];
-
-                    //post:: conta views do post
-                    $ArrUpdate = ['post_views' => $post_views + 1];
-                    $Update = new Update();
-                    $Update->ExeUpdate("ws_posts", $ArrUpdate, "WHERE post_id = :postid", "postid={$post_id}");
-                endif;
-                break;
-
-            //SEO:: CATEGORIA
-            case 'categoria':
-                $ReadSeo->ExeRead("ws_categories", "WHERE category_name = :link", "link={$this->Link}");
-                if (!$ReadSeo->getResult()):
-                    $this->seoData = null;
-                    $this->seoTags = null;
-                else:
-                    extract($ReadSeo->getResult()[0]);
-                    $this->seoData = $ReadSeo->getResult()[0];
-                    $this->Data = [$category_title . ' - ' . SITENAME, $category_content, HOME . "/categoria/{$category_name}", INCLUDE_PATH . '/images/site.png'];
-
-                    //category:: conta views da categoria
-                    $ArrUpdate = ['category_views' => $category_views + 1];
-                    $Update = new Update();
-                    $Update->ExeUpdate("ws_categories", $ArrUpdate, "WHERE category_id = :catid", "catid={$category_id}");
-                endif;
-                break;
-
-            //SEO:: PESQUISA
-            case 'pesquisa':
-                $ReadSeo->ExeRead("ws_posts", "WHERE post_status = 1 AND (post_title LIKE '%' :link '%' OR post_content LIKE '%' :link '%')", "link={$this->Link}");
-                if (!$ReadSeo->getResult()):
-                    $this->seoData = null;
-                    $this->seoTags = null;
-                else:
-                    $this->seoData['count'] = $ReadSeo->getRowCount();
-                    $this->Data = ["Pesquisa por: {$this->Link}" . ' - ' . SITENAME, "Sua pesquisa por {$this->Link} retornou {$this->seoData['count']} resultados!", HOME . "/pesquisa/{$this->Link}", INCLUDE_PATH . '/images/site.png'];
-                endif;
-                break;
-
-            //SEO:: LISTA EMPRESAS
-            case 'empresas':
-                $Name = ucwords(str_replace("-", " ", $this->Link));
-                $this->seoData = ["empresa_link" => $this->Link, "empresa_cat" => $Name];
-                $this->Data = ["Empresas {$this->Link}" . SITENAME, "Confira o guia completo de sua cidade, e encontra empresas {$this->Link}.", HOME . '/empresas/' . $this->Link, INCLUDE_PATH . '/images/site.png'];
-                break;
-
-            //SEO:: EMPRESA SINGLE
-            case 'empresa':
-                $Admin = (isset($_SESSION['userlogin']['user_level']) && $_SESSION['userlogin']['user_level'] == 3 ? true : false);
-                $Check = ($Admin ? '' : 'empresa_status = 1 AND');
-
-                $ReadSeo->ExeRead("app_empresas", "WHERE {$Check} empresa_name = :link", "link={$this->Link}");
-                if (!$ReadSeo->getResult()):
-                    $this->seoData = null;
-                    $this->seoTags = null;
-                else:
-                    extract($ReadSeo->getResult()[0]);
-                    $this->seoData = $ReadSeo->getResult()[0];
-                    $this->Data = [$empresa_title . ' - ' . SITENAME, $empresa_sobre, HOME . "/empresa/{$empresa_name}", HOME . "/uploads/{$empresa_capa}"];
-
-                    //empresa:: conta views da empresa
-                    $ArrUpdate = ['empresa_views' => $empresa_views + 1];
-                    $Update = new Update();
-                    $Update->ExeUpdate("app_empresas", $ArrUpdate, "WHERE empresa_id = :empresaid", "empresaid={$empresa_id}");
-                endif;
-                break;
-
             //SEO:: INDEX
             case 'index':
-                $this->Data = [SITENAME . " - Advogados Associados", SITEDESC, HOME, INCLUDE_PATH . '/images/logo.png'];
-                break;
-
-            //SEO:: DIRETORIA
-            case 'diretoria':
-                $this->Data = [SITENAME . " - Diretoria", "Lista da Diretoria ACIRM", HOME . '/diretoria', INCLUDE_PATH . '/images/logo-topo.png'];
-                break;
-
-            //SEO:: CONSELHOS
-            case 'conselhos':
-                $this->Data = [SITENAME . " - Conselhos", "Lista dos Conselhos ACIRM", HOME . '/conselhos', INCLUDE_PATH . '/images/logo-topo.png'];
-                break;
-
-            //SEO:: EQUIPE
-            case 'equipe':
-                $this->Data = [SITENAME . " - Equipe", "Lista da Equipe ACIRM", HOME . '/equipe', INCLUDE_PATH . '/images/logo-topo.png'];
-                break;
-
-            //SEO:: LINKS
-            case 'links':
-                $this->Data = [SITENAME . " - Links", "Lista de Links ACIRM", HOME . '/links', INCLUDE_PATH . '/images/logo-topo.png'];
-                break;
-
-            //SEO:: INSTITUCIONAL
-            case 'institucional':
-                $this->Data = [SITENAME . " - Institucional", "Informações institucionais sobre a ACIRM", HOME . '/institucional', INCLUDE_PATH . '/images/logo-topo.png'];
-                break;
-
-            //SEO:: EVENTOS
-            case 'eventos':
-                $this->Data = [SITENAME . " - Cobertura de Eventos", "Galeria de Eventos da ACIRM", HOME . '/eventos', INCLUDE_PATH . '/images/logo-topo.png'];
-                break;
-
-            //SEO:: EVENTO (EXIBIR)
-            case 'evento':
-                $ReadSeo->ExeRead("eventos", "WHERE url_name = :link", "link={$this->Link}");
-                if (!$ReadSeo->getResult()):
-                    $this->seoData = null;
-                    $this->seoTags = null;
-                else:
-                    $extract = extract($ReadSeo->getResult()[0]);
-                    $this->seoData = $ReadSeo->getResult()[0];
-                    $this->Data = ["Evento: {$evento}" . ' - ' . SITENAME, "Exibição do evento: {$evento}", HOME . "/evento/{$url_name}", $foto];
-                endif;
-                break;
-
-            //SEO:: PRODUTOS E SERVIÇOS
-            case 'produtos-servicos':
-                $this->Data = [SITENAME . " - Produtos e Serviços", "Produtos e Serviços da ACIRM", HOME . '/produtos-servicos', INCLUDE_PATH . '/images/logo-topo.png'];
-                break;
-
-            //SEO:: PRODUTO (EXIBIR)
-            case 'produto':
-                $ReadSeo->ExeRead("produtos", "WHERE url_name = :link", "link={$this->Link}");
-                if (!$ReadSeo->getResult()):
-                    $this->seoData = null;
-                    $this->seoTags = null;
-                else:
-                    $extract = extract($ReadSeo->getResult()[0]);
-                    $prodDesc = Check::Words($descricao, 70);
-                    $this->seoData = $ReadSeo->getResult()[0];
-                    $this->Data = ["Produto: {$nome}" . ' - ' . SITENAME, "{$prodDesc}", HOME . "/produto/{$url_name}", HOME . "/uploads/{$foto}"];
-                endif;
-                break;
-
-            //SEO:: EMPREGOS
-            case 'empregos':
-                $this->Data = [SITENAME . " - Banco de empregos", "A ACIRM oferece o contato entre o candidato e o empregador para facilitar a contratação.", HOME . '/empregos', INCLUDE_PATH . '/images/logo-topo.png'];
-                break;
-
-            //SEOO:: PAINEL DE CANDIDATO
-            case 'painel_candidato':
-                $this->Data = [SITENAME . " - Painel Candidato", "A ACIRM oferece o contato entre o candidato e o empregador para facilitar a contratação.", HOME . '/painel_candidato', INCLUDE_PATH . '/images/logo-topo.png'];
-                break;
-
-            //SEO:: VIDEOS
-            case 'videos':
-                $this->Data = [SITENAME . " - Galeria de Videos", "Galeria de Videos da ACIRM", HOME . '/videos', INCLUDE_PATH . '/images/logo-topo.png'];
-                break;
-
-            //SEO:: VIDEO (PLAYER)
-            case 'video':
-                $ReadSeo->ExeRead("videos", "WHERE url_name = :link", "link={$this->Link}");
-                if (!$ReadSeo->getResult()):
-                    $this->seoData = null;
-                    $this->seoTags = null;
-                else:
-                    $extract = extract($ReadSeo->getResult()[0]);
-                    $this->seoData = $ReadSeo->getResult()[0];
-                    $this->Data = ["Video: {$titulo}" . ' - ' . SITENAME, "Exibição do video: {$titulo}", HOME . "/video/{$url_name}", $foto];
-                endif;
-                break;
-
-            //SEO:: NOTICIAS
-            case 'noticias':
-                $this->Data = [SITENAME . " - Notícias", "Todas as noticias sobre a ACIRM", HOME . '/noticias', INCLUDE_PATH . '/images/logo-topo.png'];
-                break;
-
-            //SEO:: NOTICIA (LER)
-            case 'noticia':
-                $ReadSeo->ExeRead("noticias", "WHERE url_name = :link", "link={$this->Link}");
-                if (!$ReadSeo->getResult()):
-                    $this->seoData = null;
-                    $this->seoTags = null;
-                else:
-                    $extract = extract($ReadSeo->getResult()[0]);
-                    $this->seoData = $ReadSeo->getResult()[0];
-                    $this->Data = [$titulo . ' - ' . SITENAME, "Exibição da notícia: {$titulo}", HOME . "/noticia/{$url_name}", $foto];
-                endif;
-                break;
-
-            //SEO:: REVISTAS
-            case 'revistas':
-                $this->Data = [SITENAME . " - Revistas", "Revistas ACIRM e arquivos.", HOME . '/revistas', INCLUDE_PATH . '/images/logo-topo.png'];
-                break;
-
-            //SEO:: ASSOCIE
-            case 'associe':
-                $this->Data = [SITENAME . " - Associe-se", "Torne-se um associado ACIRM", HOME . '/associe/' . $this->Link, INCLUDE_PATH . '/images/logo-topo.png'];
+                $this->Data = [SITENAME . " - Instituto de Terapias e Naturologia", SITEDESC, HOME, INCLUDE_PATH . '/images/logo_midia.jpg'];
                 break;
 
             //SEO:: CURSOS
             case 'cursos':
-                $this->Data = [SITENAME . " - Cursos", "Os melhores cursos, para te ajudar no seu empreendimento.", HOME . '/cursos', INCLUDE_PATH . '/images/logo-topo.png'];
+                $this->Data = [SITENAME . " - Cursos", "Cursos e Eventos oferecidos pelo ITENA, matricule-se já.", HOME . '/cursos', INCLUDE_PATH . '/images/logo_midia.jpg'];
                 break;
 
-            //SEO:: CURSO (EXIBIR)
+            //SEO:: CURSO
             case 'curso':
                 $ReadSeo->ExeRead("cursos", "WHERE url_name = :link", "link={$this->Link}");
                 if (!$ReadSeo->getResult()):
@@ -279,19 +82,47 @@ class Seo {
                 else:
                     $extract = extract($ReadSeo->getResult()[0]);
                     $this->seoData = $ReadSeo->getResult()[0];
-                    $this->Data = ["Curso: {$curso}" . ' - ' . SITENAME, "Detalhes sobre o curso: {$curso}", HOME . "/curso/{$url_name}", HOME . "/uploads/{$foto}"];
+                    $this->Data = [$curso . ' - ' . SITENAME, "Informações sobre o Curso: {$curso}", HOME . "/curso/{$url_name}", $foto];
                 endif;
+                break;
+
+            //SEO:: TV INFORONDONIA
+            case 'depoimentos':
+                $this->Data = [SITENAME . " - Depoimentos", "Veja o depoimentos de alunos de nossos cursos", HOME . '/depoimetos', INCLUDE_PATH . '/images/logo_midia.jpg'];
+                break;
+
+            //SEO:: GALERIAS
+            case 'galerias':
+                $this->Data = [SITENAME . " - Nossa galeria", "Veja as fotos dos eventos e cursos do ITENA", HOME . '/galerias', INCLUDE_PATH . '/images/logo_midia.jpg'];
+                break;
+
+            //SEO:: EVENTO (EXIBIR)
+            case 'galeria':
+                $ReadSeo->ExeRead("eventos", "WHERE url_name = :link", "link={$this->Link}");
+                if (!$ReadSeo->getResult()):
+                    $this->seoData = null;
+                    $this->seoTags = null;
+                else:
+                    $extract = extract($ReadSeo->getResult()[0]);
+                    $this->seoData = $ReadSeo->getResult()[0];
+                    $this->Data = ["Evento: {$evento}" . ' - ' . SITENAME, "Galeria: {$evento}, veja todas as fotos desta galeria", HOME . "/galeria/{$url_name}", $foto];
+                endif;
+                break;
+
+            //SEO:: QUEM SOMOS
+            case 'quem-somos':
+                $this->Data = [SITENAME . " - Quem Somos", "Um pouco sobre nós, a história do ITENA", HOME . '/quem-somos', INCLUDE_PATH . '/images/logo_midia.jpg'];
                 break;
 
             //SEO:: CONTATO
             case 'contato':
-                $this->Data = [SITENAME . " - Entre em contato conosco", "Entre em contato com a ACIRM", HOME . '/contato/' . $this->Link, INCLUDE_PATH . '/images/logo-topo.png'];
+                $this->Data = [SITENAME . " - Fale conosco", "Estamos de protidão para lhe atender, entre em contato e conheça mais.", HOME . '/contato', INCLUDE_PATH . '/images/logo_midia.jpg'];
                 break;
 
             //SEO:: 404
             default :
-                $this->Data = [SITENAME . ' - 404 Oppsss, Nada encontrado!', SITEDESC, HOME . '/404', INCLUDE_PATH . '/images/logo-topo.png'];
-
+                $this->Data = [SITENAME . " - A informação é a nossa prioridade", SITEDESC, HOME, INCLUDE_PATH . '/images/logo_midia.jpg'];
+                break;
         endswitch;
 
         if ($this->Data):
@@ -312,14 +143,14 @@ class Seo {
         $this->Data = null;
 
         //NORMAL PAGE
-        $this->seoTags = '<link rel="shortcut icon" type="image/x-icon" href="http://www.creativewebsites.com.br/midia/favicon.ico" />' . "\n";
+        $this->seoTags = '<link rel="shortcut icon" type="image/x-icon" href="' . INCLUDE_PATH . '/images/favicon.png" />' . "\n";
         $this->seoTags .= '<title>' . $this->Tags['Title'] . '</title> ' . "\n";
         $this->seoTags .= '<meta name="description" content="' . $this->Tags['Content'] . '"/>' . "\n";
         $this->seoTags .= '<meta name="robots" content="index, follow" />' . "\n";
         $this->seoTags .= '<link rel="canonical" href="' . $this->Tags['Link'] . '">' . "\n";
-        $this->seoTags .= '<meta name="author" content="Creative Websites" />' . "\n";
         $this->seoTags .= '<meta name="reply-to" content="contato@creativewebsites.com.br"/>' . "\n";
         $this->seoTags .= '<meta name="copyright" content="Creative Websites" />' . "\n";
+        $this->seoTags .= '<meta name="uptec" content="https://www.upinside.com.br/s/GeanBertani">' . "\n";
         $this->seoTags .= "\n";
 
         //FACEBOOK
@@ -330,6 +161,8 @@ class Seo {
         $this->seoTags .= '<meta property="og:image" content="' . $this->Tags['Image'] . '" />' . "\n";
         $this->seoTags .= '<meta property="og:url" content="' . $this->Tags['Link'] . '" />' . "\n";
         $this->seoTags .= '<meta property="og:type" content="article" />' . "\n";
+        #$this->seoTags .= '<meta property="fb:app_id" content="1540165802953123" />' . "\n";
+        #$this->seoTags .= '<meta property="article:author" content="https://www.facebook.com/inforondon" />' . "\n";
         $this->seoTags .= "\n";
 
         //ITEM GROUP (TWITTER)

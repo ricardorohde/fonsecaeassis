@@ -2,7 +2,7 @@
 <section class="content-header">
     <h1>
         Listar Depoimentos
-        <small>Lista os cadastros de cursos</small>
+        <small>Lista os cadastros de depoimentos</small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="painel.php"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -20,18 +20,14 @@
             $acaoId = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
 
             require('_models/AdminDepoimento.class.php');
-            $readAcao = new AdminCurso;
+            $readAcao = new AdminDepoimento;
 
             $readMsg = new Read;
             $readMsg->ExeRead('depoimentos', "WHERE id = :id", "id={$acaoId}");
             switch ($acao):
-                case 'cadastrar':
-                    $msg = $readMsg->getResult()[0];
-                    WSErro("O Curso <b>{$msg['curso']}</b> foi cadastrado com sucesso!", WS_ACCEPT);
-                    break;
                 case 'editar':
                     $msg = $readMsg->getResult()[0];
-                    WSErro("O Curso <b>{$msg['curso']}</b> foi atualizado com sucesso!", WS_ACCEPT);
+                    WSErro("Depoimento atualizado com sucesso!", WS_ACCEPT);
                     break;
                 case 'excluir':
                     $readAcao->ExeDelete($acaoId);
@@ -76,8 +72,8 @@
                                         </td>
                                         <td>
                                             <div class="btn-group">
-                                                <a href="painel.php?exe=depoimentos/editar&id=<?= $reg['id']; ?>" class="btn btn-flat btn-sm btn-primary "><b class="fa fa-edit"></b> Editar</a>
-                                                <a href="painel.php?exe=depoimentos/listar&acao=excluir&id=<?= $reg['id']; ?>" class="btn btn-flat btn-sm btn-danger "><b class="fa fa-trash-o"></b> Excluir</a>
+                                                <a href="painel.php?exe=depoimentos/editar&id=<?= $reg['id']; ?>" class="btn btn-flat btn-sm btn-warning "><b class="fa fa-eye"></b> Ver</a>
+                                                <a href="painel.php?exe=depoimentos/listar&acao=excluir&id=<?= $reg['id']; ?>" class="btn btn-flat btn-danger btn-sm"><b class="fa fa-trash-o"></b> Excluir</a>
                                             </div>
                                         </td>
                                     </tr>
