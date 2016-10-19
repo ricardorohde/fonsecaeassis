@@ -33,7 +33,7 @@
                         <?php
                     endforeach;
                 else:
-                    WSErro('Nenhum Associado cadastrado, aguarde...', WS_INFOR);
+                    WSErro('Ainda não temos nenhum associado cadastrado, aguarde...', WS_INFOR);
                 endif;
                 ?>
             </div>

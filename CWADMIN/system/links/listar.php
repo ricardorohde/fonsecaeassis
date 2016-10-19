@@ -2,23 +2,7 @@
 //Configurações
 $exe = filter_input(INPUT_GET, 'exe');
 $case = explode('/', $exe);
-$tipo = ['Associados'];
-?>
-<section class="content-header">
-    <h1>
-        <?= 'Listar ' . $tipo[0] ?>
-        <small>Lista os Cadastros de <?= $tipo[0] ?></small>
-    </h1>
-    <ol class="breadcrumb">
-        <li><a href="painel.php"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="painel.php?exe=<?= $case[0]; ?>/listar"><?= $tipo[0]; ?></a></li>
-        <li class="active"><?= 'Listar ' . $tipo[0] ?></li>
-    </ol>
-</section><?php
-//Configurações
-$exe = filter_input(INPUT_GET, 'exe');
-$case = explode('/', $exe);
-$tipo = ['Associados'];
+$tipo = ['Links'];
 ?>
 <section class="content-header">
     <h1>
@@ -38,19 +22,19 @@ $tipo = ['Associados'];
             $acao = filter_input(INPUT_GET, 'acao', FILTER_SANITIZE_STRING);
             $acaoId = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
 
-            require('_models/AdminAssociado.class.php');
-            $readAcao = new AdminAssociado;
+            require('_models/AdminLink.class.php');
+            $readAcao = new AdminLink;
 
             $readMsg = new Read;
-            $readMsg->ExeRead('adv_associados', "WHERE id = :id", "id={$acaoId}");
+            $readMsg->ExeRead('links', "WHERE id = :id", "id={$acaoId}");
             switch ($acao):
                 case 'cadastrar':
                     $msg = $readMsg->getResult()[0];
-                    WSErro("O Associado <b>{$msg['nome']}</b> foi cadastrado com sucesso!", WS_ACCEPT);
+                    WSErro("O Link <b>{$msg['titulo']}</b> foi cadastrado com sucesso!", WS_ACCEPT);
                     break;
                 case 'editar':
                     $msg = $readMsg->getResult()[0];
-                    WSErro("O Associado <b>{$msg['nome']}</b> foi atualizado com sucesso!", WS_ACCEPT);
+                    WSErro("O Link <b>{$msg['titulo']}</b> foi atualizado com sucesso!", WS_ACCEPT);
                     break;
                 case 'excluir':
                     $readAcao->ExeDelete($acaoId);
@@ -64,22 +48,22 @@ $tipo = ['Associados'];
                         <thead>
                             <tr>
                                 <th>Id</th>
-                                <th>Nome</th>
-                                <th>Reg. OAB</th>
+                                <th>Titulo</th>
                                 <th>Ação</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
                             $readUser = new Read;
-                            $readUser->ExeRead("adv_associados", "WHERE nome != :n", "n= ''");
-                            if ($readUser->getResult()):
+                            $readUser->ExeRead("links", "WHERE titulo != :l", "l= ''");
+                            if (!$readUser->getResult()):
+
+                            else:
                                 foreach ($readUser->getResult() as $reg):
                                     ?>
                                     <tr>
                                         <td><?= $reg['id']; ?></td>
-                                        <td><?= Check::Words($reg['nome'], 10); ?></td>
-                                        <td><?= $reg['oab_reg'] . '/' . $reg['oab_uf']; ?></td>
+                                        <td><?= $reg['titulo']; ?></td>
                                         <td>
                                             <div class="btn-group">
                                                 <a href="painel.php?exe=<?= $case[0]; ?>/editar&id=<?= $reg['id']; ?>" class="btn btn-flat btn-sm btn-primary "><b class="fa fa-edit"></b> Editar</a>
@@ -92,8 +76,8 @@ $tipo = ['Associados'];
                             endif;
                             ?>
                     </table>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+                </div><!-- /.box-body -->
+            </div><!-- /.box -->
+        </div><!-- /.col -->
+    </div><!-- /.row -->
+</section><!-- /.content -->

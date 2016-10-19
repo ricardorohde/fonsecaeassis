@@ -2,7 +2,7 @@
 //Configurações
 $exe = filter_input(INPUT_GET, 'exe');
 $case = explode('/', $exe);
-$tipo = ['Associados'];
+$tipo = ['Links'];
 ?>
 <section class="content-header">
     <h1>
@@ -21,11 +21,10 @@ $tipo = ['Associados'];
             <?php
             $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
             if (isset($dados) && $dados['SendPostForm']):
-                $dados['foto'] = ($_FILES['foto']['tmp_name'] ? $_FILES['foto'] : null);
                 unset($dados['SendPostForm']);
 
-                require('_models/AdminAssociado.class.php');
-                $cadastra = new AdminAssociado;
+                require('_models/AdminLink.class.php');
+                $cadastra = new AdminLink;
                 $cadastra->ExeCreate($dados);
 
                 if (!$cadastra->getResult()):
@@ -40,35 +39,25 @@ $tipo = ['Associados'];
                     <div class="box-header"><h3 class="box-title">Dados</h3></div>
                     <div class="box-body">
                         <div class="row">
-                            <div class="col-md-8">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <label for="nome">Nome do Associado</label>
-                                            <input type="text" name="nome" class="form-control" id="nome" value="<?= isset($dados['nome']) ? $dados['nome'] : ''; ?>" placeholder="Informe o nome do Associado">
+                                            <label for="titulo">Titulo do Link</label>
+                                            <input type="text" name="titulo" class="form-control" id="titulo" value="<?= isset($dados['titulo']) ? $dados['titulo'] : ''; ?>" placeholder="Informe o titulo do Link">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="row">
-                                        <div class="col-md-8">
-                                            <label for="oab_reg">Registro OAB</label>
-                                            <input type="text" name="oab_reg" class="form-control" id="oab_reg" value="<?= isset($dados['oab_reg']) ? $dados['oab_reg'] : ''; ?>" placeholder="Informe o Registro OAB">
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label for="oab_uf">UF Registro OAB</label>
-                                            <input type="text" name="oab_uf" class="form-control" id="oab_uf" value="<?= isset($dados['oab_uf']) ? $dados['oab_uf'] : ''; ?>" placeholder="Informe a UF">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <div class="row">
                                         <div class="col-md-12">
-                                            <label for="foto">Foto do Associado</label>
-                                            <input type="file" name="foto" class="form-control" id="foto">
-                                            <p class="help-block">Selecione uma foto.</p>
+                                            <label for="link">Url do Link</label>
+                                            <div class="input-group">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-link"></i>
+                                                </div>
+                                                <input type="text" name="link" class="form-control" id="link" value="<?= isset($dados['link']) ? $dados['link'] : ''; ?>" placeholder="Informe a url do Link">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

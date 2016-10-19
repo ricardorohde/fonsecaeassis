@@ -141,6 +141,7 @@ class AdminAssociado {
     //Cadastrar Evento
     private function Create() {
         $Create = new Create;
+        $this->Data['qm_cadastr'] = $_SESSION['userlogin']['id'];
         $Create->ExeCreate(self::Entity, $this->Data);
         if ($Create->getResult()):
             $this->Error = ["O Associado <b>{$this->Data['nome']}</b> foi cadastrado com sucesso no sistema!", WS_ACCEPT];
@@ -151,6 +152,8 @@ class AdminAssociado {
     //Atualiza Evento
     private function Update() {
         $Update = new Update;
+        $this->Data['qm_alterou'] = $_SESSION['userlogin']['id'];
+        $this->Data['data_alterou'] = date('Y-m-d H:i:s');
         $Update->ExeUpdate(self::Entity, $this->Data, "WHERE id = :id", "id={$this->Id}");
         if ($Update->getResult()):
             $this->Error = ["O Associado <b>{$this->Data['nome']}</b> foi atualizado com sucesso!", WS_ACCEPT];

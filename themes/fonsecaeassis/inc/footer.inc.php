@@ -16,13 +16,18 @@
                 <h5 class="btn-footer">Siga-Nos <i class="entypo-facebook-squared btn-person"></i></h5>
                 <h5 class="btn-footer">Links Úteis <i class="entypo-link btn-person"></i></h5>
                 <ul class="links-uteis">
-                    <li>OAB - Rondônia</li>
-                    <li>02 - Link</li>
-                    <li>03 - Link</li>
-                    <li>04 - Link</li>
-                    <li>05 - Link</li>
+                    <?php
+                    $ReadLinks = new Read;
+                    $ReadLinks->ExeRead('links', "WHERE titulo != :t ORDER BY id DESC", "t=''");
+                    if ($ReadLinks->getResult()):
+                        foreach ($ReadLinks->getResult() AS $Links):
+                            echo "<li><a href=\"{$Links['link']}\" target=\"_blank\">{$Links['titulo']}</a></li>";
+                        endforeach;
+                    endif;
+                    ?>
+
                 </ul>
-                <h5 class="btn-footer btn-inicio">Inicio <i class="entypo-up-dir btn-person"></i></h5>
+                <a href="<?= HOME; ?>"><h5 class="btn-footer btn-inicio">Inicio <i class="entypo-up-dir btn-person"></i></h5></a>
             </div>
             <div class="box-3-footer">
                 <div class=" logo-empresa">
