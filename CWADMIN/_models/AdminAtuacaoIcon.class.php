@@ -1,12 +1,12 @@
 <?php
 
 /**
- * AdminAssociado.class [ MODEL ADMIN ]
- * Respnsável por gerenciar os advogados associados no Admin do sistema!
+ * AdminAtuacaoIcon.class [ MODEL ADMIN ]
+ * Respnsável por gerenciar os icones do módulo de atuação no Admin do sistema!
  *
  * @copyright (c) 2016, Gean M S Bertani - CW DIGITAL
  */
-class AdminAssociado {
+class AdminAtuacaoIcon {
 
     private $Data;
     private $Id;
@@ -14,10 +14,10 @@ class AdminAssociado {
     private $Result;
 
     //Tabela do banco dados
-    const Entity = 'adv_associados';
+    const Entity = 'atuacao_icons';
 
     /**
-     * <b>Cadastrar Associados:</b> Envelopa os dados em um array atribuitivo e execute este método
+     * <b>Cadastrar Icone Atuação:</b> Envelopa os dados em um array atribuitivo e execute este método
      * para cadastrar o mesmo no sistema. Validações serão feitas!
      * @param ARRAY $Data = Atribuitivo
      */
@@ -27,7 +27,7 @@ class AdminAssociado {
         $this->setData();
         if ($this->Data['foto']):
             $upload = new Upload;
-            $upload->Image($this->Data['foto'], $this->Data['nome'], 640, 'associados');
+            $upload->Image($this->Data['foto'], $this->Data['nome'], 48, 'atuacao_icons');
         endif;
         if (isset($upload) && $upload->getResult()):
             $this->Data['foto'] = $upload->getResult();
@@ -52,7 +52,7 @@ class AdminAssociado {
         if (is_array($this->Data['foto'])):
             $this->fotoDelete($this->Id);
             $upload = new Upload;
-            $upload->Image($this->Data['foto'], $this->Data['nome'], 640, 'associados');
+            $upload->Image($this->Data['foto'], $this->Data['nome'], 48, 'atuacao_icons');
         endif;
         if (isset($upload) && $upload->getResult()):
             $this->Data['foto'] = $upload->getResult();
@@ -74,7 +74,7 @@ class AdminAssociado {
         $read->ExeRead(self::Entity, "WHERE id = :id", "id={$this->Id}");
 
         if (!$read->getResult()):
-            $this->Error = ['Oppsss, você tentou remover um associado que não existe no sistema!', WS_ERROR];
+            $this->Error = ['Oppsss, você tentou remover um icone que não existe no sistema!', WS_ERROR];
             $this->Result = false;
         else:
             $this->fotoDelete($this->Id);
@@ -122,7 +122,6 @@ class AdminAssociado {
         $this->Data = array_map('strip_tags', $this->Data);
         $this->Data = array_map('trim', $this->Data);
         $this->Data['foto'] = $capa;
-        $this->Data['url_name'] = Check::Name($this->Data['nome']);
     }
 
     //Excluir a Foto
@@ -143,7 +142,7 @@ class AdminAssociado {
         $this->Data['qm_cadastr'] = $_SESSION['userlogin']['id'];
         $Create->ExeCreate(self::Entity, $this->Data);
         if ($Create->getResult()):
-            $this->Error = ["O Associado <b>{$this->Data['nome']}</b> foi cadastrado com sucesso no sistema!", WS_ACCEPT];
+            $this->Error = ["O Icone <b>{$this->Data['nome']}</b> foi cadastrado com sucesso no sistema!", WS_ACCEPT];
             $this->Result = $Create->getResult();
         endif;
     }
@@ -155,7 +154,7 @@ class AdminAssociado {
         $this->Data['data_alterou'] = date('Y-m-d H:i:s');
         $Update->ExeUpdate(self::Entity, $this->Data, "WHERE id = :id", "id={$this->Id}");
         if ($Update->getResult()):
-            $this->Error = ["O Associado <b>{$this->Data['nome']}</b> foi atualizado com sucesso!", WS_ACCEPT];
+            $this->Error = ["O Icone <b>{$this->Data['nome']}</b> foi atualizado com sucesso!", WS_ACCEPT];
             $this->Result = true;
         endif;
     }
@@ -165,7 +164,7 @@ class AdminAssociado {
         $Delete = new Delete;
         $Delete->ExeDelete(self::Entity, "WHERE id = :id", "id={$this->Id}");
         if ($Delete->getResult()):
-            $this->Error = ["Associado removido com sucesso do sistema!", WS_ACCEPT];
+            $this->Error = ["Icone removido com sucesso do sistema!", WS_ACCEPT];
             $this->Result = true;
         endif;
     }
