@@ -11,6 +11,35 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
+-- Copiando estrutura para tabela _fonsecaeassis_2016.adv_associados
+DROP TABLE IF EXISTS `adv_associados`;
+CREATE TABLE IF NOT EXISTS `adv_associados` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `url_name` varchar(250) NOT NULL,
+  `nome` varchar(100) NOT NULL,
+  `oab_reg` varchar(30) NOT NULL,
+  `oab_uf` char(2) NOT NULL,
+  `foto` varchar(250) NOT NULL,
+  `qm_cadastr` int(11) NOT NULL,
+  `data_cadastr` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `qm_alterou` int(11) DEFAULT NULL,
+  `data_alterou` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_adv_associados_qm_alterou` (`qm_alterou`),
+  KEY `fk_adv_associados_qm_cadastr` (`qm_cadastr`),
+  CONSTRAINT `fk_adv_associados_qm_alterou` FOREIGN KEY (`qm_alterou`) REFERENCES `usuarios` (`id`),
+  CONSTRAINT `fk_adv_associados_qm_cadastr` FOREIGN KEY (`qm_cadastr`) REFERENCES `usuarios` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='Cadastros de Advogados Associados';
+
+-- Copiando dados para a tabela _fonsecaeassis_2016.adv_associados: ~4 rows (aproximadamente)
+/*!40000 ALTER TABLE `adv_associados` DISABLE KEYS */;
+REPLACE INTO `adv_associados` (`id`, `url_name`, `nome`, `oab_reg`, `oab_uf`, `foto`, `qm_cadastr`, `data_cadastr`, `qm_alterou`, `data_alterou`) VALUES
+	(2, 'felipe-teste', 'Felipe Teste', '12345', 'RO', 'associados/2016/10/felipe-teste.jpg', 1, '2016-10-19 00:30:27', 1, NULL),
+	(3, 'vitor-macedo', 'Vitor Macedo', '24570', 'RO', 'associados/2016/10/vitor-macedo.jpg', 1, '2016-10-19 00:30:27', 1, NULL),
+	(4, 'paraibinha', 'Paraibinha', '03483', 'RO', 'associados/2016/10/paraibinha.jpg', 1, '2016-10-19 00:30:27', NULL, NULL),
+	(5, 'antonio-jorge', 'Antonio Jorge', '103494', 'RO', 'associados/2016/10/antonio-jorge.jpg', 1, '2016-10-19 00:30:27', 1, '2016-10-19 00:31:57');
+/*!40000 ALTER TABLE `adv_associados` ENABLE KEYS */;
+
 -- Copiando estrutura para tabela _fonsecaeassis_2016.banco_fotos
 DROP TABLE IF EXISTS `banco_fotos`;
 CREATE TABLE IF NOT EXISTS `banco_fotos` (
@@ -71,7 +100,7 @@ CREATE TABLE IF NOT EXISTS `banners_tipo` (
   KEY `tipo` (`tipo`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='Tipos de banners';
 
--- Copiando dados para a tabela _fonsecaeassis_2016.banners_tipo: ~1 rows (aproximadamente)
+-- Copiando dados para a tabela _fonsecaeassis_2016.banners_tipo: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `banners_tipo` DISABLE KEYS */;
 REPLACE INTO `banners_tipo` (`id_tipo`, `tipo`, `dimens_w`, `dimens_h`) VALUES
 	(1, 'slide', '1920', '680');
@@ -210,7 +239,7 @@ CREATE TABLE IF NOT EXISTS `contato` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='Informações de contatos através do site';
 
--- Copiando dados para a tabela _fonsecaeassis_2016.contato: ~1 rows (aproximadamente)
+-- Copiando dados para a tabela _fonsecaeassis_2016.contato: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `contato` DISABLE KEYS */;
 REPLACE INTO `contato` (`id`, `nome`, `email`, `assunto`, `mensagem`, `data`, `ip`) VALUES
 	(1, 'teste', 'teste@teste.com', 'teste', 'teste', '2016-08-04', '::1');
@@ -250,7 +279,7 @@ CREATE TABLE IF NOT EXISTS `cursos` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='Informações sobres os cursos';
 
--- Copiando dados para a tabela _fonsecaeassis_2016.cursos: ~1 rows (aproximadamente)
+-- Copiando dados para a tabela _fonsecaeassis_2016.cursos: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `cursos` DISABLE KEYS */;
 REPLACE INTO `cursos` (`id`, `url_name`, `curso`, `valor`, `carga`, `modalidade`, `descricao`, `cronograma`, `responsavel`, `foto`, `qm_cadastr`, `qm_alterou`) VALUES
 	(2, 'i-simposio-norte-brasileiro-de-biorregulacao-funcional', 'I Simpósio Norte Brasileiro de Biorregulação Funcional', 'R$ 50,00', '180 Horas', 'presencial', '<h2>O que &eacute; biorregula&ccedil;&atilde;o e como funciona</h2>\r\n\r\n<p>Na terapia de biorregula&ccedil;&atilde;o, o paciente &eacute; tratado como um sistema biol&oacute;gico, e a doen&ccedil;a s&atilde;o definidos como um desequilibrio de etiologia multifatorial.</p>\r\n\r\n<p>Desreguladores end&oacute;crinos a introxica&ccedil;&atilde;o cumulativa, poluentes org&acirc;nicos persistentes e res&iacute;duos metab&oacute;licos, podem criar altera&ccedil;&otilde;es no sistema org&acirc;nico. A auto regula&ccedil;&atilde;o, inata no organismo pode ficar danificada ou alterada e a detoxifica&ccedil;&atilde;o ou tratamento de suplementa&ccedil;&atilde;o facilita a elimina&ccedil;&atilde;o de toxicidade a partir da matriz extracelular.</p>\r\n', '<h2>Sabado&nbsp;</h2>\r\n\r\n<p>domindo&nbsp;</p>\r\n\r\n<p>ladk ad</p>\r\n\r\n<p>aldkalkd</p>\r\n\r\n<p>aldklakda</p>\r\n\r\n<p>adlkaldk</p>\r\n\r\n<p>&nbsp;</p>\r\n', 'Dr. Francisco Vianna Oliveira Filho', 'cursos/2016/07/teste.jpg', 1, 1);
@@ -273,7 +302,7 @@ CREATE TABLE IF NOT EXISTS `cursos_matriculas` (
   CONSTRAINT `fk_cursos_matriculas_id_curso` FOREIGN KEY (`id_curso`) REFERENCES `cursos` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COMMENT='Informações das matrículas relacionadas aos cursos';
 
--- Copiando dados para a tabela _fonsecaeassis_2016.cursos_matriculas: ~1 rows (aproximadamente)
+-- Copiando dados para a tabela _fonsecaeassis_2016.cursos_matriculas: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `cursos_matriculas` DISABLE KEYS */;
 REPLACE INTO `cursos_matriculas` (`id`, `id_curso`, `cur_nome`, `cur_telefone`, `cur_cidade`, `cur_uf`, `cur_email`, `cur_data_inscricao`, `cur_ip`) VALUES
 	(10, 2, 'CREATIVE WEBSITES GEAN', '(69) 84285809', 'Rolim de Moura', 'RO', 'geanbertani@gmail.com', '2016-07-28', '::1');
@@ -373,7 +402,7 @@ CREATE TABLE IF NOT EXISTS `eventos` (
   CONSTRAINT `fk_eventos_qm_cadastr` FOREIGN KEY (`qm_cadastr`) REFERENCES `usuarios` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='Armazena informações de cadastro de galerias';
 
--- Copiando dados para a tabela _fonsecaeassis_2016.eventos: ~1 rows (aproximadamente)
+-- Copiando dados para a tabela _fonsecaeassis_2016.eventos: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `eventos` DISABLE KEYS */;
 REPLACE INTO `eventos` (`id`, `url_name`, `evento`, `data`, `local`, `cidadeuf`, `foto`, `marca_foto`, `destaque`, `fotografo`, `qm_cadastr`, `qm_alterou`) VALUES
 	(1, 'seminario-de-biorregulacao', 'Seminário de Biorregulação', '2016-07-20 13:50:23', 'Sindsef', 'Rolim de Moura - RO', 'eventos/2016/07/seminario-de-biorregulacao.jpeg', NULL, 'sim', 'Sidnei Gimenez', NULL, NULL);
@@ -403,11 +432,34 @@ CREATE TABLE IF NOT EXISTS `institucional` (
   CONSTRAINT `fk_institucional_qm_cadastr` FOREIGN KEY (`qm_cadastr`) REFERENCES `usuarios` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='Armazena as informações de dados institucionais.';
 
--- Copiando dados para a tabela _fonsecaeassis_2016.institucional: ~1 rows (aproximadamente)
+-- Copiando dados para a tabela _fonsecaeassis_2016.institucional: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `institucional` DISABLE KEYS */;
 REPLACE INTO `institucional` (`id`, `empresa`, `logradouro`, `numero`, `bairro`, `cidade`, `uf`, `cep`, `telefone`, `email`, `quem_somos`, `foto`, `qm_cadastr`, `qm_alterou`) VALUES
-	(1, 'Fonseca e Assis - Advogados Associados', 'Rua Joaquim Nabuco', '1774', 'Centro', 'Porto Velho', 'RO', '76804-066', '(69) 3224-6357', 'atendimento@fonsecaeassis.com.br', '<p>O ITENA-instituto de terapias e naturologia &eacute; uma empresa com seus ideais voltados para impactar a vida de pessoas que estejam interessadas em vivenciar,aprender, conhecer e aperfei&ccedil;oar novas e eficazes formas de ter auto-conhecimento, sa&uacute;de e qualidade de vida.</p>\r\n\r\n<p>Acreditamos que a falta destes conhecimentos nestas &aacute;reas traz resultados negativos a toda a sociedade.</p>\r\n\r\n<p>A sa&uacute;de &eacute; o bem maior a ser cuidado e mantido e os meios atuais de tratamento e diagn&oacute;stico da medicina s&atilde;o ineficientes quando se trata de manter o ser humano com sa&uacute;de, embora &uacute;teis e indiscutivelmente v&aacute;lidas em casos em que a vida est&aacute; sob risco ou quando o paciente j&aacute; se encontra em estado lesional, para a manuten&ccedil;&atilde;o da homeostase ou equil&iacute;brio se mostra ineficaz.</p>\r\n\r\n<p>NESTE SITE todos podem muito em breve lerem os relatos ver&iacute;dicos e documentados de clientes e alunos que vivenciaram em suas vidas pessoal e profissional os benef&iacute;cios dos nossos servi&ccedil;os de assessoria em cursos, palestras,e avalia&ccedil;&otilde;es de biorresson&acirc;ncia qu&acirc;ntica magn&eacute;tica.</p>\r\n\r\n<p>SOMOS UM INSTITUTO COMPROMETIDO COM A VERDADE SOBRE O QUE &Eacute; TER SA&Uacute;DE E QUALIDADE DE VIDA, PORQUE ACREDITAMOS QUE SER SAUD&Aacute;VEL &Eacute; NATURAL</p>\r\n', 'institucional/2016/07/itena-instituto-de-terapias-e-naturologia.jpg', 1, 1);
+	(1, 'Fonseca & Assis - Advogados Associados', 'Rua Joaquim Nabuco', '1774', 'Centro', 'Porto Velho', 'RO', '76804-066', '(69) 3224-6357', 'atendimento@fonsecaeassis.com.br', '<p>O ITENA-instituto de terapias e naturologia &eacute; uma empresa com seus ideais voltados para impactar a vida de pessoas que estejam interessadas em vivenciar,aprender, conhecer e aperfei&ccedil;oar novas e eficazes formas de ter auto-conhecimento, sa&uacute;de e qualidade de vida.</p>\r\n\r\n<p>Acreditamos que a falta destes conhecimentos nestas &aacute;reas traz resultados negativos a toda a sociedade.</p>\r\n\r\n<p>A sa&uacute;de &eacute; o bem maior a ser cuidado e mantido e os meios atuais de tratamento e diagn&oacute;stico da medicina s&atilde;o ineficientes quando se trata de manter o ser humano com sa&uacute;de, embora &uacute;teis e indiscutivelmente v&aacute;lidas em casos em que a vida est&aacute; sob risco ou quando o paciente j&aacute; se encontra em estado lesional, para a manuten&ccedil;&atilde;o da homeostase ou equil&iacute;brio se mostra ineficaz.</p>\r\n\r\n<p>NESTE SITE todos podem muito em breve lerem os relatos ver&iacute;dicos e documentados de clientes e alunos que vivenciaram em suas vidas pessoal e profissional os benef&iacute;cios dos nossos servi&ccedil;os de assessoria em cursos, palestras,e avalia&ccedil;&otilde;es de biorresson&acirc;ncia qu&acirc;ntica magn&eacute;tica.</p>\r\n\r\n<p>SOMOS UM INSTITUTO COMPROMETIDO COM A VERDADE SOBRE O QUE &Eacute; TER SA&Uacute;DE E QUALIDADE DE VIDA, PORQUE ACREDITAMOS QUE SER SAUD&Aacute;VEL &Eacute; NATURAL</p>\r\n', 'institucional/2016/07/itena-instituto-de-terapias-e-naturologia.jpg', 1, 1);
 /*!40000 ALTER TABLE `institucional` ENABLE KEYS */;
+
+-- Copiando estrutura para tabela _fonsecaeassis_2016.links
+DROP TABLE IF EXISTS `links`;
+CREATE TABLE IF NOT EXISTS `links` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `titulo` varchar(100) NOT NULL,
+  `link` varchar(250) NOT NULL,
+  `qm_cadastr` int(11) NOT NULL,
+  `data_cadastr` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `qm_alterou` int(11) DEFAULT NULL,
+  `data_alterou` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_links_qm_cadastr` (`qm_cadastr`),
+  KEY `fk_links_qm_alterou` (`qm_alterou`),
+  CONSTRAINT `fk_links_qm_alterou` FOREIGN KEY (`qm_alterou`) REFERENCES `usuarios` (`id`),
+  CONSTRAINT `fk_links_qm_cadastr` FOREIGN KEY (`qm_cadastr`) REFERENCES `usuarios` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='Informações de links';
+
+-- Copiando dados para a tabela _fonsecaeassis_2016.links: ~1 rows (aproximadamente)
+/*!40000 ALTER TABLE `links` DISABLE KEYS */;
+REPLACE INTO `links` (`id`, `titulo`, `link`, `qm_cadastr`, `data_cadastr`, `qm_alterou`, `data_alterou`) VALUES
+	(2, 'OAB - Rondônia', 'http://www.oab-ro.org.br/', 1, '2016-10-19 00:41:58', 1, '2016-10-19 00:44:47');
+/*!40000 ALTER TABLE `links` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela _fonsecaeassis_2016.menu
 DROP TABLE IF EXISTS `menu`;
@@ -422,9 +474,9 @@ CREATE TABLE IF NOT EXISTS `menu` (
   PRIMARY KEY (`id_menu`),
   KEY `fk_menu_id_menutipo` (`id_menu_tipo`),
   CONSTRAINT `fk_menu_id_menu_tipo` FOREIGN KEY (`id_menu_tipo`) REFERENCES `menu_tipo` (`id_menu_tipo`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COMMENT='Menu';
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COMMENT='Menu';
 
--- Copiando dados para a tabela _fonsecaeassis_2016.menu: ~13 rows (aproximadamente)
+-- Copiando dados para a tabela _fonsecaeassis_2016.menu: ~14 rows (aproximadamente)
 /*!40000 ALTER TABLE `menu` DISABLE KEYS */;
 REPLACE INTO `menu` (`id_menu`, `id_menu_tipo`, `titulo`, `case`, `pagina`, `ico_menu`, `ativo`) VALUES
 	(1, 1, 'Usuários', 'usuarios', '#', 'fa-users', 'true'),
@@ -456,9 +508,9 @@ CREATE TABLE IF NOT EXISTS `menu_sub` (
   KEY `fkmenu_sub_id_menu` (`id_menu`),
   KEY `idx_menu_sub_titulo` (`titulo`),
   CONSTRAINT `fk_menu_sub_id_menu` FOREIGN KEY (`id_menu`) REFERENCES `menu` (`id_menu`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8 COMMENT='Menu Sub';
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8 COMMENT='Menu Sub';
 
--- Copiando dados para a tabela _fonsecaeassis_2016.menu_sub: ~22 rows (aproximadamente)
+-- Copiando dados para a tabela _fonsecaeassis_2016.menu_sub: ~24 rows (aproximadamente)
 /*!40000 ALTER TABLE `menu_sub` DISABLE KEYS */;
 REPLACE INTO `menu_sub` (`id_menu_sub`, `id_menu`, `titulo`, `case`, `pagina`, `ico_menu`) VALUES
 	(1, 1, 'Novo Cadastro', 'usuarios', 'cadastrar', 'fa-angle-double-right'),
@@ -581,10 +633,14 @@ CREATE TABLE IF NOT EXISTS `noticias_categoria` (
   PRIMARY KEY (`id_categoria`),
   KEY `cat_url` (`cat_url`),
   KEY `categoria` (`categoria`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Categorias das Noticias';
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='Categorias das Noticias';
 
--- Copiando dados para a tabela _fonsecaeassis_2016.noticias_categoria: ~0 rows (aproximadamente)
+-- Copiando dados para a tabela _fonsecaeassis_2016.noticias_categoria: ~2 rows (aproximadamente)
 /*!40000 ALTER TABLE `noticias_categoria` DISABLE KEYS */;
+REPLACE INTO `noticias_categoria` (`id_categoria`, `categoria`, `cat_url`) VALUES
+	(1, 'Artigo', 'artigo'),
+	(2, 'Publicação', 'publicacao'),
+	(3, 'Notícias', 'noticias');
 /*!40000 ALTER TABLE `noticias_categoria` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela _fonsecaeassis_2016.tv
@@ -716,7 +772,7 @@ CREATE TABLE IF NOT EXISTS `ws_siteviews` (
   KEY `idx_1` (`siteviews_date`)
 ) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 
--- Copiando dados para a tabela _fonsecaeassis_2016.ws_siteviews: ~16 rows (aproximadamente)
+-- Copiando dados para a tabela _fonsecaeassis_2016.ws_siteviews: ~15 rows (aproximadamente)
 /*!40000 ALTER TABLE `ws_siteviews` DISABLE KEYS */;
 REPLACE INTO `ws_siteviews` (`siteviews_id`, `siteviews_date`, `siteviews_users`, `siteviews_views`, `siteviews_pages`) VALUES
 	(1, '2016-07-15', 1, 1, 4),
@@ -734,7 +790,7 @@ REPLACE INTO `ws_siteviews` (`siteviews_id`, `siteviews_date`, `siteviews_users`
 	(13, '2016-10-04', 2, 2, 1624),
 	(14, '2016-10-07', 1, 1, 73),
 	(15, '2016-10-11', 1, 1, 9),
-	(16, '2016-10-18', 1, 1, 179);
+	(16, '2016-10-18', 1, 1, 205);
 /*!40000 ALTER TABLE `ws_siteviews` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela _fonsecaeassis_2016.ws_siteviews_agent
@@ -747,7 +803,7 @@ CREATE TABLE IF NOT EXISTS `ws_siteviews_agent` (
   KEY `idx_1` (`agent_name`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
--- Copiando dados para a tabela _fonsecaeassis_2016.ws_siteviews_agent: ~1 rows (aproximadamente)
+-- Copiando dados para a tabela _fonsecaeassis_2016.ws_siteviews_agent: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `ws_siteviews_agent` DISABLE KEYS */;
 REPLACE INTO `ws_siteviews_agent` (`agent_id`, `agent_name`, `agent_views`) VALUES
 	(1, 'Chrome', 18);
@@ -770,7 +826,7 @@ CREATE TABLE IF NOT EXISTS `ws_siteviews_online` (
 -- Copiando dados para a tabela _fonsecaeassis_2016.ws_siteviews_online: ~1 rows (aproximadamente)
 /*!40000 ALTER TABLE `ws_siteviews_online` DISABLE KEYS */;
 REPLACE INTO `ws_siteviews_online` (`online_id`, `online_session`, `online_startview`, `online_endview`, `online_ip`, `online_url`, `online_agent`, `agent_name`) VALUES
-	(24, 'js55tbabcdl8rh1mtd5hc3bft1', '2016-10-18 17:57:49', '2016-10-18 21:46:34', '::1', '/servidor/fonsecaeassis/2016/uploads/usuarios/2016/09/cwdigital.jpg', 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36', 'Chrome');
+	(24, 'js55tbabcdl8rh1mtd5hc3bft1', '2016-10-18 17:57:49', '2016-10-19 01:18:42', '::1', '/servidor/fonsecaeassis/2016/', 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36', 'Chrome');
 /*!40000 ALTER TABLE `ws_siteviews_online` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
