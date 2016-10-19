@@ -5,7 +5,7 @@
         <div class="row">
             <div class="box-1-footer">
                 <div class=" logo-footer">
-                    <img src="themes/fonsecaeassis/images/logo-footer.png">
+                    <a href="<?= HOME; ?>" title="<?= $Empresa['empresa']; ?>"><img src="themes/fonsecaeassis/images/logo-footer.png"></a>
                 </div>
                 <div class="line-vertical-footer"></div>
                 <p class="telefone-footer"><?= $Empresa['telefone']; ?></p>
@@ -36,6 +36,6 @@
             </div>
         </div>
         <hr>
-        <p class="dados-footer">© 2016 - Fonseca & Assis - Advogados Associados</p>
+        <p class="dados-footer">© 2016 - <?= $Empresa['empresa']; ?></p>
     </div>
 </div>

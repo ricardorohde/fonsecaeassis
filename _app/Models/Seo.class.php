@@ -65,8 +65,16 @@ class Seo {
         switch ($this->File):
             //SEO:: INDEX
             case 'index':
-                $this->Data = [SITENAME . " - Instituto de Terapias e Naturologia", SITEDESC, HOME, INCLUDE_PATH . '/images/logo_midia.jpg'];
+                $this->Data = [SITENAME . " - Advogados Associados", SITEDESC, HOME, INCLUDE_PATH . '/images/logo_midia.jpg'];
                 break;
+
+            //SEO:: QUEM SOMOS
+            case 'quem-somos':
+                $this->Data = [SITENAME . " - Quem Somos", "Um pouco sobre nós.", HOME . '/quem-somos', INCLUDE_PATH . '/images/logo_midia.jpg'];
+                break;
+
+
+
 
             //SEO:: CURSOS
             case 'cursos':
@@ -109,11 +117,6 @@ class Seo {
                 endif;
                 break;
 
-            //SEO:: QUEM SOMOS
-            case 'quem-somos':
-                $this->Data = [SITENAME . " - Quem Somos", "Um pouco sobre nós, a história do ITENA", HOME . '/quem-somos', INCLUDE_PATH . '/images/logo_midia.jpg'];
-                break;
-
             //SEO:: CONTATO
             case 'contato':
                 $this->Data = [SITENAME . " - Fale conosco", "Estamos de protidão para lhe atender, entre em contato e conheça mais.", HOME . '/contato', INCLUDE_PATH . '/images/logo_midia.jpg'];
@@ -121,7 +124,7 @@ class Seo {
 
             //SEO:: 404
             default :
-                $this->Data = [SITENAME . " - A informação é a nossa prioridade", SITEDESC, HOME, INCLUDE_PATH . '/images/logo_midia.jpg'];
+                $this->Data = [SITENAME . " - Advogados Associados", SITEDESC, HOME, INCLUDE_PATH . '/images/logo_midia.jpg'];
                 break;
         endswitch;
 

@@ -14,7 +14,7 @@
             <div class="box-50">
                 <div class="box-noticias">
                     <div class="line-vertical"></div>
-                    <h3 class="titulo-noticias">Noticías</h3><br>
+                    <h3 class="titulo-noticias">Notícias</h3><br>
                     <h5 class="subtitulo-noticias">Veja as principais noticías</h5>
                     <div class="slide-noticias">
                         <!-- AQUI VAI O SLIDE -->
@@ -52,7 +52,7 @@
                             <div class="dados-artigos">
                                 <h6 class="data-artigo">21 de Setembro 2016</h6>
                                 <h6><b>Autor/Fonte:</b> Anônimo</h6>
-                            </div>                                
+                            </div>
                         </div>
                         <div class="col-md-6">
                             <h5 class="titulo-artigo">EUA Abrem Consultas Públicas para a Revisão do seu Sistema Gera...</h5>
@@ -60,7 +60,7 @@
                             <div class="dados-artigos">
                                 <h6 class="data-artigo">21 de Setembro 2016</h6>
                                 <h6><b>Autor/Fonte:</b> Anônimo</h6>
-                            </div>  
+                            </div>
                         </div>
                     </div>
                     <hr>
@@ -71,7 +71,7 @@
                             <div class="dados-artigos">
                                 <h6 class="data-artigo">21 de Setembro 2016</h6>
                                 <h6><b>Autor/Fonte:</b> Anônimo</h6>
-                            </div>                                
+                            </div>
                         </div>
                         <div class="col-md-6">
                             <h5 class="titulo-artigo">EUA Abrem Consultas Públicas para a Revisão do seu Sistema Gera...</h5>
@@ -79,7 +79,7 @@
                             <div class="dados-artigos">
                                 <h6 class="data-artigo">21 de Setembro 2016</h6>
                                 <h6><b>Autor/Fonte:</b> Anônimo</h6>
-                            </div>  
+                            </div>
                         </div>
                         <div class="btn btn-mais-artigos">Ver mais artigos</div>
                     </div>
@@ -158,31 +158,31 @@
                         </div>
                         <h5 class="titulo-atuacao">Direito Penal e Penal Econômico</h5>
                         <i class="entypo-play icon-ver-atuacao"></i>
-                    </div>  
+                    </div>
                     <div class="box-conteudo-atuacao">
                         <div class="img-circle img-responsive circle-atuacao">
                             <i class="entypo-archive icon-atuacao"></i>
                         </div>
                         <h5 class="titulo-atuacao">Direito Penal e Penal Econômico</h5>
                         <i class="entypo-play icon-ver-atuacao"></i>
-                    </div>   
+                    </div>
                     <div class="box-conteudo-atuacao">
                         <div class="img-circle img-responsive circle-atuacao">
                             <i class="entypo-archive icon-atuacao"></i>
                         </div>
                         <h5 class="titulo-atuacao">Direito Penal e Penal Econômico</h5>
                         <i class="entypo-play icon-ver-atuacao"></i>
-                    </div>   
+                    </div>
                     <div class="box-conteudo-atuacao">
                         <div class="img-circle img-responsive circle-atuacao">
                             <i class="entypo-archive icon-atuacao"></i>
                         </div>
                         <h5 class="titulo-atuacao">Direito Penal e Penal Econômico</h5>
                         <i class="entypo-play icon-ver-atuacao"></i>
-                    </div>   
+                    </div>
                 </div>
             </div>
-        </div>                
+        </div>
         <hr>
         <div class="row">
             <div class="btn-trabalhe-conosco">
