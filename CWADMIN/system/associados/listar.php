@@ -2,21 +2,20 @@
 //Configurações
 $exe = filter_input(INPUT_GET, 'exe');
 $case = explode('/', $exe);
-$tipo = ['N', 'Notícias'];
+$tipo = ['Associados'];
 ?>
 <section class="content-header">
     <h1>
-        <?= 'Listar ' . $tipo[1] ?>
-        <small>Lista os Cadastros de <?= $tipo[1] ?></small>
+        <?= 'Listar ' . $tipo[0] ?>
+        <small>Lista os Cadastros de <?= $tipo[0] ?></small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="painel.php"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="painel.php?exe=<?= $exe; ?>"><?= $tipo[1]; ?></a></li>
-        <li class="active"><?= 'Listar ' . $tipo[1] ?></li>
+        <li><a href="painel.php?exe=<?= $case[0]; ?>/listar"><?= $tipo[0]; ?></a></li>
+        <li class="active"><?= 'Listar ' . $tipo[0] ?></li>
     </ol>
 </section>
 
-<!-- Main content -->
 <section class="content">
     <div class="row">
         <div class="col-xs-12">
@@ -24,19 +23,19 @@ $tipo = ['N', 'Notícias'];
             $acao = filter_input(INPUT_GET, 'acao', FILTER_SANITIZE_STRING);
             $acaoId = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
 
-            require('_models/AdminNoticia.class.php');
-            $readAcao = new AdminNoticia;
+            require('_models/AdminAssociado.class.php');
+            $readAcao = new AdminAssociado;
 
             $readMsg = new Read;
-            $readMsg->ExeRead('noticias', "WHERE id = :id", "id={$acaoId}");
+            $readMsg->ExeRead('adv_associados', "WHERE id = :id", "id={$acaoId}");
             switch ($acao):
                 case 'cadastrar':
                     $msg = $readMsg->getResult()[0];
-                    WSErro("A Notícia <b>{$msg['titulo']}</b> foi cadastrada com sucesso!", WS_ACCEPT);
+                    WSErro("O Associado <b>{$msg['nome']}</b> foi cadastrado com sucesso!", WS_ACCEPT);
                     break;
                 case 'editar':
                     $msg = $readMsg->getResult()[0];
-                    WSErro("A Notícia <b>{$msg['titulo']}</b> foi atualizada com sucesso!", WS_ACCEPT);
+                    WSErro("O Associado <b>{$msg['nome']}</b> foi atualizado com sucesso!", WS_ACCEPT);
                     break;
                 case 'excluir':
                     $readAcao->ExeDelete($acaoId);
@@ -50,33 +49,26 @@ $tipo = ['N', 'Notícias'];
                         <thead>
                             <tr>
                                 <th>Id</th>
-                                <th>Titulo</th>
-                                <th>Views</th>
-                                <th>Cadastrada</th>
-                                <th>Destaque</th>
+                                <th>Nome</th>
+                                <th>Reg. OAB</th>
                                 <th>Ação</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
                             $readUser = new Read;
-                            $readUser->ExeRead("noticias", "WHERE titulo != :l ORDER BY id DESC", "l= ''");
-                            if (!$readUser->getResult()):
-
-                            else:
+                            $readUser->ExeRead("adv_associados", "WHERE nome != :n", "n= ''");
+                            if ($readUser->getResult()):
                                 foreach ($readUser->getResult() as $reg):
                                     ?>
                                     <tr>
                                         <td><?= $reg['id']; ?></td>
-                                        <td><?= Check::Words($reg['titulo'], 10); ?></td>
-                                        <td><?= !empty($reg['contador']) ? $reg['contador'] : 0; ?></td>
-                                        <td><?= date('d/m/Y', strtotime($reg['data'])); ?></td>
-                                        <td><?= $reg['destaque']; ?></td>
+                                        <td><?= Check::Words($reg['nome'], 10); ?></td>
+                                        <td><?= $reg['oab_reg'] . '/' . $reg['oab_uf']; ?></td>
                                         <td>
                                             <div class="btn-group">
-                                                <a href="painel.php?exe=noticias/addfotos&id=<?= $reg['id']; ?>&tipo=N" class="btn btn-flat btn-sm btn-success "><b class="fa fa-camera"></b> Add Fotos</a>
-                                                <a href="painel.php?exe=noticias/editar&id=<?= $reg['id']; ?>" class="btn btn-flat btn-sm btn-primary "><b class="fa fa-edit"></b> Editar</a>
-                                                <a href="painel.php?exe=noticias/listar&acao=excluir&id=<?= $reg['id']; ?>" class="btn btn-flat btn-sm btn-danger "><b class="fa fa-trash-o"></b> Excluir</a>
+                                                <a href="painel.php?exe=<?= $case[0]; ?>/editar&id=<?= $reg['id']; ?>" class="btn btn-flat btn-sm btn-primary "><b class="fa fa-edit"></b> Editar</a>
+                                                <a href="painel.php?exe=<?= $exe; ?>&acao=excluir&id=<?= $reg['id']; ?>" class="btn btn-flat btn-sm btn-danger "><b class="fa fa-trash-o"></b> Excluir</a>
                                             </div>
                                         </td>
                                     </tr>
@@ -85,8 +77,8 @@ $tipo = ['N', 'Notícias'];
                             endif;
                             ?>
                     </table>
-                </div><!-- /.box-body -->
-            </div><!-- /.box -->
-        </div><!-- /.col -->
-    </div><!-- /.row -->
-</section><!-- /.content -->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

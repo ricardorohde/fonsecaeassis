@@ -109,7 +109,7 @@ input:focus { appearance: none; }
 /*ASSOCIADOS*/
 .box-associados { margin: 2% 0 0% 10%; }
 .box-conteudo-associados { width: 25%; float: left; margin-top: 3%; }
-.foto-associado {  width: 162px; height: 162px; background: gray;}
+.foto-associado {  width: 162px; height: 162px;}
 .dados-associados { width: 100%; float: left; margin: 5% 0 10% 0; text-align: left; }
 .nome-associado { width: 100%; float: left; text-align: center; margin: 2% 0 0 -20%; font-weight: 600;}
 .oab-associado { width: 100%; float: left; margin: 2% 0 5% -20%; text-align: center; }
@@ -123,7 +123,7 @@ input:focus { appearance: none; }
 
 
 @media (max-width: 1024px){
-    
+
     /*RESPONSIVO*/
     .box-50 { width: 100%; }
     .box-100 {width: 100%; }
@@ -153,12 +153,12 @@ input:focus { appearance: none; }
     .dados-associados { margin-left: 6%; }
     /*ARTIGOS*/
     .pagination { width: 100%; margin-left: 37%; }
-    
+
 
 }
 
 @media (max-width: 768px){
-    
+
     /*RESPONSIVO*/
     .box-50 { width: 100%; }
     .box-100 {width: 100%; }
@@ -190,7 +190,7 @@ input:focus { appearance: none; }
     .texto-publicacao { width: 60%; margin-left: 2%;  }
     .data-publicacao { width: 60%; margin: 2% 0 2% 2%; }
     .autor-publicacao { width: 60%; margin-left: 2%; }
-    .line-vertical-100 { display: none;}  
+    .line-vertical-100 { display: none;}
     .box-2-publicacoes { float: left; width: 100%; margin: 5% 0 0 0; }
     .btn-mais-publicacoes { float: left; margin-left: 2%; }
     /*ATUAÇÕES*/
@@ -214,8 +214,8 @@ input:focus { appearance: none; }
     .box-3-footer { float: right; width: 100%;}
     .logo-empresa { float: left; margin: 0% 0 2% 43%;}
     .dados-footer { color: #fff; text-align: center; font-size: 12px; margin: 1% 0 3% 0;}
-    
-    
+
+
     /*QUEM SOMOS*/
     .titulo-empresa { text-align: center; font-size: 16px; margin: 4% 0 5% 0;  font-weight: 400;   }
     .texto-empresa { text-align: center; font-size: 13px; font-weight: 300; margin-bottom: 10%; }
@@ -228,8 +228,8 @@ input:focus { appearance: none; }
 
 
 
-} 
-@media (max-width: 425px){ 
+}
+@media (max-width: 425px){
 
     /*RESPONSIVO*/
     .box-50 { width: 100%; }
@@ -261,7 +261,7 @@ input:focus { appearance: none; }
     .texto-publicacao { width: 100%; margin-left: 0;  }
     .data-publicacao { width: 100%; margin-left: 0; }
     .autor-publicacao { width: 100%; margin-left: 0; }
-    .line-vertical-100 { display: none; margin-left: 0; }  
+    .line-vertical-100 { display: none; margin-left: 0; }
     .box-2-publicacoes { width: 100%;  margin: 5% 0 0 0; }
     .btn-mais-publicacoes { float: left; margin-left: 3%; }
     /*ATUAÇÕES*/
@@ -376,7 +376,7 @@ input:focus { appearance: none; }
 }
 @media (max-width: 320px){
 
-   /*RESPONSIVO*/
+    /*RESPONSIVO*/
     .box-50 { width: 100%; }
     .box-100 {width: 100%; }
     /*NAVBAR*/

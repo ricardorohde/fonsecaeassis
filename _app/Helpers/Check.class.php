@@ -3,7 +3,7 @@
 /**
  * Check.class [ HELPER ]
  * Classe responável por manipular e validade dados do sistema!
- * 
+ *
  * @copyright (c) 2014, Robson V. Leite UPINSIDE TECNOLOGIA
  */
 class Check {
@@ -178,7 +178,7 @@ class Check {
      * uploads. Se existir retorna a imagem redimensionada!
      * @return HTML = imagem redimencionada!
      */
-    public static function Image($ImageUrl, $ImageDesc, $ImageW = null, $ImageH = null, $CWAdmin = null) {
+    public static function Image($ImageUrl, $ImageDesc, $ClassCss = null, $ImageW = null, $ImageH = null, $CWAdmin = null) {
 
         self::$Data = $ImageUrl;
         $patch = HOME;
@@ -186,14 +186,14 @@ class Check {
         if ($CWAdmin):
             if (file_exists('../' . self::$Data) && !is_dir('../' . self::$Data)):
                 $imagem = self::$Data;
-                return "<img src=\"{$patch}/tim.php?src={$imagem}&w={$ImageW}&h={$ImageH}\" alt=\"{$ImageDesc}\" title=\"{$ImageDesc}\"/>";
+                return "<img src=\"{$patch}/tim.php?src={$imagem}&w={$ImageW}&h={$ImageH}\" class=\"{$ClassCss}\" alt=\"{$ImageDesc}\"  title=\"{$ImageDesc}\"/>";
             else:
                 return false;
             endif;
         else:
             if (file_exists(self::$Data) && !is_dir(self::$Data)):
                 $imagem = self::$Data;
-                return "<img src=\"{$patch}/tim.php?src={$imagem}&w={$ImageW}&h={$ImageH}\" alt=\"{$ImageDesc}\" title=\"{$ImageDesc}\"/>";
+                return "<img src=\"{$patch}/tim.php?src={$imagem}&w={$ImageW}&h={$ImageH}\" class=\"{$ClassCss}\" alt=\"{$ImageDesc}\" title=\"{$ImageDesc}\"/>";
             else:
                 return false;
             endif;
