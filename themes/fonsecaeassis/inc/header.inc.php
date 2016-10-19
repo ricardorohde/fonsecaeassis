@@ -15,13 +15,13 @@
                 </div>
                 <div class="collapse navbar-collapse" id="menu">
                     <div class="nav navbar-nav">
-                        <li><a class="menu-iten" href="index">Home</a></li>
-                        <li><a class="menu-iten" href="quem-somos">Quem Somos</a></li>
-                        <li><a class="menu-iten" href="atuacao">Áreas de Atuação</a></li>
-                        <li><a class="menu-iten" href="associados">Associados</a></li>
-                        <li><a class="menu-iten" href="artigos">Artigos</a></li>
-                        <li><a class="menu-iten" href="publicacoes">Publicações</a></li>
-                        <li><a class="menu-iten" href="contato">Contato</a></li>
+                        <li><a class="menu-iten" href="<?= HOME; ?>">Home</a></li>
+                        <li><a class="menu-iten" href="<?= HOME . '/quem-somos'; ?>">Quem Somos</a></li>
+                        <li><a class="menu-iten" href="<?= HOME . '/atuacao'; ?>">Áreas de Atuação</a></li>
+                        <li><a class="menu-iten" href="<?= HOME . '/associados'; ?>">Associados</a></li>
+                        <li><a class="menu-iten" href="<?= HOME . '/artigos'; ?>">Artigos</a></li>
+                        <li><a class="menu-iten" href="<?= HOME . '/publicacoes'; ?>">Publicações</a></li>
+                        <li><a class="menu-iten" href="<?= HOME . '/contato'; ?>">Contato</a></li>
                     </div>
                 </div>
             </div>

@@ -439,7 +439,8 @@ REPLACE INTO `menu` (`id_menu`, `id_menu_tipo`, `titulo`, `case`, `pagina`, `ico
 	(10, 1, 'Banners', 'banners', '#', 'fa-bullhorn', 'true'),
 	(11, 1, 'Atuação', 'atuacao', '#', 'fa-briefcase', 'true'),
 	(12, 1, 'Links', 'links', '#', 'fa-link', 'true'),
-	(13, 1, 'Banco de Curriculos', 'curriculos', '#', 'fa-file-pdf-o', 'true');
+	(13, 1, 'Banco de Curriculos', 'curriculos', '#', 'fa-file-pdf-o', 'true'),
+	(14, 1, 'Associados', 'associados', '#', 'fa-street-view', 'true');
 /*!40000 ALTER TABLE `menu` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela _fonsecaeassis_2016.menu_sub
@@ -481,7 +482,9 @@ REPLACE INTO `menu_sub` (`id_menu_sub`, `id_menu`, `titulo`, `case`, `pagina`, `
 	(19, 11, 'Listar Cadastros', 'atuacao', 'listar', 'fa-angle-double-right'),
 	(20, 12, 'Novo Cadastro', 'links', 'cadastrar', 'fa-angle-double-right'),
 	(21, 12, 'Listar Cadastros', 'links', 'listar', 'fa-angle-double-right'),
-	(22, 13, 'Listar Cadastros', 'curriculos', 'listar', 'fa-angle-double-right');
+	(22, 13, 'Listar Cadastros', 'curriculos', 'listar', 'fa-angle-double-right'),
+	(23, 14, 'Novo Cadastro', 'associados', 'cadastrar', 'fa-angle-double-right'),
+	(24, 14, 'Listar Cadastros', 'associados', 'listar', 'fa-angle-double-right');
 /*!40000 ALTER TABLE `menu_sub` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela _fonsecaeassis_2016.menu_sub_nav
@@ -643,7 +646,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
 -- Copiando dados para a tabela _fonsecaeassis_2016.usuarios: ~2 rows (aproximadamente)
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
 REPLACE INTO `usuarios` (`id`, `url_name`, `nome`, `email`, `data_nasc`, `sexo`, `login`, `senha`, `foto`, `ativo`, `nivel`, `cont_acesso`, `ip`, `ultimo_acesso`, `qm_cadastr`, `dt_cadastr`, `qm_alterou`, `dt_alterou`) VALUES
-	(1, 'cw-digital-brasil', 'CW Digital - Brasil', 'admin@cwdigital.com.br', '2016-08-01', 1, 'creative', '19d910ef608e4947aa0c6dcee352a3e8', 'usuarios/2016/09/cwdigital.jpg', 's', 1, 58, '::1', '2016-10-07 20:11:40', 1, NULL, 3, '2016-09-07 23:22:32'),
+	(1, 'cw-digital-brasil', 'CW Digital - Brasil', 'admin@cwdigital.com.br', '2016-08-01', 1, 'creative', '19d910ef608e4947aa0c6dcee352a3e8', 'usuarios/2016/10/creative.jpg', 's', 1, 59, '::1', '2016-10-18 21:36:39', 1, NULL, 1, '2016-10-18 21:36:34'),
 	(3, 'anderson-batista-designer', 'Anderson Batista - Designer', 'pessoal.andersonbatista@gmail.com', '1995-07-22', 1, 'anderson', 'a30b59adfa3943b419658009c97c4fcb', 'usuarios/2016/07/anderson.png', 's', 1, 20, '::1', '2016-10-07 20:13:13', 1, '2016-07-20 14:45:24', NULL, NULL);
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 
@@ -731,7 +734,7 @@ REPLACE INTO `ws_siteviews` (`siteviews_id`, `siteviews_date`, `siteviews_users`
 	(13, '2016-10-04', 2, 2, 1624),
 	(14, '2016-10-07', 1, 1, 73),
 	(15, '2016-10-11', 1, 1, 9),
-	(16, '2016-10-18', 1, 1, 151);
+	(16, '2016-10-18', 1, 1, 179);
 /*!40000 ALTER TABLE `ws_siteviews` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela _fonsecaeassis_2016.ws_siteviews_agent
@@ -767,7 +770,7 @@ CREATE TABLE IF NOT EXISTS `ws_siteviews_online` (
 -- Copiando dados para a tabela _fonsecaeassis_2016.ws_siteviews_online: ~1 rows (aproximadamente)
 /*!40000 ALTER TABLE `ws_siteviews_online` DISABLE KEYS */;
 REPLACE INTO `ws_siteviews_online` (`online_id`, `online_session`, `online_startview`, `online_endview`, `online_ip`, `online_url`, `online_agent`, `agent_name`) VALUES
-	(24, 'js55tbabcdl8rh1mtd5hc3bft1', '2016-10-18 17:57:49', '2016-10-18 21:06:50', '::1', '/servidor/fonsecaeassis/2016/uploads/usuarios/2016/09/cwdigital.jpg', 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36', 'Chrome');
+	(24, 'js55tbabcdl8rh1mtd5hc3bft1', '2016-10-18 17:57:49', '2016-10-18 21:46:34', '::1', '/servidor/fonsecaeassis/2016/uploads/usuarios/2016/09/cwdigital.jpg', 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36', 'Chrome');
 /*!40000 ALTER TABLE `ws_siteviews_online` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
