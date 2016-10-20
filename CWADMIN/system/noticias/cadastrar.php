@@ -12,7 +12,7 @@
 <section class="content">
     <div class="row">
         <div class="col-md-12">
-            <?php            
+            <?php
             $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
             if (isset($dados) && $dados['SendPostForm']):
                 $dados['foto'] = ($_FILES['foto']['tmp_name'] ? $_FILES['foto'] : null);
@@ -124,6 +124,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                <!--
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col-md-4">
@@ -160,23 +161,24 @@
                                             <label for="colunista">Colunista</label>
                                             <select name="colunista" class="form-control" id="colunista"  <?= ($dados['coluna'] == 'sim') ? '' : 'disabled="disabled"'; ?>>
                                                 <option value="">Selecione...</option>
-                                                <?php
-                                                $readCol = new Read;
-                                                $readCol->ExeRead("colunistas", "ORDER BY nome ASC");
-                                                if ($readCol->getRowCount() >= 1):
-                                                    foreach ($readCol->getResult() as $col):
-                                                        echo "<option ";
-                                                        if ($dados['colunista'] == $col['id']):
-                                                            echo "selected=\"selected\" ";
-                                                        endif;
-                                                        echo "value=\"{$col['id']}\"> &raquo;&raquo; {$col['nome']}</option>";
-                                                    endforeach;
-                                                endif;
-                                                ?>
+                                <?php
+                                $readCol = new Read;
+                                $readCol->ExeRead("colunistas", "ORDER BY nome ASC");
+                                if ($readCol->getRowCount() >= 1):
+                                    foreach ($readCol->getResult() as $col):
+                                        echo "<option ";
+                                        if ($dados['colunista'] == $col['id']):
+                                            echo "selected=\"selected\" ";
+                                        endif;
+                                        echo "value=\"{$col['id']}\"> &raquo;&raquo; {$col['nome']}</option>";
+                                    endforeach;
+                                endif;
+                                ?>
                                             </select>
                                         </div>
                                     </div>
                                 </div>
+                                -->
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col-md-12">
@@ -202,7 +204,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>    
+                        </div>
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">

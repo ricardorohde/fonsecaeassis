@@ -29,6 +29,8 @@
                             </div>
                             <?php
                         endforeach;
+                    else:
+                        WSErro('Ainda não temos nenhuma área de atuação cadastrada, aguarde...', WS_INFOR);
                     endif;
                     ?>
                 </div>

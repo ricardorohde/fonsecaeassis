@@ -136,59 +136,61 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <label for="destaque_tipo">Tipo de Destaque</label>
-                                            <select name="destaque_tipo" class="form-control" id="destaque_tipo" <?= ($dados['destaque'] == 'sim') ? '' : 'disabled="disabled"'; ?>>
-                                                <option value="slide" <?= ($dados['destaque_tipo'] == 'slide') ? ' selected="selected"' : ''; ?>>Slide</option>
-                                                <option value="smallnews" <?= ($dados['destaque_tipo'] == 'smallnews') ? ' selected="selected"' : ''; ?>>Small News</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <label for="data_fslide">Quantos dias no Slide?</label>
-                                            <input type="number" name="data_fslide" class="form-control" id="data_fslide" value="<?= isset($dados['data_fslide']) ? $dados['data_fslide'] : ''; ?>" placeholder="Quantos dias no Slide?" <?= ($dados['destaque_tipo'] == 'slide') ? '' : 'disabled="disabled"'; ?>>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <label for="coluna">É Coluna?</label>
-                                            <select name="coluna" class="form-control" id="coluna">
-                                                <option value="nao" <?= ($dados['coluna'] == 'nao') ? ' selected="selected"' : ''; ?>>Não</option>
-                                                <option value="sim" <?= ($dados['coluna'] == 'sim') ? ' selected="selected"' : ''; ?>>Sim</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <label for="colunista">Colunista</label>
-                                            <select name="colunista" class="form-control" id="colunista"  <?= ($dados['coluna'] == 'sim') ? '' : 'disabled="disabled"'; ?>>
-                                                <option value="">Selecione...</option>
-                                                <?php
-                                                $readCol = new Read;
-                                                $readCol->ExeRead("colunistas", "ORDER BY nome ASC");
-                                                if ($readCol->getRowCount() >= 1):
-                                                    foreach ($readCol->getResult() as $col):
-                                                        echo "<option ";
-                                                        if ($dados['colunista'] == $col['id']):
-                                                            echo "selected=\"selected\" ";
-                                                        endif;
-                                                        echo "value=\"{$col['id']}\"> &raquo;&raquo; {$col['nome']}</option>";
-                                                    endforeach;
-                                                endif;
-                                                ?>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
+                                <!--
+                                                                <div class="form-group">
+                                                                    <div class="row">
+                                                                        <div class="col-md-4">
+                                                                            <label for="destaque_tipo">Tipo de Destaque</label>
+                                                                            <select name="destaque_tipo" class="form-control" id="destaque_tipo" <?= ($dados['destaque'] == 'sim') ? '' : 'disabled="disabled"'; ?>>
+                                                                                <option value="slide" <?= ($dados['destaque_tipo'] == 'slide') ? ' selected="selected"' : ''; ?>>Slide</option>
+                                                                                <option value="smallnews" <?= ($dados['destaque_tipo'] == 'smallnews') ? ' selected="selected"' : ''; ?>>Small News</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <div class="row">
+                                                                        <div class="col-md-4">
+                                                                            <label for="data_fslide">Quantos dias no Slide?</label>
+                                                                            <input type="number" name="data_fslide" class="form-control" id="data_fslide" value="<?= isset($dados['data_fslide']) ? $dados['data_fslide'] : ''; ?>" placeholder="Quantos dias no Slide?" <?= ($dados['destaque_tipo'] == 'slide') ? '' : 'disabled="disabled"'; ?>>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <div class="row">
+                                                                        <div class="col-md-4">
+                                                                            <label for="coluna">É Coluna?</label>
+                                                                            <select name="coluna" class="form-control" id="coluna">
+                                                                                <option value="nao" <?= ($dados['coluna'] == 'nao') ? ' selected="selected"' : ''; ?>>Não</option>
+                                                                                <option value="sim" <?= ($dados['coluna'] == 'sim') ? ' selected="selected"' : ''; ?>>Sim</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <label for="colunista">Colunista</label>
+                                                                            <select name="colunista" class="form-control" id="colunista"  <?= ($dados['coluna'] == 'sim') ? '' : 'disabled="disabled"'; ?>>
+                                                                                <option value="">Selecione...</option>
+                                <?php
+                                $readCol = new Read;
+                                $readCol->ExeRead("colunistas", "ORDER BY nome ASC");
+                                if ($readCol->getRowCount() >= 1):
+                                    foreach ($readCol->getResult() as $col):
+                                        echo "<option ";
+                                        if ($dados['colunista'] == $col['id']):
+                                            echo "selected=\"selected\" ";
+                                        endif;
+                                        echo "value=\"{$col['id']}\"> &raquo;&raquo; {$col['nome']}</option>";
+                                    endforeach;
+                                endif;
+                                ?>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                -->
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col-md-12">

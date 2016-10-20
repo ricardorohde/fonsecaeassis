@@ -73,47 +73,38 @@ class Seo {
                 $this->Data = [SITENAME . " - Quem Somos", "Um pouco sobre nós.", HOME . '/quem-somos', INCLUDE_PATH . '/images/logo_midia.jpg'];
                 break;
 
-
-
-
-            //SEO:: CURSOS
-            case 'cursos':
-                $this->Data = [SITENAME . " - Cursos", "Cursos e Eventos oferecidos pelo ITENA, matricule-se já.", HOME . '/cursos', INCLUDE_PATH . '/images/logo_midia.jpg'];
-                break;
-
-            //SEO:: CURSO
-            case 'curso':
-                $ReadSeo->ExeRead("cursos", "WHERE url_name = :link", "link={$this->Link}");
+            //SEO:: BUSCA
+            case 'busca':
+                $ReadSeo->ExeRead("noticias", "WHERE (titulo LIKE '%' :link '%' OR noticia LIKE '%' :link '%')", "link={$this->Link}");
                 if (!$ReadSeo->getResult()):
                     $this->seoData = null;
                     $this->seoTags = null;
                 else:
-                    $extract = extract($ReadSeo->getResult()[0]);
-                    $this->seoData = $ReadSeo->getResult()[0];
-                    $this->Data = [$curso . ' - ' . SITENAME, "Informações sobre o Curso: {$curso}", HOME . "/curso/{$url_name}", $foto];
+                    $this->seoData['count'] = $ReadSeo->getRowCount();
+                    $this->Data = ["Pesquisa por: {$this->Link}" . ' - ' . SITENAME, "Sua pesquisa por {$this->Link} retornou {$this->seoData['count']} resultados!", HOME . "/busca/{$this->Link}", INCLUDE_PATH . '/images/logo-topo.png'];
                 endif;
                 break;
 
-            //SEO:: TV INFORONDONIA
-            case 'depoimentos':
-                $this->Data = [SITENAME . " - Depoimentos", "Veja o depoimentos de alunos de nossos cursos", HOME . '/depoimetos', INCLUDE_PATH . '/images/logo_midia.jpg'];
+            //SEO:: NOTICIAS
+            case 'noticias':
+                $this->Data = [SITENAME . " - Notícias", "Notícias de Rondônia, Brasil e do mundo.", HOME . '/noticias', INCLUDE_PATH . '/images/logo_midia.jpg'];
                 break;
 
-            //SEO:: GALERIAS
-            case 'galerias':
-                $this->Data = [SITENAME . " - Nossa galeria", "Veja as fotos dos eventos e cursos do ITENA", HOME . '/galerias', INCLUDE_PATH . '/images/logo_midia.jpg'];
-                break;
-
-            //SEO:: EVENTO (EXIBIR)
-            case 'galeria':
-                $ReadSeo->ExeRead("eventos", "WHERE url_name = :link", "link={$this->Link}");
+            //SEO:: NOTICIA (LER)
+            case 'noticia':
+                $ReadSeo->ExeRead("noticias", "WHERE url_name = :link", "link={$this->Link}");
                 if (!$ReadSeo->getResult()):
                     $this->seoData = null;
                     $this->seoTags = null;
                 else:
                     $extract = extract($ReadSeo->getResult()[0]);
                     $this->seoData = $ReadSeo->getResult()[0];
-                    $this->Data = ["Evento: {$evento}" . ' - ' . SITENAME, "Galeria: {$evento}, veja todas as fotos desta galeria", HOME . "/galeria/{$url_name}", $foto];
+                    $this->Data = [$titulo . ' - ' . SITENAME, "Exibição da notícia: {$titulo}", HOME . "/noticia/{$url_name}", $foto];
+
+                    //Noticia:: Conta views da noticia
+                    $ArrUpdate = ['contador' => $contador + 1];
+                    $Update = new Update();
+                    $Update->ExeUpdate("noticias", $ArrUpdate, "WHERE id = :idnews", "idnews={$id}");
                 endif;
                 break;
 
