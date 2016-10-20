@@ -40,6 +40,58 @@ REPLACE INTO `adv_associados` (`id`, `url_name`, `nome`, `oab_reg`, `oab_uf`, `f
 	(5, 'antonio-jorge', 'Antonio Jorge', '103494', 'RO', 'associados/2016/10/antonio-jorge.jpg', 1, '2016-10-19 00:30:27', 1, '2016-10-19 00:31:57');
 /*!40000 ALTER TABLE `adv_associados` ENABLE KEYS */;
 
+-- Copiando estrutura para tabela _fonsecaeassis_2016.atuacao
+DROP TABLE IF EXISTS `atuacao`;
+CREATE TABLE IF NOT EXISTS `atuacao` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_icon` int(11) NOT NULL,
+  `url_name` varchar(250) NOT NULL,
+  `area` varchar(100) NOT NULL,
+  `qm_cadastr` int(11) NOT NULL,
+  `data_cadastr` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `qm_alterou` int(11) DEFAULT NULL,
+  `data_alterou` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_atuacao_id_icon` (`id_icon`),
+  KEY `fk_atuacao_qm_cadastr` (`qm_cadastr`),
+  KEY `fk_atuacao_qm_alterou` (`qm_alterou`),
+  CONSTRAINT `fk_atuacao_id_icon` FOREIGN KEY (`id_icon`) REFERENCES `atuacao_icons` (`id`),
+  CONSTRAINT `fk_atuacao_qm_alterou` FOREIGN KEY (`qm_alterou`) REFERENCES `usuarios` (`id`),
+  CONSTRAINT `fk_atuacao_qm_cadastr` FOREIGN KEY (`qm_cadastr`) REFERENCES `usuarios` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='Áreas de Atuação';
+
+-- Copiando dados para a tabela _fonsecaeassis_2016.atuacao: ~0 rows (aproximadamente)
+/*!40000 ALTER TABLE `atuacao` DISABLE KEYS */;
+REPLACE INTO `atuacao` (`id`, `id_icon`, `url_name`, `area`, `qm_cadastr`, `data_cadastr`, `qm_alterou`, `data_alterou`) VALUES
+	(1, 1, 'direito-penal-e-penal-economico', 'Direito Penal e Penal Econômico', 1, '2016-10-19 19:53:22', 1, '2016-10-19 20:28:04'),
+	(4, 4, 'direito-da-familia', 'Direito da Familia', 1, '2016-10-19 20:38:26', 1, '2016-10-19 20:38:57');
+/*!40000 ALTER TABLE `atuacao` ENABLE KEYS */;
+
+-- Copiando estrutura para tabela _fonsecaeassis_2016.atuacao_icons
+DROP TABLE IF EXISTS `atuacao_icons`;
+CREATE TABLE IF NOT EXISTS `atuacao_icons` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(100) NOT NULL,
+  `foto` varchar(250) NOT NULL,
+  `qm_cadastr` int(11) NOT NULL,
+  `data_cadastr` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `qm_alterou` int(11) DEFAULT NULL,
+  `data_alterou` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_atuacao_icons_qm_cadastr` (`qm_cadastr`),
+  KEY `fk_atuacao_icons_qm_alterou` (`qm_alterou`),
+  CONSTRAINT `fk_atuacao_icons_qm_alterou` FOREIGN KEY (`qm_alterou`) REFERENCES `usuarios` (`id`),
+  CONSTRAINT `fk_atuacao_icons_qm_cadastr` FOREIGN KEY (`qm_cadastr`) REFERENCES `usuarios` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='Icones das Áreas de Atuação';
+
+-- Copiando dados para a tabela _fonsecaeassis_2016.atuacao_icons: ~1 rows (aproximadamente)
+/*!40000 ALTER TABLE `atuacao_icons` DISABLE KEYS */;
+REPLACE INTO `atuacao_icons` (`id`, `nome`, `foto`, `qm_cadastr`, `data_cadastr`, `qm_alterou`, `data_alterou`) VALUES
+	(1, 'Advocacia Civil', 'atuacao_icons/2016/10/advocacia-civil.png', 1, '2016-10-19 19:24:03', 1, '2016-10-19 19:36:16'),
+	(3, 'Direito Penal e Penal Econômico', 'atuacao_icons/2016/10/direito-penal-e-penal-economico.png', 1, '2016-10-19 19:40:32', NULL, NULL),
+	(4, 'Direto da Familia', 'atuacao_icons/2016/10/direto-da-familia.png', 1, '2016-10-19 20:38:46', NULL, NULL);
+/*!40000 ALTER TABLE `atuacao_icons` ENABLE KEYS */;
+
 -- Copiando estrutura para tabela _fonsecaeassis_2016.banco_fotos
 DROP TABLE IF EXISTS `banco_fotos`;
 CREATE TABLE IF NOT EXISTS `banco_fotos` (
@@ -83,7 +135,7 @@ CREATE TABLE IF NOT EXISTS `banners` (
   CONSTRAINT `fk_banners_tipo` FOREIGN KEY (`tipo`) REFERENCES `banners_tipo` (`id_tipo`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COMMENT='Armazena informações sobre banners de publicidade';
 
--- Copiando dados para a tabela _fonsecaeassis_2016.banners: ~1 rows (aproximadamente)
+-- Copiando dados para a tabela _fonsecaeassis_2016.banners: ~2 rows (aproximadamente)
 /*!40000 ALTER TABLE `banners` DISABLE KEYS */;
 REPLACE INTO `banners` (`id`, `titulo`, `banner`, `tipo`, `link`, `data_inicial`, `data_final`, `data_atual`, `qm_cadastr`, `qm_alterou`) VALUES
 	(8, 'SLIDE2', 'banners/2016/07/slide2.jpg', 1, '#', '2016-07-13', '2016-08-31', '2016-07-13 23:17:46', 1, NULL);
@@ -476,7 +528,7 @@ CREATE TABLE IF NOT EXISTS `menu` (
   CONSTRAINT `fk_menu_id_menu_tipo` FOREIGN KEY (`id_menu_tipo`) REFERENCES `menu_tipo` (`id_menu_tipo`)
 ) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COMMENT='Menu';
 
--- Copiando dados para a tabela _fonsecaeassis_2016.menu: ~14 rows (aproximadamente)
+-- Copiando dados para a tabela _fonsecaeassis_2016.menu: ~13 rows (aproximadamente)
 /*!40000 ALTER TABLE `menu` DISABLE KEYS */;
 REPLACE INTO `menu` (`id_menu`, `id_menu_tipo`, `titulo`, `case`, `pagina`, `ico_menu`, `ativo`) VALUES
 	(1, 1, 'Usuários', 'usuarios', '#', 'fa-users', 'true'),
@@ -635,7 +687,7 @@ CREATE TABLE IF NOT EXISTS `noticias_categoria` (
   KEY `categoria` (`categoria`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='Categorias das Noticias';
 
--- Copiando dados para a tabela _fonsecaeassis_2016.noticias_categoria: ~2 rows (aproximadamente)
+-- Copiando dados para a tabela _fonsecaeassis_2016.noticias_categoria: ~3 rows (aproximadamente)
 /*!40000 ALTER TABLE `noticias_categoria` DISABLE KEYS */;
 REPLACE INTO `noticias_categoria` (`id_categoria`, `categoria`, `cat_url`) VALUES
 	(1, 'Artigo', 'artigo'),
@@ -702,7 +754,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
 -- Copiando dados para a tabela _fonsecaeassis_2016.usuarios: ~2 rows (aproximadamente)
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
 REPLACE INTO `usuarios` (`id`, `url_name`, `nome`, `email`, `data_nasc`, `sexo`, `login`, `senha`, `foto`, `ativo`, `nivel`, `cont_acesso`, `ip`, `ultimo_acesso`, `qm_cadastr`, `dt_cadastr`, `qm_alterou`, `dt_alterou`) VALUES
-	(1, 'cw-digital-brasil', 'CW Digital - Brasil', 'admin@cwdigital.com.br', '2016-08-01', 1, 'creative', '19d910ef608e4947aa0c6dcee352a3e8', 'usuarios/2016/10/creative.jpg', 's', 1, 59, '::1', '2016-10-18 21:36:39', 1, NULL, 1, '2016-10-18 21:36:34'),
+	(1, 'cw-digital-brasil', 'CW Digital - Brasil', 'admin@cwdigital.com.br', '2016-08-01', 1, 'creative', '19d910ef608e4947aa0c6dcee352a3e8', 'usuarios/2016/10/creative.jpg', 's', 1, 60, '::1', '2016-10-18 21:36:39', 1, NULL, 1, '2016-10-18 21:36:34'),
 	(3, 'anderson-batista-designer', 'Anderson Batista - Designer', 'pessoal.andersonbatista@gmail.com', '1995-07-22', 1, 'anderson', 'a30b59adfa3943b419658009c97c4fcb', 'usuarios/2016/07/anderson.png', 's', 1, 20, '::1', '2016-10-07 20:13:13', 1, '2016-07-20 14:45:24', NULL, NULL);
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 
@@ -754,7 +806,7 @@ CREATE TABLE IF NOT EXISTS `videos_categoria` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `url_name` (`url_name`),
   KEY `categoria` (`categoria`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COMMENT='Categorias de Videos';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Categorias de Videos';
 
 -- Copiando dados para a tabela _fonsecaeassis_2016.videos_categoria: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `videos_categoria` DISABLE KEYS */;
@@ -770,7 +822,7 @@ CREATE TABLE IF NOT EXISTS `ws_siteviews` (
   `siteviews_pages` decimal(10,0) NOT NULL,
   PRIMARY KEY (`siteviews_id`),
   KEY `idx_1` (`siteviews_date`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 
 -- Copiando dados para a tabela _fonsecaeassis_2016.ws_siteviews: ~15 rows (aproximadamente)
 /*!40000 ALTER TABLE `ws_siteviews` DISABLE KEYS */;
@@ -790,7 +842,8 @@ REPLACE INTO `ws_siteviews` (`siteviews_id`, `siteviews_date`, `siteviews_users`
 	(13, '2016-10-04', 2, 2, 1624),
 	(14, '2016-10-07', 1, 1, 73),
 	(15, '2016-10-11', 1, 1, 9),
-	(16, '2016-10-18', 1, 1, 205);
+	(16, '2016-10-18', 1, 1, 205),
+	(17, '2016-10-19', 1, 1, 14);
 /*!40000 ALTER TABLE `ws_siteviews` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela _fonsecaeassis_2016.ws_siteviews_agent
@@ -806,7 +859,7 @@ CREATE TABLE IF NOT EXISTS `ws_siteviews_agent` (
 -- Copiando dados para a tabela _fonsecaeassis_2016.ws_siteviews_agent: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `ws_siteviews_agent` DISABLE KEYS */;
 REPLACE INTO `ws_siteviews_agent` (`agent_id`, `agent_name`, `agent_views`) VALUES
-	(1, 'Chrome', 18);
+	(1, 'Chrome', 19);
 /*!40000 ALTER TABLE `ws_siteviews_agent` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela _fonsecaeassis_2016.ws_siteviews_online
@@ -821,12 +874,12 @@ CREATE TABLE IF NOT EXISTS `ws_siteviews_online` (
   `online_agent` varchar(255) CHARACTER SET latin1 NOT NULL,
   `agent_name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`online_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
 
 -- Copiando dados para a tabela _fonsecaeassis_2016.ws_siteviews_online: ~1 rows (aproximadamente)
 /*!40000 ALTER TABLE `ws_siteviews_online` DISABLE KEYS */;
 REPLACE INTO `ws_siteviews_online` (`online_id`, `online_session`, `online_startview`, `online_endview`, `online_ip`, `online_url`, `online_agent`, `agent_name`) VALUES
-	(24, 'js55tbabcdl8rh1mtd5hc3bft1', '2016-10-18 17:57:49', '2016-10-19 01:18:42', '::1', '/servidor/fonsecaeassis/2016/', 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36', 'Chrome');
+	(25, '1s9mt0suq60cviirq1olhdc4q6', '2016-10-19 18:47:22', '2016-10-19 20:49:00', '::1', '/servidor/fonsecaeassis/2016/atuacao', 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.59 Safari/537.36', 'Chrome');
 /*!40000 ALTER TABLE `ws_siteviews_online` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
