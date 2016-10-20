@@ -93,7 +93,7 @@ a:focus, a:hover, a:active {  outline: 0; color: #927151; text-decoration: none;
 .titulo-paginas { float: left; width: 100%; text-align: center; color: #6B6258; margin-top: 20%; text-transform: uppercase; font-size: 28px;  font-weight: 300;  }
 .breadcrumb { background:  transparent; width: 100%; float: left; text-align: center; border: solid 1px #F5F5F5 ; border-radius:  2px; margin: 5% 0 5% 0; }
 /* Formularios Padrões - PAGINAS */
-.form-control {width: 100%; font-size: 13px;  border: 1px solid #9C7E61; border-right: none; border-radius: 1px; -webkit-appearance: none; -moz-appearance: none; appearance: none; box-shadow: none !important; resize: none; }
+.form-control {width: 100%; font-size: 13px;  border: 1px solid #9C7E61; border-radius: 1px; -webkit-appearance: none; -moz-appearance: none; appearance: none; box-shadow: none !important; resize: none; }
 .form-control:focus { border-color: #332826; }
 .form-group {  }
 /* Efeitos - FORMULARIOS */
@@ -120,6 +120,7 @@ input:focus { appearance: none; }
 .efeito:hover { background: #FBFBFB;  border-radius: 2px;  box-shadow: inset 0 0 0 1px #927151; }
 /*CONTATO*/
 .contato-dados { width: 100%; text-align: center; margin-bottom: 5%; }
+.btn-enviar { background: #927151; color: #fff; width: 120px; height: 38px; margin: 2% 0 5% 0; text-transform: uppercase; font-size: 12px; padding-top: 1%; }
 
 
 @media (max-width: 1024px){
