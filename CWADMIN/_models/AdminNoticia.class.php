@@ -3,7 +3,7 @@
 /**
  * AdminNoticia.class [ MODEL ADMIN ]
  * Respnsável por gerenciar as noticias no Admin do sistema!
- * 
+ *
  * @copyright (c) 2014, Gean Marques - CREATIVE WEBSITES
  */
 class AdminNoticia {
@@ -84,87 +84,6 @@ class AdminNoticia {
     }
 
     /**
-     * <b>Enviar Galeria:</b> Envelope um $_FILES de um input multiple e envie junto a um postID para executar
-     * o upload e o cadastro de galerias!
-     * @param ARRAY $Images = Envie um $_FILES multiple
-     * @param STRING $Tipo = Informe o Tipo
-     * @param INT $TipoId = Informe o ID do tipo
-     */
-    public function gbSend(array $Images, $Tipo, $TipoId) {
-        $this->Id = (int) $TipoId;
-        $this->Tipo = (string) $Tipo;
-        $this->Data = $Images;
-
-        $ImageName = new Read;
-        $ImageName->ExeRead(self::Entity, "WHERE id = :id", "id={$this->Id}");
-
-        if (!$ImageName->getResult()):
-            $this->Error = ["Erro ao enviar fotos da noticia. O indice {$this->Id} não foi encontrado no banco de dados!", WS_ERROR];
-            $this->getResult = false;
-        else:
-            $ImageName = $ImageName->getResult()[0]['titulo'];
-
-            $gbFiles = array();
-            $gbCount = count($this->Data['tmp_name']);
-            $gbKeys = array_keys($this->Data);
-
-            for ($gb = 0; $gb < $gbCount; $gb++):
-                foreach ($gbKeys as $keys):
-                    $gbFiles[$gb][$keys] = $this->Data[$keys][$gb];
-                endforeach;
-            endfor;
-
-            $gbSend = new Upload;
-            $i = 0;
-            $u = 0;
-
-            foreach ($gbFiles as $gbUpload):
-                $i++;
-                $ImgName = "tipo-{$this->Tipo}-id-{$this->Id}-" . (substr(md5(time() + $i), 0, 5));
-                $gbSend->Image($gbUpload, $ImgName, 1024, "banco_fotos");
-
-                if ($gbSend->getResult()):
-                    $gbImage = $gbSend->getResult();
-                    $gbCreate = ['id_tipo' => $this->Id, 'tipo' => $this->Tipo, 'foto' => $gbImage, 'data' => date('Y-m-d H:i:s')];
-                    $insertGb = new Create;
-                    $insertGb->ExeCreate('banco_fotos', $gbCreate);
-                    $u++;
-                endif;
-            endforeach;
-
-            if ($u > 1):
-                $this->Error = ["Galeria Atualizada: Foram enviadas {$u} imagens para esta galeria!", WS_ACCEPT];
-                $this->Result = true;
-            endif;
-        endif;
-    }
-
-    /**
-     * <b>Deletar Imagem da galeria:</b> Informe apenas o id da imagem na galeria para que esse método leia e remova
-     * a imagem da pasta e delete o registro do banco!
-     * @param INT $GbImageId = Id da imagem da galleria
-     */
-    public function gbRemove($GbImageId) {
-        $this->Id = (int) $GbImageId;
-        $readGb = new Read;
-        $readGb->ExeRead("banco_fotos", "WHERE id = :gb", "gb={$this->Id}");
-        if ($readGb->getResult()):
-            $Imagem = '../uploads/' . $readGb->getResult()[0]['foto'];
-            if (file_exists($Imagem) && !is_dir($Imagem)):
-                unlink($Imagem);
-            endif;
-
-            $Deleta = new Delete;
-            $Deleta->ExeDelete("banco_fotos", "WHERE id = :id", "id={$this->Id}");
-            if ($Deleta->getResult()):
-                $this->Error = ["A imagem foi removida com sucesso da galeria!", WS_ACCEPT];
-                $this->Result = true;
-            endif;
-
-        endif;
-    }
-
-    /**
      * <b>Verificar Cadastro:</b> Retorna TRUE se o cadastro ou update for efetuado ou FALSE se não.
      * Para verificar erros execute um getError();
      * @return BOOL $Var = True or False
@@ -206,9 +125,9 @@ class AdminNoticia {
         $this->Data = array_map('trim', $this->Data);
         $this->Data['foto'] = $capa;
         $this->Data['noticia'] = $notic;
-        $this->Data['url_name'] = Check::Name($this->Data['titulo']);        
+        $this->Data['url_name'] = Check::Name($this->Data['titulo']);
         $this->Data['data'] = Check::Data($this->Data['data']);
-        $this->Data['data_fslide'] = Check::Data(Check::DataDias($this->Data['data'], $this->Data['data_fslide'], 'data'));
+        $this->Data['data_fslide'] = null; #Check::Data(Check::DataDias($this->Data['data'], $this->Data['data_fslide'], 'data'));
     }
 
     //Excluir a Foto
@@ -227,7 +146,7 @@ class AdminNoticia {
     private function Create() {
         $Create = new Create;
         $this->Data['qm_cadastr'] = $_SESSION['userlogin']['id'];
-        
+
         $Create->ExeCreate(self::Entity, $this->Data);
         if ($Create->getResult()):
             $this->Error = ["A noticia <b>{$this->Data['titulo']}</b> foi cadastrada com sucesso no sistema!", WS_ACCEPT];
@@ -239,7 +158,7 @@ class AdminNoticia {
     private function Update() {
         $Update = new Update;
         $this->Data['qm_alterou'] = $_SESSION['userlogin']['id'];
-        
+
         $Update->ExeUpdate(self::Entity, $this->Data, "WHERE id = :id", "id={$this->Id}");
         if ($Update->getResult()):
             $this->Error = ["A noticia <b>{$this->Data['nome']}</b> foi atualizada com sucesso!", WS_ACCEPT];
