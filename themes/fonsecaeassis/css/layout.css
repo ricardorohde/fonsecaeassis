@@ -62,9 +62,9 @@ a:focus, a:hover, a:active {  outline: 0; color: #927151; text-decoration: none;
 .subtitulo-area-de-atuacao { color: #2C241F; font-weight: 400; text-transform: uppercase; margin-left: 1%; font-size: 12px;}
 .box-atuacoes { margin: 2% 0 20% 10%; }
 .box-conteudo-atuacao { width: 25%; float: left; margin-top: 3%; }
-.circle-atuacao { float: left; width: 35px; height: 35px; background: #9C7E61; color: #fff; text-align: center; }
+.circle-atuacao { float: left; width: 48px; height: 48px; color: #fff; text-align: center; }
 .icon-atuacao {  float: left; margin-top: 20%; color: #fff; margin-left: 18%; font-size: 17px; }
-.titulo-atuacao { float: left; width: 50%; margin-left: 2%; margin-top: 1px; color: #6B6258; font-size: 14px; }
+.titulo-atuacao { float: left; width: 50%; margin-left: 2%; margin-top: 8px; color: #6B6258; font-size: 14px; }
 .icon-ver-atuacao { float: left; margin-top: 2%; color: #D6D6D6; margin-left: 3%; font-size: 17px; }
 /*TRABALHE CONOSCO*/
 .btn-trabalhe-conosco { float: left; background: #332826; background-image: url(../images/icon-trabalhe.png); width: 231px; height: 70px; color: #fff; border-radius: 2px; text-transform: uppercase; font-size: 10px; margin-left: 40%; margin-top: 3%; margin-bottom: 5%; }

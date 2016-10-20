@@ -22,7 +22,7 @@
                         <div class="box-associados">
                             <div class="box-conteudo-associados">
                                 <div class="foto-associado">
-                                    <?= Check::Image('uploads/' . $foto, $nome, 'img-circle', 162, 162) ?>
+                                    <?= Check::Image('uploads/' . $foto, $nome, 'img-circle', 162, 162); ?>
                                 </div>
                                 <div class="dados-associados">
                                     <h5 class="nome-associado"><?= $nome; ?></h5>
