@@ -19,7 +19,7 @@ Check::UserOnline();
         <!-- CSS -->
         <link rel="stylesheet" type="text/css" href="<?= HOME; ?>/_cdn/bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="<?= INCLUDE_PATH; ?>/css/layout.min.css"/>
-
+        <link rel="stylesheet" type='text/css' href="<?= HOME; ?>/_cdn/flexslider/flexslider.css">
     </head>
     <body>
         <?php
@@ -40,10 +40,12 @@ Check::UserOnline();
     </body>
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="<?= INCLUDE_PATH; ?>/css/entypo/css/entypo.css">
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"/>
     <!-- JS -->
     <script src="<?= HOME; ?>/_cdn/jquery.js"></script>
     <script src="<?= HOME; ?>/_cdn/bootstrap/js/bootstrap.min.js"></script>
+    <script src="<?= HOME; ?>/_cdn/flexslider/flexslider.min.js"></script>
     <script src="<?= HOME; ?>/_cdn/_scripts.conf.js"></script>
 </html>
 <?php

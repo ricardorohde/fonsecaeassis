@@ -24,7 +24,7 @@ a:focus, a:hover, a:active {  outline: 0; color: #927151; text-decoration: none;
 .navbar-toggle .icon-bar {  background-color: #9C7E61; border-radius: 5%; }
 .menu-iten { width: 100%; margin-right: 2%; }
 /*BANNER*/
-.banner { position: relative; z-index: 1; text-align: center; background: #332826; background-size: cover; background-position: center center; height: 80vh; }
+.banner { width: 100%; float: left; background: #332826;}
 /*NOTICIAS*/
 .box-noticias { width: 100%; margin-top: 10%; }
 .titulo-noticias { color: #2C241F; text-transform: uppercase; margin: 0 0 -6% 2%; font-size: 18px;}

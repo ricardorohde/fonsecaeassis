@@ -1,10 +1,31 @@
 <!-- SLIDE -->
 <div class="banner">
-    <div class="container">
-        <div class="row">
-            <!--AQUI VAI O SLIDE-->
-        </div>
-    </div>
+    <?php
+    $datetime_now = date('Y-m-d H:i');
+    $View = new View;
+    $ReadMain = new Read;
+    $banners = $ReadMain;
+    $banners->ExeRead("banners", "WHERE tipo = :idtipo AND data_inicial <= CURRENT_DATE() AND data_final >= CURRENT_DATE() ORDER BY RAND()", "idtipo=1");
+    if ($banners->getResult()):
+        ?>
+        <section class="wrapper-slide">
+            <div class="flexslider">
+                <ul class="slides">
+                    <?php
+                    foreach ($banners->getResult() as $bnr):
+                        echo "<li>";
+                        echo "<a href=\"{$bnr['link']}\" title=\"{$bnr['titulo']}\" target=\"_blank\">";
+                        echo "<img alt=\"{$bnr['titulo']}\" title=\"{$bnr['titulo']}\" src=\"" . HOME . "/tim.php?src=" . HOME . "/uploads/{$bnr['banner']}&w=1920&h=640&zc=0\" class=\"banner\" />";
+                        echo "</a>";
+                        echo "</li>";
+                    endforeach;
+                    ?>
+                </ul>
+            </div>
+        </section>
+        <?php
+    endif;
+    ?>
 </div>
 <!--CONTEUDO-->
 <div class="box">
