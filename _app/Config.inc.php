@@ -11,10 +11,10 @@ define('PASS', '1234');
 define('DBSA', '_fonsecaeassis_2016');
 
 // DEFINE SERVIDOR DE E-MAIL ################
-define('MAILUSER', 'email@dominio.com.br');
-define('MAILPASS', 'senhadoemail');
-define('MAILPORT', 'postadeenvio');
-define('MAILHOST', 'servidordeenvio');
+define('MAILUSER', 'noreply@fonsecaeassis.com.br');
+define('MAILPASS', 'Bi7gANiykHB9');
+define('MAILPORT', '587');
+define('MAILHOST', 'mail.fonsecaeassis.com.br');
 
 // DEFINE IDENTIDADE DO SITE ################
 define('SITENAME', 'Fonseca & Assis');

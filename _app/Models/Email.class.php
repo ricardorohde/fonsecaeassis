@@ -5,7 +5,7 @@ require('_app/Library/PHPMailer/class.phpmailer.php');
 /**
  * Email [ MODEL ]
  * Modelo responável por configurar a PHPMailer, validar os dados e disparar e-mails do sistema!
- * 
+ *
  * @copyright (c) year, Robson V. Leite UPINSIDE TECNOLOGIA
  */
 class Email {
@@ -44,7 +44,7 @@ class Email {
     /**
      * <b>Enviar E-mail SMTP:</b> Envelope os dados do e-mail em um array atribuitivo para povoar o método.
      * Com isso execute este para ter toda a validação de envio do e-mail feita automaticamente.
-     * 
+     *
      * <b>REQUER DADOS ESPECÍFICOS:</b> Para enviar o e-mail você deve montar um array atribuitivo com os
      * seguintes índices corretamente povoados:<br><br>
      * <i>
@@ -74,7 +74,7 @@ class Email {
     }
 
     /**
-     * <b>Verificar Envio:</b> Executando um getResult é possível verificar se foi ou não efetuado 
+     * <b>Verificar Envio:</b> Executando um getResult é possível verificar se foi ou não efetuado
      * o envio do e-mail. Para mensagens execute o getError();
      * @return BOOL $Result = TRUE or FALSE
      */
