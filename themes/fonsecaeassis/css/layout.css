@@ -26,16 +26,23 @@ a:focus, a:hover, a:active {  outline: 0; color: #927151; text-decoration: none;
 /*BANNER*/
 .banner { width: 100%; float: left; background: #332826;}
 /*NOTICIAS*/
-.box-noticias { width: 100%; margin-top: 10%; }
+.box-noticias { width: 100%; margin-top: 10%; float: left;}
 .titulo-noticias { color: #2C241F; text-transform: uppercase; margin: 0 0 -6% 2%; font-size: 18px;}
 .subtitulo-noticias { color: #2C241F; font-weight: 400; text-transform: uppercase; margin-left: 2%; font-size: 12px;  font-weight: 400; }
-.slide-noticias { margin-top: 5%; width: 100%; height: 277px; background: #332826; border-radius: 2px; }
-.box-texto-slide { float: left;width: 80%; }
-.titulo-noticia-slide { color: #6E6458; font-weight: bold; }
-.texto-noticia-slide { margin-top: -2%; color: #6E6458; }
-.nav-slide { width: 10%; float: right; position: relative; margin-top: 2%; }
+
+/*=== SLIDE ===*/
+section#slide{ width: 100%; max-width: 600px; height: 277px; background: #FFF; display: block; overflow: hidden;}
+section#slide section#buttons{position: absolute; z-index: 9; top: 335px; right: 5px}
+section#slide section#buttons a{ margin-right: 10px; float: left; display: inline-block; text-align: center; text-decoration: none;}
+section#slide section#buttons a:hover{ background: #35314e;}
+section#slide ul{ list-style: none; display: table; position: relative; padding: 0;}
+section#slide ul li{  width: 100%; max-width: 600px; height: 277px; display: inline-block; position: relative;}
+section#slide ul li img{ width: 100%; height: 100%; border-radius: 2px;}
+section#slide ul li span{ width: 100%; padding: 2%; position: absolute; bottom:0; left: 0; font-size: 1.1em; color: #6E6458; background: #FFF;}
+
 .icon-anterior { float: right;}
 .autor-noticia { float: left; width: 100%; }
+.footer-noticias{ width: 100%; margin-top: 50px; float: left;}
 .btn-mais-noticias { float: left; background: #9C7E61; color: #fff; border-radius: 2px; text-transform: uppercase; font-size: 10px;  }
 /*ARTIGOS*/
 .box-artigos { width: 100%; float: left; margin-top: 10%;}
@@ -46,16 +53,19 @@ a:focus, a:hover, a:active {  outline: 0; color: #927151; text-decoration: none;
 .data-artigo { color: #9C7E61; margin-bottom: -2%; margin-top: 7%; font-size: 13px; }
 .btn-mais-artigos { float: right; margin-right: 3%; background: #9C7E61; color: #fff; border-radius: 2px; text-transform: uppercase; font-size: 10px; margin-top: 7%; }
 /*PUBLICAÇÕES*/
-.titulo-publicacoes { color: #2C241F; text-transform: uppercase; margin: 0 0 -6% 2%; font-size: 18px;}
-.subtitulo-publicacoes { color: #2C241F; font-weight: 400; text-transform: uppercase; margin-left: 2%; font-size: 12px;}
-.box-1-publicacoes { float: left; width: 100%; }
-.line-vertical-100 { width: 1px; height: 127px; background: #eaeaea; margin-top: 6%; float: left;  z-index: 1;  }
-.capa-publicacoes { float: left; margin-top: 5%; width: 40%;  height: 127px; background: #332826; border-radius: 2px; }
-.titulo-publicacao { width: 50%; color: #6E6458; font-weight: bold; margin-top: 5%; margin-left: 2%; float: left; }
-.texto-publicacao { width: 50%; float: left; margin-left: 2%; margin-top: 0%;  }
-.data-publicacao { width: 50%; float: left;  color: #9C7E61; margin-left: 2%; margin-top: 2%;  font-size: 13px; }
-.autor-publicacao { width: 50%; float: left; margin-left: 2%; margin-top: -2%; }
-.box-2-publicacoes {  float: right; margin-left: 2%; margin-top: -28%;  }
+.publicacao-header{ width: 99%; margin-left: 1%; margin-bottom: 3%; float: left; border-left: 2px solid #46433c;}
+.titulo-publicacoes { width: 99%; float: left; color: #2C241F; text-transform: uppercase; margin: 0 0 0 1%; font-size: 18px;}
+.subtitulo-publicacoes { width: 100%; float: left; color: #2C241F; font-weight: 400; text-transform: uppercase; margin: 0 0 0 1%; font-size: 12px;}
+.blc-publicacoes{ width: 99%; margin-left: 1%; float: left;}
+.box-publicacoes{ width: 48%; float: left; margin-right: 1%;}
+.capa-publicacoes { width: 40%; height: 127px; float: left; background: #332826; border-radius: 2px; }
+.dados-publicacao{ width: 58%; float: left; margin-left: 2%;}
+
+.titulo-publicacao { width: 100%; margin: 0; color: #6E6458; font-weight: bold; float: left; }
+.texto-publicacao { width: 100%; margin: 1% 0 0 0; float: left;}
+.data-publicacao { width: 100%; margin: 5% 0 0 0; float: left; color: #9C7E61; font-size: 13px; }
+.autor-publicacao { width: 100%; margin: 1% 0 0 0; float: left;}
+
 .btn-mais-publicacoes {float: left; background: #9C7E61; color: #fff; border-radius: 2px; text-transform: uppercase; font-size: 10px; margin-left: 1%; margin-top: 3%;  }
 /*AREAS DE ATUAÇÃO*/
 .titulo-area-de-atuacao { color: #2C241F; text-transform: uppercase; margin: 0 0 -2.8% 1%; font-size: 18px;}

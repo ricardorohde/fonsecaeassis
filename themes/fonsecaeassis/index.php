@@ -37,26 +37,34 @@
                     <div class="line-vertical"></div>
                     <h3 class="titulo-noticias">Notícias</h3><br>
                     <h5 class="subtitulo-noticias">Veja as principais noticías</h5>
-                    <div class="slide-noticias">
-                        <!-- AQUI VAI O SLIDE -->
-                    </div>
-                    <div class="box-texto-slide">
-                        <h5 class="titulo-noticia-slide">EUA Abrem Consultas Públicas para a Revisão do seu Sistema Gera...</h5>
-                        <h6 class="texto-noticia-slide">No dia 25 de agosto de 2016, o Escritório do Representante de Comércio dos Estados Unidos (United States....</h6>
-                    </div>
-                    <div class="nav-slide">
-                        <div class="icon-anterior">
-                            <img src="themes/fonsecaeassis/images/icon-r.png">
-                        </div>
-                        <div class="icon-proximo">
-                            <img src="themes/fonsecaeassis/images/icon-l.png">
-                        </div>
-                    </div>
-                    <div class="autor-noticia">
-                        <h6><b>Autor/Fonte:</b> Anônimo</h6>
-                    </div>
+
+                    <section id="slide">
+                        <ul>
+                            <?php
+                            $ReadNews = new Read;
+                            $ReadNews->ExeRead('noticias', "WHERE titulo != :tit AND categoria = :cat LIMIT :limit OFFSET :offset", "tit=''&cat=noticia&limit=5&offset=0");
+                            if ($ReadNews->getResult()):
+                                foreach ($ReadNews->getResult() as $sNews):
+                                    ?>
+                                    <li>
+                                        <a href="<?= HOME . '/noticia/' . $sNews['url_name']; ?>" title="<?= $sNews['titulo']; ?>">
+                                            <img src="<?= HOME . '/tim.php?src=uploads/' . $sNews['foto'] . '&w=890&h=380'; ?>" title="<?= $sNews['titulo']; ?>" alt="<?= $sNews['titulo']; ?>">
+                                            <span><?= $sNews['titulo']; ?></span>
+                                        </a>
+                                    </li>
+                                    <?php
+                                endforeach;
+                            endif;
+                            ?>
+                        </ul>
+                        <section id="buttons">
+                            <a href="#" class="icon-anterior prev"><img src="themes/fonsecaeassis/images/icon-l.png"></a>
+                            <a href="#" class="icon-proximo next"><img src="themes/fonsecaeassis/images/icon-r.png"></a>
+                        </section>
+                    </section>
+
                     <div class="footer-noticias">
-                        <div class="btn btn-mais-noticias">Ver mais noticias</div>
+                        <a href="<?= HOME . '/noticias' ?>" class="btn btn-mais-noticias">Ver mais noticias</a>
                     </div>
                 </div>
             </div>
@@ -67,76 +75,85 @@
                     <h3 class="titulo-artigos">Artigos</h3><br>
                     <h5 class="subtitulo-artigos">Veja todos Artigos Publicados</h5>
                     <div class="row">
-                        <div class="col-md-6">
-                            <h5 class="titulo-artigo">EUA Abrem Consultas Públicas para a Revisão do seu Sistema Gera...</h5>
-                            <h6 class="texto-artigo">No dia 25 de agosto de 2016, o Escritório do Representante de Comércio dos Estados Unidos (United States...</h6>
-                            <div class="dados-artigos">
-                                <h6 class="data-artigo">21 de Setembro 2016</h6>
-                                <h6><b>Autor/Fonte:</b> Anônimo</h6>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <h5 class="titulo-artigo">EUA Abrem Consultas Públicas para a Revisão do seu Sistema Gera...</h5>
-                            <h6 class="texto-artigo">No dia 25 de agosto de 2016, o Escritório do Representante de Comércio dos Estados Unidos (United States...</h6>
-                            <div class="dados-artigos">
-                                <h6 class="data-artigo">21 de Setembro 2016</h6>
-                                <h6><b>Autor/Fonte:</b> Anônimo</h6>
-                            </div>
-                        </div>
+                        <?php
+                        $ReadNews->setPlaces("tit=''&cat=artigo&limit=4&offset=0");
+                        if ($ReadNews->getResult()):
+                            foreach ($ReadNews->getResult() as $artigos):
+                                ?>
+                                <a href="<?= HOME . '/noticia/' . $artigos['url_name']; ?>" title="<?= $artigos['titulo']; ?>">
+                                    <div class="col-md-6">
+                                        <h5 class="titulo-artigo"><?= Check::Words($artigos['titulo'], 10); ?></h5>
+                                        <h6 class="texto-artigo"><?= Check::Words($artigos['noticia'], 15); ?></h6>
+                                        <div class="dados-artigos">
+                                            <h6 class="data-artigo"><?= 'Em ' . date('d/m/Y h:i', strtotime($artigos['data'])) . ' hrs'; ?></h6>
+                                            <h6><b>Autor/Fonte:</b> <?= $artigos['autor'] . ' / ' . $artigos['fonte']; ?></h6>
+                                        </div>
+                                    </div>
+                                </a>
+                                <?php
+                            endforeach;
+                        endif;
+                        ?>
                     </div>
                     <hr>
                     <div class="row">
-                        <div class="col-md-6">
-                            <h5 class="titulo-artigo">EUA Abrem Consultas Públicas para a Revisão do seu Sistema Gera...</h5>
-                            <h6 class="texto-artigo">No dia 25 de agosto de 2016, o Escritório do Representante de Comércio dos Estados Unidos (United States...</h6>
-                            <div class="dados-artigos">
-                                <h6 class="data-artigo">21 de Setembro 2016</h6>
-                                <h6><b>Autor/Fonte:</b> Anônimo</h6>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <h5 class="titulo-artigo">EUA Abrem Consultas Públicas para a Revisão do seu Sistema Gera...</h5>
-                            <h6 class="texto-artigo">No dia 25 de agosto de 2016, o Escritório do Representante de Comércio dos Estados Unidos (United States...</h6>
-                            <div class="dados-artigos">
-                                <h6 class="data-artigo">21 de Setembro 2016</h6>
-                                <h6><b>Autor/Fonte:</b> Anônimo</h6>
-                            </div>
-                        </div>
-                        <div class="btn btn-mais-artigos">Ver mais artigos</div>
+                        <?php
+                        $ReadNews->setPlaces("tit=''&cat=artigo&limit=2&offset=4");
+                        if ($ReadNews->getResult()):
+                            foreach ($ReadNews->getResult() as $artigos):
+                                ?>
+                                <a href="<?= HOME . '/noticia/' . $artigos['url_name']; ?>" title="<?= $artigos['titulo']; ?>">
+                                    <div class="col-md-6">
+                                        <h5 class="titulo-artigo"><?= Check::Words($artigos['titulo'], 10); ?></h5>
+                                        <h6 class="texto-artigo"><?= Check::Words($artigos['noticia'], 15); ?></h6>
+                                        <div class="dados-artigos">
+                                            <h6 class="data-artigo"><?= 'Em ' . date('d/m/Y h:i', strtotime($artigos['data'])) . ' hrs'; ?></h6>
+                                            <h6><b>Autor/Fonte:</b> <?= $artigos['autor'] . ' / ' . $artigos['fonte']; ?></h6>
+                                        </div>
+                                    </div>
+                                </a>
+                                <?php
+                            endforeach;
+                        endif;
+                        ?>
+                        <a href="<?= HOME . '/artigos' ?>" class="btn btn-mais-artigos">Ver mais artigos</a>
                     </div>
                 </div>
             </div>
         </div>
         <hr>
         <div class="row">
-            <div class="box-50">
-                <div class="box-1-publicacoes">
-                    <div class="line-vertical"></div>
-                    <h3 class="titulo-publicacoes">Publicações</h3><br>
-                    <h5 class="subtitulo-publicacoes">Em destaque</h5>
-                    <div class="capa-publicacoes">
-                        <!--  AQUI VAI A IMAGEM-->
-                    </div>
-                    <h5 class="titulo-publicacao">EUA Abrem Consultas Públicas para a Revisão do seu Sistema Gera...</h5>
-                    <h6 class="texto-publicacao">No dia 25 de agosto de 2016, o Escritório do Representante de Comércio dos Estados Unidos (United States...</h6>
-                    <h6 class="data-publicacao">21 de Setembro 2016</h6>
-                    <h6 class="autor-publicacao"><b>Autor/Fonte:</b> Anônimo</h6>
-
-                </div>
+            <div class="publicacao-header">
+                <h3 class="titulo-publicacoes">Publicações</h3><br>
+                <h5 class="subtitulo-publicacoes">Em destaque</h5>
             </div>
-            <div class="line-vertical-100"></div>
-            <div class="box-50">
-                <div class="box-2-publicacoes">
-                    <div class="capa-publicacoes">
-                        <!--  AQUI VAI A IMAGEM-->
-                    </div>
-                    <h5 class="titulo-publicacao">EUA Abrem Consultas Públicas para a Revisão do seu Sistema Gera...</h5>
-                    <h6 class="texto-publicacao">No dia 25 de agosto de 2016, o Escritório do Representante de Comércio dos Estados Unidos (United States...</h6>
-                    <h6 class="data-publicacao">21 de Setembro 2016</h6>
-                    <h6 class="autor-publicacao"><b>Autor/Fonte:</b> Anônimo</h6>
-                </div>
+            <div class="blc-publicacoes">
+                <?php
+                $ReadNews->setPlaces("tit=''&cat=publicacao&limit=2&offset=0");
+                if ($ReadNews->getResult()):
+                    foreach ($ReadNews->getResult() as $publicacao):
+                        ?>
+                        <a href="<?= HOME . '/noticia/' . $publicacao['url_name']; ?>" title="<?= $publicacao['titulo']; ?>">
+                            <div class="box-publicacoes">
+                                <div class="capa-publicacoes">
+                                    <?= Check::Image("uploads/{$publicacao['foto']}", $publicacao['titulo'], NULL, 225, 130); ?>
+                                </div>
+                                <div class="dados-publicacao">
+                                    <h5 class="titulo-publicacao"><?= Check::Words($publicacao['titulo'], 10); ?></h5>
+                                    <h6 class="texto-publicacao"><?= Check::Words($publicacao['noticia'], 15); ?></h6>
+                                    <h6 class="data-publicacao"><?= 'Em ' . date('d/m/Y h:i', strtotime($publicacao['data'])) . ' hrs'; ?></h6>
+                                    <h6 class="autor-publicacao"><b>Autor/Fonte:</b> <?= $publicacao['autor'] . ' / ' . $publicacao['fonte']; ?></h6>
+                                </div>
+                            </div>
+                        </a>
+                        <?php
+                    endforeach;
+                else:
+                    WSErro('Ainda não há nenhuma publicação cadastrada.', WS_INFOR);
+                endif;
+                ?>
             </div>
-            <div class="btn btn-mais-publicacoes">Ver mais Publicações</div>
+            <a href="<?= HOME . '/publicacoes' ?>" class="btn btn-mais-publicacoes">Ver mais Publicações</a>
         </div>
         <hr>
         <div class="row">

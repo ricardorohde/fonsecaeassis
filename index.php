@@ -46,6 +46,7 @@ Check::UserOnline();
     <script src="<?= HOME; ?>/_cdn/jquery.js"></script>
     <script src="<?= HOME; ?>/_cdn/bootstrap/js/bootstrap.min.js"></script>
     <script src="<?= HOME; ?>/_cdn/flexslider/flexslider.min.js"></script>
+    <script src="<?= HOME; ?>/_cdn/slide.js"></script>
     <script src="<?= HOME; ?>/_cdn/_scripts.conf.js"></script>
 </html>
 <?php
