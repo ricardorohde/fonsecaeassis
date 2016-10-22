@@ -73,6 +73,11 @@ class Seo {
                 $this->Data = [SITENAME . " - Quem Somos", "Um pouco sobre nós.", HOME . '/quem-somos', INCLUDE_PATH . '/images/logo_midia.jpg'];
                 break;
 
+            //SEO:: ÁREA DE ATUAÇÃO
+            case 'atuacao':
+                $this->Data = [SITENAME . " - Área de Atuação", "Veja as áreas de atuação em que estamos trabalhando", HOME . '/atuacao', INCLUDE_PATH . '/images/logo_midia.jpg'];
+                break;
+
             //SEO:: BUSCA
             case 'busca':
                 $ReadSeo->ExeRead("noticias", "WHERE (titulo LIKE '%' :link '%' OR noticia LIKE '%' :link '%')", "link={$this->Link}");
@@ -83,6 +88,16 @@ class Seo {
                     $this->seoData['count'] = $ReadSeo->getRowCount();
                     $this->Data = ["Pesquisa por: {$this->Link}" . ' - ' . SITENAME, "Sua pesquisa por {$this->Link} retornou {$this->seoData['count']} resultados!", HOME . "/busca/{$this->Link}", INCLUDE_PATH . '/images/logo-topo.png'];
                 endif;
+                break;
+
+            //SEO:: ARTIGOS
+            case 'artigos':
+                $this->Data = [SITENAME . " - Artigos", "Veja nossos artigos publicados em nosso site", HOME . '/artigos', INCLUDE_PATH . '/images/logo_midia.jpg'];
+                break;
+
+            //SEO:: PUBLICAÇÕES
+            case 'publicacoes':
+                $this->Data = [SITENAME . " - Publicações", "Veja as publicações realizadas em nosso site", HOME . '/publicacoes', INCLUDE_PATH . '/images/logo_midia.jpg'];
                 break;
 
             //SEO:: NOTICIAS
@@ -115,7 +130,7 @@ class Seo {
 
             //SEO:: 404
             default :
-                $this->Data = [SITENAME . " - Advogados Associados", SITEDESC, HOME, INCLUDE_PATH . '/images/logo_midia.jpg'];
+                $this->Data = [SITENAME . " - Erro 404", SITEDESC, HOME, INCLUDE_PATH . '/images/logo_midia.jpg'];
                 break;
         endswitch;
 
