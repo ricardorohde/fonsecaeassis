@@ -21,7 +21,7 @@ a:focus, a:hover, a:active {  outline: 0; color: #927151; text-decoration: none;
 /*== PAGINAS ==*/
 .main-titulo-content {width: 100%; float: left; text-align: center;}
 .main-naveg {width: 100%; float: left; margin-top: 4%;}
-.breadcrumb {padding: 8px 15px; margin-bottom: 20px; font-size: 0.9em; list-style: none; border-radius: 4px; background:   #f7f7f7;}
+.breadcrumb {padding: 8px 15px; margin-bottom: 20px; font-size: 0.9em; list-style: none; border-radius: 4px; background: #f7f7f7;}
 .breadcrumb li {display: inline-block;}
 .breadcrumb li+li:before {padding: 0 5px; color: #ccc; content: "/";}
 /*== FORMULARIOS ==*/
@@ -40,8 +40,8 @@ input:focus {appearance: none; }
 .logo {width: 50%; float: left; background: center center/50% no-repeat;}
 .btn-menu  {width: 56px; float: right; text-align: center; color: #9C7E61; background: none; font-size: 2em; padding: 7% 4%;}
 /* MENU */
-.menu { display: none; width: 100%; height: auto; padding-bottom: 2%; position: fixed; background-color: #FFF; border-bottom: 1px solid gray; border-radius: 5px; top: 17%; right: 0%; left: 0%; border-top: 1px solid  #eaeaea;}
-.btn-close {font-size: 1.3em; float: right; cursor: pointer; margin: 3% 7% 0 0;}
+.menu { display: none; width: 100%; height: auto; float: left; margin-top: 5%; padding-bottom: 2%; position: relative; background-color: #FFF; border-radius: 5px; right: 0%; left: 0%; border-top: 1px solid  #eaeaea;}
+.btn-close {font-size: 1.3em; float: right; cursor: pointer; margin: 3% 2% 0 0;}
 .menu ul {width: 100%; float: left; text-align: left;}
 .menu li  {padding: 1.2%; margin: 0 5% 0 5%; }
 .menu li a {font-size: 0.8em; font-weight: 500;}
@@ -59,6 +59,7 @@ section#slide ul{ list-style: none; display: table; position: relative; padding:
 section#slide ul li{  width: 100%; max-width: 600px; height: 277px; display: inline-block; position: relative;}
 section#slide ul li img{ width: 100%; height: 100%; border-radius: 2px;}
 section#slide ul li span{ width: 100%; padding: 4% 0 0 0; position: absolute; bottom:0; left: 0; font-size: 1em; color: #6E6458; background: #FFF;}
+.flex-direction-nav {display: none;}
 /* ARTIGOS */
 .main-artigo {width: 100%; float: left; height: auto; border-bottom: 1px solid rgba(0,0,0,0.1);}
 .main-box-artigo {width: 100%; float: left; padding: 3% 4%; margin-bottom: 1%; border-radius: 2px;}
@@ -294,6 +295,7 @@ section#slide ul li span{ width: 100%; padding: 4% 0 0 0; position: absolute; bo
     .footer-noticias{width: 50%; margin: 10% 0 2% 0;}
     /* SLIDE - NOTICIAS */
     section#slide section#buttons {margin-top: -17.5%; margin-right: 50%;}
+    .flex-direction-nav {display: block;}
     /* ARTIGOS */
     .main-artigo {width: 50%; padding: 1% 2%; border-bottom: none;}
     .main-box-artigo {width: 50%; margin-top: -2%; height: auto; margin-bottom: 4%; padding: 0 1%; border-bottom: none;}
