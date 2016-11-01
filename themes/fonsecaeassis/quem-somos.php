@@ -1,21 +1,19 @@
-<div class="box-conteudo-paginas">
-    <div class="container">
-        <div class="row">
-            <div class="box-100">
-                <h5 class="titulo-paginas">Quem Somos</h5>
-                <ol class="breadcrumb">
-                    <li><a href="<?= HOME; ?>">Home</a></li>
-                    <li class="active">Quem Somos</li>
-                </ol>
-            </div>
+<div class="main-quem-somos">
+    <div class="main-titulo-content">
+        <div class="main-header-content">
+            <h1>Quem Somos</h1>
+            <h2>Conheça nosso escritório</h2>
         </div>
-        <div class="row">
-            <div class="box-quem-somos">
-                <div class="box-100">
-                    <h5 class="titulo-empresa"><?= $Empresa['empresa']; ?></h5>
-                    <h6 class="texto-empresa"><?= $Empresa['quem_somos']; ?></h6>
-                </div>
-            </div>
+        <div class="main-naveg">
+        <ol class="breadcrumb">
+            <li><a href="<?= HOME; ?>">Home</a></li>
+            <li class="active">Quem Somos</li>
+        </ol>
         </div>
     </div>
+    <div class="box-quem-somos">
+        <h1><?= $Empresa['empresa']; ?></h1>
+        <h2><?= $Empresa['quem_somos']; ?></h2>
+    </div>
 </div>
+

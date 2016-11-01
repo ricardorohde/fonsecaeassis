@@ -10,14 +10,13 @@ Check::UserOnline();
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="theme-color" content="#35314E">
         <!--[if lt IE 9]><script src="<?= HOME; ?>/_cdn/html5.js"></script><![endif]-->
         <?php
         $Link = new Link;
         $Link->getTags();
         ?>
         <!-- CSS -->
-        <link rel="stylesheet" type="text/css" href="<?= HOME; ?>/_cdn/bootstrap/css/bootstrap.min.css">
+<!--        <link rel="stylesheet" type="text/css" href="<?= HOME; ?>/_cdn/bootstrap/css/bootstrap.min.css">-->
         <link rel="stylesheet" type="text/css" href="<?= INCLUDE_PATH; ?>/css/layout.min.css"/>
         <link rel="stylesheet" type='text/css' href="<?= HOME; ?>/_cdn/flexslider/flexslider.css">
     </head>
@@ -44,7 +43,7 @@ Check::UserOnline();
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"/>
     <!-- JS -->
     <script src="<?= HOME; ?>/_cdn/jquery.js"></script>
-    <script src="<?= HOME; ?>/_cdn/bootstrap/js/bootstrap.min.js"></script>
+<!--    <script src="<?= HOME; ?>/_cdn/bootstrap/js/bootstrap.min.js"></script>-->
     <script src="<?= HOME; ?>/_cdn/flexslider/flexslider.min.js"></script>
     <script src="<?= HOME; ?>/_cdn/slide.js"></script>
     <script src="<?= HOME; ?>/_cdn/_scripts.conf.js"></script>

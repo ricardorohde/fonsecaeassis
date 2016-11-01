@@ -21,3 +21,34 @@ $(function () {
         $(this).after('<p style="color: #fff; background: #333; padding: 10px">' + $(this).width() + 'px</p>');
     });
 });
+
+/*MENU*/
+$(function(){
+    $(".btn-menu").click(function(){
+         $(".menu").show();
+    });
+});
+$(function(){
+    $(".btn-close").click(function(){
+        $(".menu").hide();
+    });
+});
+
+
+
+$(function(){  
+    $(".entypo-menu").hover(
+        function(){$(this).css("color", "#6B6258")},
+        function(){$(this).css("color", "#9C7E61")}
+    );
+});
+
+
+
+
+
+
+
+
+
+
