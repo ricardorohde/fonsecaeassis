@@ -17,8 +17,18 @@
         $Pager = new Pager(HOME . '/artigos/');
         $Pager->ExePager($getPage, 10);
 
+        $search = $Link->getLocal()[2];
+        if (!empty($search)):
+            #echo $search;
+            $Where = "WHERE titulo != :titulo AND categoria = :cat AND (titulo LIKE '%' :search '%') ORDER BY data DESC LIMIT :limit OFFSET :offset";
+            $Places = "titulo=''&cat=artigo&search={$search}&limit={$Pager->getLimit()}&offset={$Pager->getOffset()}";
+        else:
+            $Where = "WHERE titulo != :titulo AND categoria = :cat ORDER BY data DESC LIMIT :limit OFFSET :offset";
+            $Places = "titulo=''&cat=artigo&limit={$Pager->getLimit()}&offset={$Pager->getOffset()}";
+        endif;
+
         $ReadNewsAll = new Read;
-        $ReadNewsAll->ExeRead('noticias n', "WHERE titulo != :titulo AND categoria = :cat ORDER BY data DESC LIMIT :limit OFFSET :offset", "titulo=''&cat=artigo&limit={$Pager->getLimit()}&offset={$Pager->getOffset()}");
+        $ReadNewsAll->ExeRead('noticias n', $Where, $Places);
 
         if (!$ReadNewsAll->getResult()):
             WSErro('Ainda não temos nenhum artigo cadastrado, aguarde...', WS_INFOR);

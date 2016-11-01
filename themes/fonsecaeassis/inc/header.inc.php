@@ -1,5 +1,5 @@
 <header class="cabecalho">
-    <a href="index.php"><img class="logo"src="themes/fonsecaeassis/images/logo.png"> </a>
+    <a href="<?= HOME; ?>"><img class="logo"src="<?= INCLUDE_PATH; ?>/images/logo.png"> </a>
     <button class="btn-menu"><i class="entypo-menu"></i></button>
     <nav class="menu">
         <a class="btn-close"><i class="entypo-cancel-squared"></i></a>
