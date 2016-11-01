@@ -10,25 +10,50 @@
                 <li class="active">Artigos</li>
             </ol>
         </div>
+
+        <div class="busca">
+            <?php
+            $buscar = filter_input(INPUT_POST, 's', FILTER_DEFAULT);
+            if (!empty($buscar)):
+                $buscar = strip_tags(trim(urlencode($buscar)));
+                header('Location: ' . HOME . '/artigos/busca/' . $buscar);
+            endif;
+            ?>
+            <form name="search" action="" method="post">
+                <input class="fls" type="text" name="s" />
+                <input class="btn" type="submit" name="sendsearch" value="Buscar" />
+            </form>
+        </div>
     </div>
     <div class="main-box-artigos">
         <?php
-        $getPage = (!empty($Link->getlocal()[1]) ? $Link->getlocal()[1] : 1);
-        $Pager = new Pager(HOME . '/artigos/');
-        $Pager->ExePager($getPage, 10);
-
-        $search = $Link->getLocal()[2];
+        $search = !empty($Link->getLocal()[2]) ? $Link->getLocal()[2] : null;
         if (!empty($search)):
-            #echo $search;
+            //Se tiver Busca
+            $getPage = (!empty($Link->getlocal()[3]) ? $Link->getlocal()[3] : 1);
+            $Pager = new Pager(HOME . "/artigos/busca/{$search}/");
+            $Pager->ExePager($getPage, 10);
+
             $Where = "WHERE titulo != :titulo AND categoria = :cat AND (titulo LIKE '%' :search '%') ORDER BY data DESC LIMIT :limit OFFSET :offset";
             $Places = "titulo=''&cat=artigo&search={$search}&limit={$Pager->getLimit()}&offset={$Pager->getOffset()}";
+
+            $WherePag = "WHERE titulo != :t AND categoria = :cat AND (titulo LIKE '%' :search '%') ORDER BY id DESC";
+            $PlacesPag = "t=''&cat=artigo&search={$search}";
         else:
+            //Quando não tem busca
+            $getPage = (!empty($Link->getlocal()[1]) ? $Link->getlocal()[1] : 1);
+            $Pager = new Pager(HOME . "/artigos/");
+            $Pager->ExePager($getPage, 10);
+
             $Where = "WHERE titulo != :titulo AND categoria = :cat ORDER BY data DESC LIMIT :limit OFFSET :offset";
             $Places = "titulo=''&cat=artigo&limit={$Pager->getLimit()}&offset={$Pager->getOffset()}";
+
+            $WherePag = "WHERE titulo != :t AND categoria = :cat ORDER BY id DESC";
+            $PlacesPag = "t=''&cat=artigo";
         endif;
 
         $ReadNewsAll = new Read;
-        $ReadNewsAll->ExeRead('noticias n', $Where, $Places);
+        $ReadNewsAll->ExeRead('noticias', $Where, $Places);
 
         if (!$ReadNewsAll->getResult()):
             WSErro('Ainda não temos nenhum artigo cadastrado, aguarde...', WS_INFOR);
@@ -44,7 +69,7 @@
             endforeach;
             echo '</div>';
             echo '<nav aria-label="Page navigation">';
-            $Pager->ExePaginator('noticias', "WHERE titulo != :t AND categoria = :cat ORDER BY id DESC", "t=''&cat=artigo");
+            $Pager->ExePaginator('noticias', $WherePag, $PlacesPag);
             echo $Pager->getPaginator();
             echo '</nav>';
         endif;

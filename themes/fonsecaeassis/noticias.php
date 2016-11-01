@@ -1,55 +1,78 @@
-<div class="box-conteudo-paginas">
-    <div class="container">
-        <div class="row">
-            <div class="box-100">
-                <h5 class="titulo-paginas">Publicações</h5>
-                <ol class="breadcrumb">
-                    <li><a href="<?= HOME; ?>">Home</a></li>
-                    <li class="active">Notícias</li>
-                </ol>
-                <div class="row">
-                    <div class="busca">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Buscar..." aria-describedby="basic-addon1">
-                            <span class="input-group-addon" id="basic-addon1"><i class="entypo-search"></i></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<div class="main-artigos">
+    <div class="main-titulo-content">
+        <div class="main-header-content">
+            <h1>Notícias</h1>
+            <h2>Notícias Públicadas</h2>
         </div>
-        <div class="col-md-12">
-            <div class="box-artigos">
-                <?php
-                $getPage = (!empty($Link->getlocal()[1]) ? $Link->getlocal()[1] : 1);
-                $Pager = new Pager(HOME . '/noticias/');
-                $Pager->ExePager($getPage, 10);
+        <div class="main-naveg">
+            <ol class="breadcrumb">
+                <li><a href="<?= HOME; ?>">Home</a></li>
+                <li class="active">Notícias</li>
+            </ol>
+        </div>
 
-                $ReadNewsAll = new Read;
-                $ReadNewsAll->ExeRead('noticias n', "WHERE titulo != :titulo AND categoria = :cat ORDER BY data DESC LIMIT :limit OFFSET :offset", "titulo=''&cat=noticia&limit={$Pager->getLimit()}&offset={$Pager->getOffset()}");
-
-                if (!$ReadNewsAll->getResult()):
-                    WSErro('Ainda não temos nenhuma notícia cadastrado, aguarde...', WS_INFOR);
-                else:
-                    $View = new View;
-                    $tpl_noticias = $View->Load('noticias');
-                    echo '<div class="row">';
-                    foreach ($ReadNewsAll->getResult() as $n):
-                        $n['titulo'] = Check::Words($n['titulo'], 16);
-                        $n['noticia'] = Check::Words(strip_tags($n['noticia']), 36);
-                        $n['data'] = date('d/m/Y H:i', strtotime($n['data']));
-                        $View->Show($n, $tpl_noticias);
-                    endforeach;
-                    echo '</div>';
-                    echo '<nav aria-label="Page navigation">';
-                    $Pager->ExePaginator('noticias', "WHERE titulo != :t AND categoria = :cat ORDER BY id DESC", "t=''&cat=noticia");
-                    echo $Pager->getPaginator();
-                    echo '</nav>';
-                endif;
-                ?>
-            </div>
+        <div class="busca">
+            <?php
+            $buscar = filter_input(INPUT_POST, 's', FILTER_DEFAULT);
+            if (!empty($buscar)):
+                $buscar = strip_tags(trim(urlencode($buscar)));
+                header('Location: ' . HOME . '/noticias/busca/' . $buscar);
+            endif;
+            ?>
+            <form name="search" action="" method="post">
+                <input class="fls" type="text" name="s" />
+                <input class="btn" type="submit" name="sendsearch" value="Buscar" />
+            </form>
         </div>
     </div>
+    <div class="main-box-artigos">
+        <?php
+        $search = !empty($Link->getLocal()[2]) ? $Link->getLocal()[2] : null;
+        if (!empty($search)):
+            //Se tiver Busca
+            $getPage = (!empty($Link->getlocal()[3]) ? $Link->getlocal()[3] : 1);
+            $Pager = new Pager(HOME . "/noticias/busca/{$search}/");
+            $Pager->ExePager($getPage, 10);
+
+            $Where = "WHERE titulo != :titulo AND categoria = :cat AND (titulo LIKE '%' :search '%') ORDER BY data DESC LIMIT :limit OFFSET :offset";
+            $Places = "titulo=''&cat=noticia&search={$search}&limit={$Pager->getLimit()}&offset={$Pager->getOffset()}";
+
+            $WherePag = "WHERE titulo != :t AND categoria = :cat AND (titulo LIKE '%' :search '%') ORDER BY id DESC";
+            $PlacesPag = "t=''&cat=noticia&search={$search}";
+        else:
+            //Quando não tem busca
+            $getPage = (!empty($Link->getlocal()[1]) ? $Link->getlocal()[1] : 1);
+            $Pager = new Pager(HOME . "/noticias/");
+            $Pager->ExePager($getPage, 10);
+
+            $Where = "WHERE titulo != :titulo AND categoria = :cat ORDER BY data DESC LIMIT :limit OFFSET :offset";
+            $Places = "titulo=''&cat=noticia&limit={$Pager->getLimit()}&offset={$Pager->getOffset()}";
+
+            $WherePag = "WHERE titulo != :t AND categoria = :cat ORDER BY id DESC";
+            $PlacesPag = "t=''&cat=noticia";
+        endif;
+
+        $ReadNewsAll = new Read;
+        $ReadNewsAll->ExeRead('noticias', $Where, $Places);
+
+        if (!$ReadNewsAll->getResult()):
+            WSErro('Ainda não temos nenhuma notícia cadastrada, aguarde...', WS_INFOR);
+        else:
+            $View = new View;
+            $tpl_noticias = $View->Load('noticias');
+            echo '<div class="row">';
+            foreach ($ReadNewsAll->getResult() as $n):
+                $n['titulo'] = Check::Words($n['titulo'], 16);
+                $n['noticia'] = Check::Words(strip_tags($n['noticia']), 36);
+                $n['data'] = date('d/m/Y H:i', strtotime($n['data']));
+                $View->Show($n, $tpl_noticias);
+            endforeach;
+            echo '</div>';
+            echo '<nav aria-label="Page navigation">';
+            $Pager->ExePaginator('noticias', $WherePag, $PlacesPag);
+            echo $Pager->getPaginator();
+            echo '</nav>';
+        endif;
+        ?>
+    </div>
 </div>
-
-
-
