@@ -18,7 +18,7 @@ define('MAILHOST', 'mail.fonsecaeassis.com.br');
 
 // DEFINE IDENTIDADE DO SITE ################
 define('SITENAME', 'Fonseca & Assis');
-define('SITEDESC', 'Instituto de Terapias e Naturologia, trabalha com vários cursos, eventos e tratramentos para pessoas que buscam saúde e qualidade de vida');
+define('SITEDESC', 'Fonseca & Assis - Advogados associados, temos os melhores profissionais na área do direito, para melhor lhe atender.');
 define('CIDADE', 'Rolim de Moura');
 define('UF', 'RO');
 
