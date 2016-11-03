@@ -1,12 +1,13 @@
 -- --------------------------------------------------------
--- Servidor:                     localhost
--- Versão do servidor:           10.1.10-MariaDB - mariadb.org binary distribution
+-- Servidor:                     127.0.0.1
+-- Versão do servidor:           5.6.21 - MySQL Community Server (GPL)
 -- OS do Servidor:               Win32
--- HeidiSQL Versão:              9.3.0.4984
+-- HeidiSQL Versão:              9.4.0.5128
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
+/*!50503 SET NAMES utf8mb4 */;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
@@ -39,7 +40,6 @@ REPLACE INTO `adv_associados` (`id`, `url_name`, `nome`, `oab_reg`, `oab_uf`, `f
 	(5, 'antonio-jorge', 'Antonio Jorge', '103494', 'RO', 'associados/2016/10/antonio-jorge.jpg', 1, '2016-10-19 00:30:27', 1, '2016-10-19 00:31:57');
 /*!40000 ALTER TABLE `adv_associados` ENABLE KEYS */;
 
-
 -- Copiando estrutura para tabela _fonsecaeassis_2016.atuacao
 DROP TABLE IF EXISTS `atuacao`;
 CREATE TABLE IF NOT EXISTS `atuacao` (
@@ -69,7 +69,6 @@ REPLACE INTO `atuacao` (`id`, `id_icon`, `url_name`, `area`, `qm_cadastr`, `data
 	(7, 5, 'teste-2', 'Teste 2', 3, '2016-11-01 00:57:25', 3, '2016-11-01 23:19:27');
 /*!40000 ALTER TABLE `atuacao` ENABLE KEYS */;
 
-
 -- Copiando estrutura para tabela _fonsecaeassis_2016.atuacao_icons
 DROP TABLE IF EXISTS `atuacao_icons`;
 CREATE TABLE IF NOT EXISTS `atuacao_icons` (
@@ -96,7 +95,6 @@ REPLACE INTO `atuacao_icons` (`id`, `nome`, `foto`, `qm_cadastr`, `data_cadastr`
 	(5, 'Padrão', 'atuacao_icons/2016/11/padrao.png', 3, '2016-11-01 23:19:03', 3, '2016-11-01 23:24:16');
 /*!40000 ALTER TABLE `atuacao_icons` ENABLE KEYS */;
 
-
 -- Copiando estrutura para tabela _fonsecaeassis_2016.banco_fotos
 DROP TABLE IF EXISTS `banco_fotos`;
 CREATE TABLE IF NOT EXISTS `banco_fotos` (
@@ -104,6 +102,7 @@ CREATE TABLE IF NOT EXISTS `banco_fotos` (
   `id_tipo` int(11) NOT NULL,
   `tipo` varchar(1) NOT NULL,
   `foto` varchar(255) NOT NULL,
+  `legenda` varchar(100) DEFAULT NULL,
   `data` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `ordem` int(11) DEFAULT NULL COMMENT 'Ordem das Fotos',
   PRIMARY KEY (`id`),
@@ -114,17 +113,16 @@ CREATE TABLE IF NOT EXISTS `banco_fotos` (
 
 -- Copiando dados para a tabela _fonsecaeassis_2016.banco_fotos: ~8 rows (aproximadamente)
 /*!40000 ALTER TABLE `banco_fotos` DISABLE KEYS */;
-REPLACE INTO `banco_fotos` (`id`, `id_tipo`, `tipo`, `foto`, `data`, `ordem`) VALUES
-	(4, 1, 'N', 'banco_fotos/2016/10/tipo-n-id-1-22143.jpg', '2016-10-19 21:14:07', NULL),
-	(5, 1, 'N', 'banco_fotos/2016/10/tipo-n-id-1-20077.jpg', '2016-10-19 21:14:07', NULL),
-	(6, 1, 'N', 'banco_fotos/2016/10/tipo-n-id-1-13900.jpg', '2016-10-19 21:14:08', NULL),
-	(7, 1, 'N', 'banco_fotos/2016/10/tipo-n-id-1-19106.jpg', '2016-10-19 21:14:08', NULL),
-	(8, 1, 'N', 'banco_fotos/2016/10/tipo-n-id-1-30357.jpg', '2016-10-19 21:14:08', NULL),
-	(9, 1, 'N', 'banco_fotos/2016/10/tipo-n-id-1-21299.jpg', '2016-10-19 21:14:08', NULL),
-	(10, 8, 'N', 'banco_fotos/2016/11/tipo-n-id-8-28108.jpg', '2016-11-03 01:26:52', NULL),
-	(11, 8, 'N', 'banco_fotos/2016/11/tipo-n-id-8-5998.jpg', '2016-11-03 01:26:54', NULL);
+REPLACE INTO `banco_fotos` (`id`, `id_tipo`, `tipo`, `foto`, `legenda`, `data`, `ordem`) VALUES
+	(4, 1, 'N', 'banco_fotos/2016/10/tipo-n-id-1-22143.jpg', NULL, '2016-10-19 21:14:07', NULL),
+	(5, 1, 'N', 'banco_fotos/2016/10/tipo-n-id-1-20077.jpg', NULL, '2016-10-19 21:14:07', NULL),
+	(6, 1, 'N', 'banco_fotos/2016/10/tipo-n-id-1-13900.jpg', NULL, '2016-10-19 21:14:08', NULL),
+	(7, 1, 'N', 'banco_fotos/2016/10/tipo-n-id-1-19106.jpg', NULL, '2016-10-19 21:14:08', NULL),
+	(8, 1, 'N', 'banco_fotos/2016/10/tipo-n-id-1-30357.jpg', NULL, '2016-10-19 21:14:08', NULL),
+	(9, 1, 'N', 'banco_fotos/2016/10/tipo-n-id-1-21299.jpg', NULL, '2016-10-19 21:14:08', NULL),
+	(10, 8, 'N', 'banco_fotos/2016/11/tipo-n-id-8-28108.jpg', NULL, '2016-11-03 01:26:52', NULL),
+	(11, 8, 'N', 'banco_fotos/2016/11/tipo-n-id-8-5998.jpg', NULL, '2016-11-03 01:26:54', NULL);
 /*!40000 ALTER TABLE `banco_fotos` ENABLE KEYS */;
-
 
 -- Copiando estrutura para tabela _fonsecaeassis_2016.banners
 DROP TABLE IF EXISTS `banners`;
@@ -157,7 +155,6 @@ REPLACE INTO `banners` (`id`, `titulo`, `banner`, `tipo`, `link`, `data_inicial`
 	(12, '01', 'banners/2016/11/01.png', 1, '', '2016-11-01', '2016-12-31', '2016-11-01 21:59:19', 3, 3);
 /*!40000 ALTER TABLE `banners` ENABLE KEYS */;
 
-
 -- Copiando estrutura para tabela _fonsecaeassis_2016.banners_tipo
 DROP TABLE IF EXISTS `banners_tipo`;
 CREATE TABLE IF NOT EXISTS `banners_tipo` (
@@ -174,7 +171,6 @@ CREATE TABLE IF NOT EXISTS `banners_tipo` (
 REPLACE INTO `banners_tipo` (`id_tipo`, `tipo`, `dimens_w`, `dimens_h`) VALUES
 	(1, 'slide', '1920', '680');
 /*!40000 ALTER TABLE `banners_tipo` ENABLE KEYS */;
-
 
 -- Copiando estrutura para tabela _fonsecaeassis_2016.clientes
 DROP TABLE IF EXISTS `clientes`;
@@ -195,7 +191,6 @@ REPLACE INTO `clientes` (`id`, `fantasia`, `razao_social`, `email`, `telefone`, 
 	(2, 'Cw Digital - Subisidiaria', 'CW Digital - Brasil LTDA', 'empresa@cwdigital.com.br', '', 0),
 	(3, 'empresa abc', 'empresa', 'contato@cwdigital.com.br', '', 1);
 /*!40000 ALTER TABLE `clientes` ENABLE KEYS */;
-
 
 -- Copiando estrutura para tabela _fonsecaeassis_2016.clima_dados
 DROP TABLE IF EXISTS `clima_dados`;
@@ -218,7 +213,6 @@ CREATE TABLE IF NOT EXISTS `clima_dados` (
 -- Copiando dados para a tabela _fonsecaeassis_2016.clima_dados: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `clima_dados` DISABLE KEYS */;
 /*!40000 ALTER TABLE `clima_dados` ENABLE KEYS */;
-
 
 -- Copiando estrutura para tabela _fonsecaeassis_2016.clima_sigla
 DROP TABLE IF EXISTS `clima_sigla`;
@@ -274,7 +268,6 @@ REPLACE INTO `clima_sigla` (`id`, `sigla`, `descricao`) VALUES
 	(40, 'ppm', 'Poss. de Panc. de Chuva pela Manhã');
 /*!40000 ALTER TABLE `clima_sigla` ENABLE KEYS */;
 
-
 -- Copiando estrutura para tabela _fonsecaeassis_2016.colunistas
 DROP TABLE IF EXISTS `colunistas`;
 CREATE TABLE IF NOT EXISTS `colunistas` (
@@ -299,7 +292,6 @@ CREATE TABLE IF NOT EXISTS `colunistas` (
 /*!40000 ALTER TABLE `colunistas` DISABLE KEYS */;
 /*!40000 ALTER TABLE `colunistas` ENABLE KEYS */;
 
-
 -- Copiando estrutura para tabela _fonsecaeassis_2016.contato
 DROP TABLE IF EXISTS `contato`;
 CREATE TABLE IF NOT EXISTS `contato` (
@@ -319,7 +311,6 @@ REPLACE INTO `contato` (`id`, `nome`, `email`, `assunto`, `mensagem`, `data`, `i
 	(1, 'teste', 'teste@teste.com', 'teste', 'teste', '2016-08-04', '::1');
 /*!40000 ALTER TABLE `contato` ENABLE KEYS */;
 
-
 -- Copiando estrutura para tabela _fonsecaeassis_2016.cotacao
 DROP TABLE IF EXISTS `cotacao`;
 CREATE TABLE IF NOT EXISTS `cotacao` (
@@ -335,7 +326,6 @@ CREATE TABLE IF NOT EXISTS `cotacao` (
 -- Copiando dados para a tabela _fonsecaeassis_2016.cotacao: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `cotacao` DISABLE KEYS */;
 /*!40000 ALTER TABLE `cotacao` ENABLE KEYS */;
-
 
 -- Copiando estrutura para tabela _fonsecaeassis_2016.cursos
 DROP TABLE IF EXISTS `cursos`;
@@ -361,7 +351,6 @@ REPLACE INTO `cursos` (`id`, `url_name`, `curso`, `valor`, `carga`, `modalidade`
 	(2, 'i-simposio-norte-brasileiro-de-biorregulacao-funcional', 'I Simpósio Norte Brasileiro de Biorregulação Funcional', 'R$ 50,00', '180 Horas', 'presencial', '<h2>O que &eacute; biorregula&ccedil;&atilde;o e como funciona</h2>\r\n\r\n<p>Na terapia de biorregula&ccedil;&atilde;o, o paciente &eacute; tratado como um sistema biol&oacute;gico, e a doen&ccedil;a s&atilde;o definidos como um desequilibrio de etiologia multifatorial.</p>\r\n\r\n<p>Desreguladores end&oacute;crinos a introxica&ccedil;&atilde;o cumulativa, poluentes org&acirc;nicos persistentes e res&iacute;duos metab&oacute;licos, podem criar altera&ccedil;&otilde;es no sistema org&acirc;nico. A auto regula&ccedil;&atilde;o, inata no organismo pode ficar danificada ou alterada e a detoxifica&ccedil;&atilde;o ou tratamento de suplementa&ccedil;&atilde;o facilita a elimina&ccedil;&atilde;o de toxicidade a partir da matriz extracelular.</p>\r\n', '<h2>Sabado&nbsp;</h2>\r\n\r\n<p>domindo&nbsp;</p>\r\n\r\n<p>ladk ad</p>\r\n\r\n<p>aldkalkd</p>\r\n\r\n<p>aldklakda</p>\r\n\r\n<p>adlkaldk</p>\r\n\r\n<p>&nbsp;</p>\r\n', 'Dr. Francisco Vianna Oliveira Filho', 'cursos/2016/07/teste.jpg', 1, 1);
 /*!40000 ALTER TABLE `cursos` ENABLE KEYS */;
 
-
 -- Copiando estrutura para tabela _fonsecaeassis_2016.cursos_matriculas
 DROP TABLE IF EXISTS `cursos_matriculas`;
 CREATE TABLE IF NOT EXISTS `cursos_matriculas` (
@@ -385,7 +374,6 @@ REPLACE INTO `cursos_matriculas` (`id`, `id_curso`, `cur_nome`, `cur_telefone`, 
 	(10, 2, 'CREATIVE WEBSITES GEAN', '(69) 84285809', 'Rolim de Moura', 'RO', 'geanbertani@gmail.com', '2016-07-28', '::1');
 /*!40000 ALTER TABLE `cursos_matriculas` ENABLE KEYS */;
 
-
 -- Copiando estrutura para tabela _fonsecaeassis_2016.depoimentos
 DROP TABLE IF EXISTS `depoimentos`;
 CREATE TABLE IF NOT EXISTS `depoimentos` (
@@ -405,7 +393,6 @@ CREATE TABLE IF NOT EXISTS `depoimentos` (
 -- Copiando dados para a tabela _fonsecaeassis_2016.depoimentos: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `depoimentos` DISABLE KEYS */;
 /*!40000 ALTER TABLE `depoimentos` ENABLE KEYS */;
-
 
 -- Copiando estrutura para tabela _fonsecaeassis_2016.enquete
 DROP TABLE IF EXISTS `enquete`;
@@ -427,7 +414,6 @@ CREATE TABLE IF NOT EXISTS `enquete` (
 /*!40000 ALTER TABLE `enquete` DISABLE KEYS */;
 /*!40000 ALTER TABLE `enquete` ENABLE KEYS */;
 
-
 -- Copiando estrutura para tabela _fonsecaeassis_2016.enquete_usuario
 DROP TABLE IF EXISTS `enquete_usuario`;
 CREATE TABLE IF NOT EXISTS `enquete_usuario` (
@@ -441,7 +427,6 @@ CREATE TABLE IF NOT EXISTS `enquete_usuario` (
 -- Copiando dados para a tabela _fonsecaeassis_2016.enquete_usuario: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `enquete_usuario` DISABLE KEYS */;
 /*!40000 ALTER TABLE `enquete_usuario` ENABLE KEYS */;
-
 
 -- Copiando estrutura para tabela _fonsecaeassis_2016.enquete_votos
 DROP TABLE IF EXISTS `enquete_votos`;
@@ -458,7 +443,6 @@ CREATE TABLE IF NOT EXISTS `enquete_votos` (
 -- Copiando dados para a tabela _fonsecaeassis_2016.enquete_votos: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `enquete_votos` DISABLE KEYS */;
 /*!40000 ALTER TABLE `enquete_votos` ENABLE KEYS */;
-
 
 -- Copiando estrutura para tabela _fonsecaeassis_2016.eventos
 DROP TABLE IF EXISTS `eventos`;
@@ -490,7 +474,6 @@ REPLACE INTO `eventos` (`id`, `url_name`, `evento`, `data`, `local`, `cidadeuf`,
 	(1, 'seminario-de-biorregulacao', 'Seminário de Biorregulação', '2016-07-20 13:50:23', 'Sindsef', 'Rolim de Moura - RO', 'eventos/2016/07/seminario-de-biorregulacao.jpeg', NULL, 'sim', 'Sidnei Gimenez', NULL, NULL);
 /*!40000 ALTER TABLE `eventos` ENABLE KEYS */;
 
-
 -- Copiando estrutura para tabela _fonsecaeassis_2016.institucional
 DROP TABLE IF EXISTS `institucional`;
 CREATE TABLE IF NOT EXISTS `institucional` (
@@ -521,7 +504,6 @@ REPLACE INTO `institucional` (`id`, `empresa`, `logradouro`, `numero`, `bairro`,
 	(1, 'Fonseca & Assis - Advogados Associados', 'Rua Joaquim Nabuco', '1774', 'Centro', 'Porto Velho', 'RO', '76804-066', '(69) 3224-6357', 'atendimento@fonsecaeassis.com.br', '<p>O ITENA-instituto de terapias e naturologia &eacute; uma empresa com seus ideais voltados para impactar a vida de pessoas que estejam interessadas em vivenciar,aprender, conhecer e aperfei&ccedil;oar novas e eficazes formas de ter auto-conhecimento, sa&uacute;de e qualidade de vida.</p>\r\n\r\n<p>Acreditamos que a falta destes conhecimentos nestas &aacute;reas traz resultados negativos a toda a sociedade.</p>\r\n\r\n<p>A sa&uacute;de &eacute; o bem maior a ser cuidado e mantido e os meios atuais de tratamento e diagn&oacute;stico da medicina s&atilde;o ineficientes quando se trata de manter o ser humano com sa&uacute;de, embora &uacute;teis e indiscutivelmente v&aacute;lidas em casos em que a vida est&aacute; sob risco ou quando o paciente j&aacute; se encontra em estado lesional, para a manuten&ccedil;&atilde;o da homeostase ou equil&iacute;brio se mostra ineficaz.</p>\r\n\r\n<p>NESTE SITE todos podem muito em breve lerem os relatos ver&iacute;dicos e documentados de clientes e alunos que vivenciaram em suas vidas pessoal e profissional os benef&iacute;cios dos nossos servi&ccedil;os de assessoria em cursos, palestras,e avalia&ccedil;&otilde;es de biorresson&acirc;ncia qu&acirc;ntica magn&eacute;tica.</p>\r\n\r\n<p>SOMOS UM INSTITUTO COMPROMETIDO COM A VERDADE SOBRE O QUE &Eacute; TER SA&Uacute;DE E QUALIDADE DE VIDA, PORQUE ACREDITAMOS QUE SER SAUD&Aacute;VEL &Eacute; NATURAL</p>\r\n', 'institucional/2016/07/itena-instituto-de-terapias-e-naturologia.jpg', 1, 1);
 /*!40000 ALTER TABLE `institucional` ENABLE KEYS */;
 
-
 -- Copiando estrutura para tabela _fonsecaeassis_2016.links
 DROP TABLE IF EXISTS `links`;
 CREATE TABLE IF NOT EXISTS `links` (
@@ -548,7 +530,6 @@ REPLACE INTO `links` (`id`, `titulo`, `link`, `qm_cadastr`, `data_cadastr`, `qm_
 	(5, 'Link 4', '#', 3, '2016-11-01 23:05:21', NULL, NULL),
 	(6, 'Link 5', '#', 3, '2016-11-01 23:05:32', NULL, NULL);
 /*!40000 ALTER TABLE `links` ENABLE KEYS */;
-
 
 -- Copiando estrutura para tabela _fonsecaeassis_2016.menu
 DROP TABLE IF EXISTS `menu`;
@@ -583,7 +564,6 @@ REPLACE INTO `menu` (`id_menu`, `id_menu_tipo`, `titulo`, `case`, `pagina`, `ico
 	(13, 1, 'Banco de Curriculos', 'curriculos', '#', 'fa-file-pdf-o', 'true'),
 	(14, 1, 'Associados', 'associados', '#', 'fa-street-view', 'true');
 /*!40000 ALTER TABLE `menu` ENABLE KEYS */;
-
 
 -- Copiando estrutura para tabela _fonsecaeassis_2016.menu_sub
 DROP TABLE IF EXISTS `menu_sub`;
@@ -629,7 +609,6 @@ REPLACE INTO `menu_sub` (`id_menu_sub`, `id_menu`, `titulo`, `case`, `pagina`, `
 	(24, 14, 'Listar Cadastros', 'associados', 'listar', 'fa-angle-double-right');
 /*!40000 ALTER TABLE `menu_sub` ENABLE KEYS */;
 
-
 -- Copiando estrutura para tabela _fonsecaeassis_2016.menu_sub_nav
 DROP TABLE IF EXISTS `menu_sub_nav`;
 CREATE TABLE IF NOT EXISTS `menu_sub_nav` (
@@ -648,7 +627,6 @@ CREATE TABLE IF NOT EXISTS `menu_sub_nav` (
 /*!40000 ALTER TABLE `menu_sub_nav` DISABLE KEYS */;
 /*!40000 ALTER TABLE `menu_sub_nav` ENABLE KEYS */;
 
-
 -- Copiando estrutura para tabela _fonsecaeassis_2016.menu_tipo
 DROP TABLE IF EXISTS `menu_tipo`;
 CREATE TABLE IF NOT EXISTS `menu_tipo` (
@@ -664,7 +642,6 @@ REPLACE INTO `menu_tipo` (`id_menu_tipo`, `tipo`) VALUES
 	(2, 'painel_est_sidebar');
 /*!40000 ALTER TABLE `menu_tipo` ENABLE KEYS */;
 
-
 -- Copiando estrutura para tabela _fonsecaeassis_2016.newsletter_usuario
 DROP TABLE IF EXISTS `newsletter_usuario`;
 CREATE TABLE IF NOT EXISTS `newsletter_usuario` (
@@ -677,7 +654,6 @@ CREATE TABLE IF NOT EXISTS `newsletter_usuario` (
 -- Copiando dados para a tabela _fonsecaeassis_2016.newsletter_usuario: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `newsletter_usuario` DISABLE KEYS */;
 /*!40000 ALTER TABLE `newsletter_usuario` ENABLE KEYS */;
-
 
 -- Copiando estrutura para tabela _fonsecaeassis_2016.noticias
 DROP TABLE IF EXISTS `noticias`;
@@ -723,11 +699,10 @@ REPLACE INTO `noticias` (`id`, `url_name`, `categoria`, `titulo`, `subtitulo`, `
 	(5, '1-modulo-do-curso-de-pos-graduacao-em-pratica-previdenciaria-do-infoc-e-realizado-na-oab-ro', 'noticia', '1º módulo do curso de pós-graduação em prática previdenciária do Infoc é realizado na OAB/RO', 'Estão abertas as inscrições para a 7ª edição do Prêmio Conciliar é Legal, promovido pelo Conselho Nacional de Justiça (CNJ)', 'Anônimo', NULL, 'OAB - Rondônia', 'sim', NULL, '<p><a href="http://www.oab-ro.org.br/noticia/iniciada-a-7a-edicao-do-premio-conciliar-e-legal/">Est&atilde;o abertas as inscri&ccedil;&otilde;es para a 7&ordf; edi&ccedil;&atilde;o do Pr&ecirc;mio Conciliar &eacute; Legal, promovido pelo Conselho Nacional de Justi&ccedil;a (CNJ) em parceria com os tribunais brasileiros. O pr&ecirc;mio tem como objetivo identificar, disseminar e estimular a realiza&ccedil;&atilde;o de a&ccedil;&otilde;es de moderniza&ccedil;&atilde;o na &aacute;rea da Justi&ccedil;a, principalmente aquelas que contribuem para pacifica&ccedil;&atilde;o de conflitos. Para participar, &eacute; preciso preencher formul&aacute;rio e encaminhar a pr&aacute;tica por meio do endere&ccedil;o eletr&ocirc;nico premioconciliar@cnj.jus.br, identificando o nome do participante e da pr&aacute;tica.</a></p>\r\n', '2016-10-24 19:58:51', NULL, '', 'noticias/2016/10/iniciada-a-7-edicao-do-premio-conciliar-e-legal.jpg', 0, 19, NULL, 3, 3),
 	(6, 'tjro-publica-edicao-especial-do-diario-da-justica-com-novo-regimento-interno', 'noticia', 'TJRO publica edição especial do Diário da Justiça com novo Regimento Interno', 'O Tribunal de Justiça do Estado de Rondônia publicou nesta sexta-feira, 21, edição especial do Diário da Justiça Eletrônico com o novo texto do Regimento Interno do TJRO. O documento tem 118 páginas, disponibilizadas ao público em PDF por meio da pág', '', NULL, '', 'sim', NULL, '', '2016-10-24 22:17:23', NULL, '', 'noticias/2016/10/tjro-publica-edicao-especial-do-diario-da-justica-com-novo-regimento-interno.jpg', 0, 2, NULL, 3, 3),
 	(7, 'oab-representa-sociedade-civil-em-reuniao-dos-tres-poderes-sobre-seguranca-publica', 'publicacao', 'OAB representa sociedade civil em reunião dos Três Poderes sobre segurança pública', '', 'OAB - RO', NULL, 'http://www.oab.org.br/', 'nao', NULL, '<p>sexta-feira, 28 de outubro de 2016 &agrave;s 16h04</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>Bras&iacute;lia &ndash; A OAB Nacional foi a &uacute;nica entidade da sociedade civil a participar de reuni&atilde;o dos Tr&ecirc;s Poderes nesta sexta-feira (28) para tratar da quest&atilde;o da seguran&ccedil;a p&uacute;blica. O presidente da Ordem, Claudio Lamachia, apresentou tr&ecirc;s propostas sobre o tema. Participaram do encontro os chefes dos tr&ecirc;s Poderes, Michel Temer, C&aacute;rmen L&uacute;cia e Renan Calheiros, as For&ccedil;as Armadas e ministros de diversas pastas.</p>\r\n\r\n<p>Durante a reuni&atilde;o, realizada no Pal&aacute;cio do Itamaraty, Lamachia relembrou a atua&ccedil;&atilde;o hist&oacute;rica da OAB na defesa dos direitos humanos e de um sistema prisional que sirva ao seu prop&oacute;sito: punir e ressocializar. &ldquo;A OAB Nacional e as seccionais atuam, historicamente, em favor da moderniza&ccedil;&atilde;o do sistema de seguran&ccedil;a e do cumprimento da lei no sistema carcer&aacute;rio&rdquo;, afirmou.</p>\r\n\r\n<p>&ldquo;O sucesso do Sistema de Justi&ccedil;a e de seguran&ccedil;a p&uacute;blica s&oacute; &eacute; poss&iacute;vel quando as regras s&atilde;o cumpridas. Ambientes marcados por ilegalidades, superlota&ccedil;&atilde;o e viola&ccedil;&atilde;o de integridade f&iacute;sica apenas fortalecem o crime organizado e prejudicam a reinser&ccedil;&atilde;o social dos detentos, colocando toda a sociedade em risco&rdquo;, completou.</p>\r\n\r\n<p>Lamachia cobrou, mais uma vez, que o Estado retome o poder nos pres&iacute;dios, tanto federais quanto estaduais, atualmente tomado por fac&ccedil;&otilde;es criminosas. A OAB ajuizou a ADI 5.170, solicitando que o Supremo declare a responsabilidade do Estado pelos danos morais causados aos detentos quando submetidos &agrave; pris&atilde;o em condi&ccedil;&otilde;es subumanas, insalubres, degradantes ou de superlota&ccedil;&atilde;o. O processo &eacute; relatado pela ministra Rosa Weber e aguarda julgamento. Tamb&eacute;m acompanha procedimentos internacionais sobre o assunto.</p>\r\n\r\n<p>Os tr&ecirc;s pontos apresentados pela OAB s&atilde;o: estabelecer periodicidade para reuni&atilde;o dos secret&aacute;rios de seguran&ccedil;a do pa&iacute;s; estudo de medidas de desburocratiza&ccedil;&atilde;o do uso dos recursos dispon&iacute;veis para investimento em seguran&ccedil;a e no sistema carcer&aacute;rio e uso da estrutura de seguran&ccedil;a legada pela Copa e pelas Olimp&iacute;adas e efetiva&ccedil;&atilde;o da interliga&ccedil;&atilde;o das c&acirc;meras de seguran&ccedil;a com delegacias .</p>\r\n\r\n<p>De acordo com Lamachia, os cinco pontos, desenvolvidos em colabora&ccedil;&atilde;o com as 27 Seccionais da Ordem, t&ecirc;m como objetivos maior disponibiliza&ccedil;&atilde;o de recursos para a &aacute;rea de seguran&ccedil;a, melhoria do sistema prisional, com efetiva ressocializa&ccedil;&atilde;o dos presos, libera&ccedil;&atilde;o de mais agentes para atuar nas cidades e a diminui&ccedil;&atilde;o da inseguran&ccedil;a com a melhoria do policiamento ostensivo.</p>\r\n\r\n<p>Tamb&eacute;m participaram da reuni&atilde;o o presidente da C&acirc;mara, deputado Rodrigo Maia; o procurador-geral da Rep&uacute;blica, Rodrigo Janot; os ministros Alexandre de Moraes (Justi&ccedil;a), Raul Jungmann (Defesa), S&eacute;rgio Etchegoyen (Seguran&ccedil;a Institucional) e Jos&eacute; Serra (Rela&ccedil;&otilde;es Exteriores); o diretor da Pol&iacute;cia Federal, Leandro Daiello; os comandantes das For&ccedil;as Armadas, almirante Eduardo Bacellar Leal (Marinha), general Eduardo Villas B&ocirc;as (Ex&eacute;rcito) e tenente-brigadeiro Nivaldo Rossato (Aeron&aacute;utica).</p>\r\n', '2016-10-29 01:06:58', NULL, '', 'noticias/2016/10/oab-representa-sociedade-civil-em-reuniao-dos-tres-poderes-sobre-seguranca-publica.jpg', 0, 22, NULL, 3, 3),
-	(8, 'oab-em-movimento', 'publicacao', 'OAB em Movimento', 'Confira as principais notícias entre 21 e 27 de outubro', 'OAB - RO', NULL, 'http://www.oab.org.br/', 'nao', NULL, '<p>sexta-feira, 28 de outubro de 2016 &agrave;s 16h00</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>Bras&iacute;lia - Confira a se&ccedil;&atilde;o OAB em Movimento desta semana, que apresenta as principais not&iacute;cias da advocacia e da cidadania protagonizadas pela Ordem. Em destaque, a san&ccedil;&atilde;o da lei que mant&eacute;m a advocacia no Simples Nacional, o apoio da OAB a projetos de reforma pol&iacute;tica a garantir de seguran&ccedil;a a advogados nas depend&ecirc;ncias da Pol&iacute;cia Federal, entre outros. Confira abaixo:</p>\r\n\r\n<p><strong><a href="http://www.oab.org.br/noticia/52382/oab-celebra-sancao-de-projeto-que-mantem-advocacia-do-simples-nacional?argumentoPesquisa=movimento" target="_blank">Simples</a></strong></p>\r\n\r\n<p>Foi sancionada nesta quinta-feira (27) a lei que manteve a advocacia na Tabela IV do Supersimples. Em cerim&ocirc;nia no Pal&aacute;cio do Planalto, o presidente nacional da OAB, Claudio Lamachia, celebrou a aprova&ccedil;&atilde;o sem vetos do projeto, &ldquo;que garantir&aacute; dignidade tribut&aacute;ria a milhares de advogados de todo o pa&iacute;s&rdquo;.&nbsp;</p>\r\n\r\n<p><strong><a href="http://www.oab.org.br/noticia/52366/reforma-politica-oab-apoia-clausula-de-barreira-e-fim-das-coligacoes-partidarias?argumentoPesquisa=barreira" target="_blank">Reforma Pol&iacute;tica</a></strong></p>\r\n\r\n<p>O Conselho Pleno da OAB aprovou o apoio da entidade a dois projetos legislativos que buscam uma reforma pol&iacute;tica republicana. A Ordem encampar&aacute; as propostas previstas em PECs para o fim das coliga&ccedil;&otilde;es partid&aacute;rias em elei&ccedil;&otilde;es proporcionais e o estabelecimento de uma cl&aacute;usula de desempenho para partidos pol&iacute;ticos.</p>\r\n\r\n<p><a href="http://www.oab.org.br/noticia/52371/a-ministro-oab-requer-garantias-de-seguranca-para-advogados-nas-dependencias-da-pf" target="_blank"><strong>Seguran&ccedil;a a advogados</strong></a></p>\r\n\r\n<p>A OAB requereu ao ministro da Justi&ccedil;a, Alexandre de Moraes, provid&ecirc;ncia para assegurar a advogados prote&ccedil;&atilde;o nas depend&ecirc;ncias da Pol&iacute;cia Federal em todo o Pa&iacute;s. A entidade citou casos recentes envolvendo detidos no &acirc;mbito da Opera&ccedil;&atilde;o Lava Jato em que populares promoveram atos de hostilidade, amea&ccedil;a e intimida&ccedil;&atilde;o dirigidos a advogados, os quais, acompanhando seu constituinte, apenas exerciam regular fun&ccedil;&atilde;o profissional.</p>\r\n\r\n<p><strong><a href="http://www.oab.org.br/noticia/52368/punicoes-a-juizes-no-brasil-sao-deboche-a-sociedade-diz-presidente-da-oab" target="_blank">Ju&iacute;zes</a></strong></p>\r\n\r\n<p>Lamachia criticou duramente as penas previstas para ju&iacute;zes que cometem atos ilegais no Brasil. Em entrevista ao UOL, ele disse que afastar ju&iacute;zes pagando sal&aacute;rio ou aposentadoria &eacute; um &quot;deboche &agrave; sociedade.&quot;</p>\r\n\r\n<p><strong><a href="http://www.oab.org.br/noticia/52378/oab-publica-resolucao-que-regulamenta-contagem-de-prazos-em-dias-uteis" target="_blank">Dias &uacute;teis</a></strong></p>\r\n\r\n<p>A OAB publicou a Resolu&ccedil;&atilde;o n. 9/2016, que regulamenta a contagem dos prazos em dias &uacute;teis nos processos internos da entidade. A medida foi aprovada na reuni&atilde;o mais recente do Conselho Pleno da Ordem, em setembro, e publicada agora no &quot;Di&aacute;rio Oficial da Uni&atilde;o&quot;. O objetivo &eacute; aproximar a atua&ccedil;&atilde;o da OAB do que prev&ecirc; o Novo C&oacute;digo de Processo Civil.</p>\r\n\r\n<p><strong><a href="http://www.oab.org.br/noticia/52381/artigo-do-presidente-pos-graduacao-criminal" target="_blank">P&oacute;s-gradua&ccedil;&atilde;o criminal</a></strong></p>\r\n\r\n<p>O presidente da OAB publicou artigo no jornal &ldquo;Zero Hora&rdquo; sobre o atual quadro ca&oacute;tico do sistema prisional brasileiro. &ldquo;O sistema prisional n&atilde;o pode ser um dep&oacute;sito de pessoas. Sua administra&ccedil;&atilde;o deve ser feita de maneira eficiente, com um volume de recursos condizente com a demanda. &Eacute; preciso tamb&eacute;m que se estabele&ccedil;am pol&iacute;ticas p&uacute;blicas eficientes e permanentes de ressocializa&ccedil;&atilde;o&rdquo;, afirma no texto.</p>\r\n\r\n<p><strong><a href="http://www.oab.org.br/noticia/52379/oab-firma-acordo-de-cooperacao-para-fortalecimento-de-observatorios-sociais" target="_blank">Observat&oacute;rios Sociais</a></strong></p>\r\n\r\n<p>A OAB Nacional assinou na &uacute;ltima semana acordo de coopera&ccedil;&atilde;o com o Conselho Federal de Contabilidade e o Observat&oacute;rio Social do Brasil para trabalho conjunto em controle social. O objetivo &eacute; estimular o trabalho conjunto em prol da transpar&ecirc;ncia p&uacute;blica, preven&ccedil;&atilde;o &agrave; corrup&ccedil;&atilde;o, efici&ecirc;ncia da gest&atilde;o p&uacute;blica, &eacute;tica e integridade nas rela&ccedil;&otilde;es entre p&uacute;blico e privado.</p>\r\n\r\n<p><strong><a href="http://www.oab.org.br/noticia/52380/aplicativo-da-oab-recebe-centenas-de-denuncias-de-caixa-2-em-eleicoes-municipais" target="_blank">Caixa 2</a></strong></p>\r\n\r\n<p>A Ouvidoria-Geral da OAB consolidou na &uacute;ltima semana os dados referentes ao aplicativo desenvolvido pela Ordem para monitorar den&uacute;ncias de suspeita de Caixa 2 nas elei&ccedil;&otilde;es municipais deste ano. No total, 723 manifesta&ccedil;&otilde;es foram enviadas &agrave; ouvidoria por meio do aplicativo, 215 delas acompanhadas de m&iacute;dias anexadas. Do total, 496 manifesta&ccedil;&otilde;es (68,18%) passaram pela primeira triagem da Ouvidoria, quando s&atilde;o visualizados elementos m&iacute;nimos para o prosseguimento da den&uacute;ncia.</p>\r\n\r\n<p><strong><a href="http://www.oab.org.br/noticia/52370/stf-atende-oab-e-proibe-reducao-de-horario-do-trt-da-paraiba" target="_blank">Hor&aacute;rio de atendimento</a></strong></p>\r\n\r\n<p>Ap&oacute;s requerimento da OAB Nacional, o STF determinou que o Tribunal Regional do Trabalho da 13&ordf; Regi&atilde;o, na Para&iacute;ba, restabele&ccedil;a seu hor&aacute;rio de atendimento, alterado ap&oacute;s resolu&ccedil;&atilde;o administrativa. A decis&atilde;o foi tomada pelo ministro Luiz Fux, relator de A&ccedil;&atilde;o Direta de Inconstitucionalidade que debate o assunto.</p>\r\n\r\n<p><strong><a href="http://www.oab.org.br/noticia/52383/deu-na-midia-apos-atuacao-da-oab-trf-1-suspende-quebra-de-sigilo-de-jornalista" target="_blank">Sigilo garantido</a></strong></p>\r\n\r\n<p>A m&iacute;dia nacional repercutiu a atua&ccedil;&atilde;o da OAB contra a quebra do sigilo telef&ocirc;nico de jornalista, uma viola&ccedil;&atilde;o da prerrogativa profissional da imprensa de n&atilde;o revelar suas fontes. Nesta quarta-feira (26), o TRF-1 concedeu habeas corpus ao rep&oacute;rter Murilo Ramos, da revista &ldquo;&Eacute;poca&rdquo;, para cassar a decis&atilde;o de primeiro grau que autorizou a quebra do seu sigilo.</p>\r\n\r\n<p><strong><a href="http://www.oab.org.br/noticia/52374/lamachia-inaugura-sala-dos-advogados-em-forum-de-joao-pessoa" target="_blank">Caravana 1</a></strong></p>\r\n\r\n<p>O presidente nacional da OAB participou nesta semana da Caravana das Prerrogativas na Para&iacute;ba. Na ter&ccedil;a-feira, em Jo&atilde;o Pessoa, inaugurou a Sala dos Advogados no F&oacute;rum Trabalhista Maximiano Figueiredo. &quot;Os advogados s&atilde;o agentes da promo&ccedil;&atilde;o da Justi&ccedil;a, as salas de advogados materializam a indispensabilidade da advocacia na administra&ccedil;&atilde;o da Justi&ccedil;a. N&atilde;o se pode pensar em Justi&ccedil;a sem uma advocacia forte, atuante e independente&quot;, declarou.</p>\r\n\r\n<p><strong><a href="http://www.oab.org.br/noticia/52376/caravana-das-prerrogativas-realiza-audiencia-publica-na-paraiba" target="_blank">Caravana 2</a></strong></p>\r\n\r\n<p>A Caravana Nacional das Prerrogativas esteve em Guarabira, cidade do interior paraibano, para ouvir a advocacia da regi&atilde;o em uma audi&ecirc;ncia p&uacute;blica. Na ocasi&atilde;o, o presidente nacional da OAB, juntamente com os demais participantes, esteve reunido com a magistratura local, onde exp&ocirc;s os anseios da advocacia. &ldquo;A Caravana das Prerrogativas &eacute; important&iacute;ssima, pois demonstra o comprometimento que a OAB e o Conselho Federal t&ecirc;m em rela&ccedil;&atilde;o a esta causa. O advogado &eacute; a voz de toda a sociedade e de todo cidad&atilde;o em ju&iacute;zo&rdquo;, afirmou Lamachia.</p>\r\n\r\n<p><strong><a href="http://www.oab.org.br/noticia/52375/caravana-oab-pb-lanca-aplicativo-e-manual-das-prerrogativas-do-advogado" target="_blank">Caravana 3</a></strong></p>\r\n\r\n<p>A Caravana Nacional de Prerrogativas cumpriu mais uma etapa com o lan&ccedil;amento pela comiss&atilde;o de Defesa das Prerrogativas da Ordem dos Advogados do Brasil, Seccional Para&iacute;ba (OAB-PB), do aplicativo (Android) e o Manual das Prerrogativas da OAB-PB.&nbsp;</p>\r\n\r\n<p><strong><a href="http://www.oab.org.br/noticia/52364/lamachia-destaca-protagonismo-da-oab-e-advocacia-em-defesa-da-sociedade" target="_blank">Defesa da sociedade</a></strong></p>\r\n\r\n<p>O presidente nacional da OAB, Claudio Lamachia, reafirmou, durante a abertura do Col&eacute;gio de Presidentes de Subse&ccedil;&otilde;es, ocorrido em Porto Alegre (RS), que a Ordem atuou ativamente em diferentes &aacute;reas, englobando temas espec&iacute;ficos da advocacia e da sociedade.&nbsp;</p>\r\n\r\n<p><strong><a href="http://www.oab.org.br/noticia/52369/nota-de-esclarecimento-a-sociedade" target="_blank">Nota &agrave; sociedade</a></strong></p>\r\n\r\n<p>O Conselho Federal da OAB e a Seccional de S&atilde;o Paulo publicaram nota conjunta &agrave; sociedade sobre o ingresso no CNJ de Reclama&ccedil;&atilde;o Disciplinar contra magistrados trabalhistas da 2&ordf; Regi&atilde;o, que despacharam em Reclama&ccedil;&otilde;es Trabalhistas promovendo adiamento de audi&ecirc;ncias para 2017, sob a justificativa de ades&atilde;o a um ato definido pela sua associa&ccedil;&atilde;o de classe, como contra a PEC 241/2016 (controle de gastos p&uacute;blicos), PEC 62/2015 (desvincula&ccedil;&atilde;o de subs&iacute;dios da magistratura dos subs&iacute;dios dos ministros do STF) e PL 280/2016 (abuso de autoridade).</p>\r\n\r\n<p><strong><a href="http://www.oab.org.br/noticia/52365/ena-divulga-calendario-de-cursos-telepresenciais-de-novembro" target="_blank">Cursos da ENA</a></strong></p>\r\n\r\n<p>A Escola Nacional de Advocacia divulgou o calend&aacute;rio de cursos telepresenciais para o m&ecirc;s de novembro. As aulas s&atilde;o oferecidas pela AASP (Associa&ccedil;&atilde;o dos Advogados de S&atilde;o Paulo) em parceria com a ENA e est&atilde;o dispon&iacute;veis em diversas cidades de todo o pa&iacute;s.&nbsp;</p>\r\n\r\n<p><strong><a href="http://www.oab.org.br/noticia/52377/xx-exame-de-ordem-confira-o-resultado-final-da-2-fase" target="_blank">Exame de Ordem</a></strong></p>\r\n\r\n<p>Foi divulgado o resultado final do XX Exame de Ordem Unificado, ap&oacute;s a an&aacute;lise e a considera&ccedil;&atilde;o dos recursos interpostos.&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n', '2016-10-29 01:26:14', NULL, 'www.youtube.com.br', 'noticias/2016/10/oab-em-movimento-confira-as-principais-noticias-entre-21-e-27-de-outubro.jpg', 0, 27, NULL, 3, 3),
+	(8, 'oab-em-movimento', 'publicacao', 'OAB em Movimento', 'Confira as principais notícias entre 21 e 27 de outubro', 'OAB - RO', NULL, 'http://www.oab.org.br/', 'nao', NULL, '<p>sexta-feira, 28 de outubro de 2016 &agrave;s 16h00</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>Bras&iacute;lia - Confira a se&ccedil;&atilde;o OAB em Movimento desta semana, que apresenta as principais not&iacute;cias da advocacia e da cidadania protagonizadas pela Ordem. Em destaque, a san&ccedil;&atilde;o da lei que mant&eacute;m a advocacia no Simples Nacional, o apoio da OAB a projetos de reforma pol&iacute;tica a garantir de seguran&ccedil;a a advogados nas depend&ecirc;ncias da Pol&iacute;cia Federal, entre outros. Confira abaixo:</p>\r\n\r\n<p><strong><a href="http://www.oab.org.br/noticia/52382/oab-celebra-sancao-de-projeto-que-mantem-advocacia-do-simples-nacional?argumentoPesquisa=movimento" target="_blank">Simples</a></strong></p>\r\n\r\n<p>Foi sancionada nesta quinta-feira (27) a lei que manteve a advocacia na Tabela IV do Supersimples. Em cerim&ocirc;nia no Pal&aacute;cio do Planalto, o presidente nacional da OAB, Claudio Lamachia, celebrou a aprova&ccedil;&atilde;o sem vetos do projeto, &ldquo;que garantir&aacute; dignidade tribut&aacute;ria a milhares de advogados de todo o pa&iacute;s&rdquo;.&nbsp;</p>\r\n\r\n<p><strong><a href="http://www.oab.org.br/noticia/52366/reforma-politica-oab-apoia-clausula-de-barreira-e-fim-das-coligacoes-partidarias?argumentoPesquisa=barreira" target="_blank">Reforma Pol&iacute;tica</a></strong></p>\r\n\r\n<p>O Conselho Pleno da OAB aprovou o apoio da entidade a dois projetos legislativos que buscam uma reforma pol&iacute;tica republicana. A Ordem encampar&aacute; as propostas previstas em PECs para o fim das coliga&ccedil;&otilde;es partid&aacute;rias em elei&ccedil;&otilde;es proporcionais e o estabelecimento de uma cl&aacute;usula de desempenho para partidos pol&iacute;ticos.</p>\r\n\r\n<p><a href="http://www.oab.org.br/noticia/52371/a-ministro-oab-requer-garantias-de-seguranca-para-advogados-nas-dependencias-da-pf" target="_blank"><strong>Seguran&ccedil;a a advogados</strong></a></p>\r\n\r\n<p>A OAB requereu ao ministro da Justi&ccedil;a, Alexandre de Moraes, provid&ecirc;ncia para assegurar a advogados prote&ccedil;&atilde;o nas depend&ecirc;ncias da Pol&iacute;cia Federal em todo o Pa&iacute;s. A entidade citou casos recentes envolvendo detidos no &acirc;mbito da Opera&ccedil;&atilde;o Lava Jato em que populares promoveram atos de hostilidade, amea&ccedil;a e intimida&ccedil;&atilde;o dirigidos a advogados, os quais, acompanhando seu constituinte, apenas exerciam regular fun&ccedil;&atilde;o profissional.</p>\r\n\r\n<p><strong><a href="http://www.oab.org.br/noticia/52368/punicoes-a-juizes-no-brasil-sao-deboche-a-sociedade-diz-presidente-da-oab" target="_blank">Ju&iacute;zes</a></strong></p>\r\n\r\n<p>Lamachia criticou duramente as penas previstas para ju&iacute;zes que cometem atos ilegais no Brasil. Em entrevista ao UOL, ele disse que afastar ju&iacute;zes pagando sal&aacute;rio ou aposentadoria &eacute; um &quot;deboche &agrave; sociedade.&quot;</p>\r\n\r\n<p><strong><a href="http://www.oab.org.br/noticia/52378/oab-publica-resolucao-que-regulamenta-contagem-de-prazos-em-dias-uteis" target="_blank">Dias &uacute;teis</a></strong></p>\r\n\r\n<p>A OAB publicou a Resolu&ccedil;&atilde;o n. 9/2016, que regulamenta a contagem dos prazos em dias &uacute;teis nos processos internos da entidade. A medida foi aprovada na reuni&atilde;o mais recente do Conselho Pleno da Ordem, em setembro, e publicada agora no &quot;Di&aacute;rio Oficial da Uni&atilde;o&quot;. O objetivo &eacute; aproximar a atua&ccedil;&atilde;o da OAB do que prev&ecirc; o Novo C&oacute;digo de Processo Civil.</p>\r\n\r\n<p><strong><a href="http://www.oab.org.br/noticia/52381/artigo-do-presidente-pos-graduacao-criminal" target="_blank">P&oacute;s-gradua&ccedil;&atilde;o criminal</a></strong></p>\r\n\r\n<p>O presidente da OAB publicou artigo no jornal &ldquo;Zero Hora&rdquo; sobre o atual quadro ca&oacute;tico do sistema prisional brasileiro. &ldquo;O sistema prisional n&atilde;o pode ser um dep&oacute;sito de pessoas. Sua administra&ccedil;&atilde;o deve ser feita de maneira eficiente, com um volume de recursos condizente com a demanda. &Eacute; preciso tamb&eacute;m que se estabele&ccedil;am pol&iacute;ticas p&uacute;blicas eficientes e permanentes de ressocializa&ccedil;&atilde;o&rdquo;, afirma no texto.</p>\r\n\r\n<p><strong><a href="http://www.oab.org.br/noticia/52379/oab-firma-acordo-de-cooperacao-para-fortalecimento-de-observatorios-sociais" target="_blank">Observat&oacute;rios Sociais</a></strong></p>\r\n\r\n<p>A OAB Nacional assinou na &uacute;ltima semana acordo de coopera&ccedil;&atilde;o com o Conselho Federal de Contabilidade e o Observat&oacute;rio Social do Brasil para trabalho conjunto em controle social. O objetivo &eacute; estimular o trabalho conjunto em prol da transpar&ecirc;ncia p&uacute;blica, preven&ccedil;&atilde;o &agrave; corrup&ccedil;&atilde;o, efici&ecirc;ncia da gest&atilde;o p&uacute;blica, &eacute;tica e integridade nas rela&ccedil;&otilde;es entre p&uacute;blico e privado.</p>\r\n\r\n<p><strong><a href="http://www.oab.org.br/noticia/52380/aplicativo-da-oab-recebe-centenas-de-denuncias-de-caixa-2-em-eleicoes-municipais" target="_blank">Caixa 2</a></strong></p>\r\n\r\n<p>A Ouvidoria-Geral da OAB consolidou na &uacute;ltima semana os dados referentes ao aplicativo desenvolvido pela Ordem para monitorar den&uacute;ncias de suspeita de Caixa 2 nas elei&ccedil;&otilde;es municipais deste ano. No total, 723 manifesta&ccedil;&otilde;es foram enviadas &agrave; ouvidoria por meio do aplicativo, 215 delas acompanhadas de m&iacute;dias anexadas. Do total, 496 manifesta&ccedil;&otilde;es (68,18%) passaram pela primeira triagem da Ouvidoria, quando s&atilde;o visualizados elementos m&iacute;nimos para o prosseguimento da den&uacute;ncia.</p>\r\n\r\n<p><strong><a href="http://www.oab.org.br/noticia/52370/stf-atende-oab-e-proibe-reducao-de-horario-do-trt-da-paraiba" target="_blank">Hor&aacute;rio de atendimento</a></strong></p>\r\n\r\n<p>Ap&oacute;s requerimento da OAB Nacional, o STF determinou que o Tribunal Regional do Trabalho da 13&ordf; Regi&atilde;o, na Para&iacute;ba, restabele&ccedil;a seu hor&aacute;rio de atendimento, alterado ap&oacute;s resolu&ccedil;&atilde;o administrativa. A decis&atilde;o foi tomada pelo ministro Luiz Fux, relator de A&ccedil;&atilde;o Direta de Inconstitucionalidade que debate o assunto.</p>\r\n\r\n<p><strong><a href="http://www.oab.org.br/noticia/52383/deu-na-midia-apos-atuacao-da-oab-trf-1-suspende-quebra-de-sigilo-de-jornalista" target="_blank">Sigilo garantido</a></strong></p>\r\n\r\n<p>A m&iacute;dia nacional repercutiu a atua&ccedil;&atilde;o da OAB contra a quebra do sigilo telef&ocirc;nico de jornalista, uma viola&ccedil;&atilde;o da prerrogativa profissional da imprensa de n&atilde;o revelar suas fontes. Nesta quarta-feira (26), o TRF-1 concedeu habeas corpus ao rep&oacute;rter Murilo Ramos, da revista &ldquo;&Eacute;poca&rdquo;, para cassar a decis&atilde;o de primeiro grau que autorizou a quebra do seu sigilo.</p>\r\n\r\n<p><strong><a href="http://www.oab.org.br/noticia/52374/lamachia-inaugura-sala-dos-advogados-em-forum-de-joao-pessoa" target="_blank">Caravana 1</a></strong></p>\r\n\r\n<p>O presidente nacional da OAB participou nesta semana da Caravana das Prerrogativas na Para&iacute;ba. Na ter&ccedil;a-feira, em Jo&atilde;o Pessoa, inaugurou a Sala dos Advogados no F&oacute;rum Trabalhista Maximiano Figueiredo. &quot;Os advogados s&atilde;o agentes da promo&ccedil;&atilde;o da Justi&ccedil;a, as salas de advogados materializam a indispensabilidade da advocacia na administra&ccedil;&atilde;o da Justi&ccedil;a. N&atilde;o se pode pensar em Justi&ccedil;a sem uma advocacia forte, atuante e independente&quot;, declarou.</p>\r\n\r\n<p><strong><a href="http://www.oab.org.br/noticia/52376/caravana-das-prerrogativas-realiza-audiencia-publica-na-paraiba" target="_blank">Caravana 2</a></strong></p>\r\n\r\n<p>A Caravana Nacional das Prerrogativas esteve em Guarabira, cidade do interior paraibano, para ouvir a advocacia da regi&atilde;o em uma audi&ecirc;ncia p&uacute;blica. Na ocasi&atilde;o, o presidente nacional da OAB, juntamente com os demais participantes, esteve reunido com a magistratura local, onde exp&ocirc;s os anseios da advocacia. &ldquo;A Caravana das Prerrogativas &eacute; important&iacute;ssima, pois demonstra o comprometimento que a OAB e o Conselho Federal t&ecirc;m em rela&ccedil;&atilde;o a esta causa. O advogado &eacute; a voz de toda a sociedade e de todo cidad&atilde;o em ju&iacute;zo&rdquo;, afirmou Lamachia.</p>\r\n\r\n<p><strong><a href="http://www.oab.org.br/noticia/52375/caravana-oab-pb-lanca-aplicativo-e-manual-das-prerrogativas-do-advogado" target="_blank">Caravana 3</a></strong></p>\r\n\r\n<p>A Caravana Nacional de Prerrogativas cumpriu mais uma etapa com o lan&ccedil;amento pela comiss&atilde;o de Defesa das Prerrogativas da Ordem dos Advogados do Brasil, Seccional Para&iacute;ba (OAB-PB), do aplicativo (Android) e o Manual das Prerrogativas da OAB-PB.&nbsp;</p>\r\n\r\n<p><strong><a href="http://www.oab.org.br/noticia/52364/lamachia-destaca-protagonismo-da-oab-e-advocacia-em-defesa-da-sociedade" target="_blank">Defesa da sociedade</a></strong></p>\r\n\r\n<p>O presidente nacional da OAB, Claudio Lamachia, reafirmou, durante a abertura do Col&eacute;gio de Presidentes de Subse&ccedil;&otilde;es, ocorrido em Porto Alegre (RS), que a Ordem atuou ativamente em diferentes &aacute;reas, englobando temas espec&iacute;ficos da advocacia e da sociedade.&nbsp;</p>\r\n\r\n<p><strong><a href="http://www.oab.org.br/noticia/52369/nota-de-esclarecimento-a-sociedade" target="_blank">Nota &agrave; sociedade</a></strong></p>\r\n\r\n<p>O Conselho Federal da OAB e a Seccional de S&atilde;o Paulo publicaram nota conjunta &agrave; sociedade sobre o ingresso no CNJ de Reclama&ccedil;&atilde;o Disciplinar contra magistrados trabalhistas da 2&ordf; Regi&atilde;o, que despacharam em Reclama&ccedil;&otilde;es Trabalhistas promovendo adiamento de audi&ecirc;ncias para 2017, sob a justificativa de ades&atilde;o a um ato definido pela sua associa&ccedil;&atilde;o de classe, como contra a PEC 241/2016 (controle de gastos p&uacute;blicos), PEC 62/2015 (desvincula&ccedil;&atilde;o de subs&iacute;dios da magistratura dos subs&iacute;dios dos ministros do STF) e PL 280/2016 (abuso de autoridade).</p>\r\n\r\n<p><strong><a href="http://www.oab.org.br/noticia/52365/ena-divulga-calendario-de-cursos-telepresenciais-de-novembro" target="_blank">Cursos da ENA</a></strong></p>\r\n\r\n<p>A Escola Nacional de Advocacia divulgou o calend&aacute;rio de cursos telepresenciais para o m&ecirc;s de novembro. As aulas s&atilde;o oferecidas pela AASP (Associa&ccedil;&atilde;o dos Advogados de S&atilde;o Paulo) em parceria com a ENA e est&atilde;o dispon&iacute;veis em diversas cidades de todo o pa&iacute;s.&nbsp;</p>\r\n\r\n<p><strong><a href="http://www.oab.org.br/noticia/52377/xx-exame-de-ordem-confira-o-resultado-final-da-2-fase" target="_blank">Exame de Ordem</a></strong></p>\r\n\r\n<p>Foi divulgado o resultado final do XX Exame de Ordem Unificado, ap&oacute;s a an&aacute;lise e a considera&ccedil;&atilde;o dos recursos interpostos.&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n', '2016-10-29 01:26:14', NULL, 'www.youtube.com.br', 'noticias/2016/10/oab-em-movimento-confira-as-principais-noticias-entre-21-e-27-de-outubro.jpg', 0, 29, NULL, 3, 3),
 	(9, 'oab-apoia-1-seminario-da-campanha-de-divulgacao-do-esocial-e-efd-reinf-em-rondonia', 'artigo', 'OAB apoia 1º Seminário da Campanha de Divulgação do eSocial e EFD Reinf em Rondônia', '', 'Link externo -  OAB/RO', NULL, 'Ascom OAB/RO', 'nao', NULL, '<p>A Ordem dos Advogados do Brasil &ndash; Seccional Rond&ocirc;nia (OAB/RO) apoia a realiza&ccedil;&atilde;o do &ldquo;1&ordm; Semin&aacute;rio da Campanha de Divulga&ccedil;&atilde;o do eSocial e EFD Reinf em Rond&ocirc;nia&rdquo;, na pr&oacute;xima sexta-feira (4), de 8h &agrave;s 12h, no Teatro Banzeiros, em Porto Velho. O evento &eacute; promovido pelo Servi&ccedil;o Nacional de Aprendizagem Rural em Rond&ocirc;nia (Senar/RO) com o objetivo de fomentar a forma&ccedil;&atilde;o profissional no meio rural.</p>\r\n\r\n<p>O eSocial &eacute; o instrumento de unifica&ccedil;&atilde;o da presta&ccedil;&atilde;o das informa&ccedil;&otilde;es referentes &agrave; escritura&ccedil;&atilde;o das obriga&ccedil;&otilde;es fiscais, previdenci&aacute;rias e trabalhistas e tem por finalidade padronizar sua transmiss&atilde;o, valida&ccedil;&atilde;o, armazenamento e distribui&ccedil;&atilde;o, constituindo um ambiente nacional.</p>\r\n\r\n<p>De acordo com o gerente de arrecada&ccedil;&atilde;o do Senar/RO, Paulo S&eacute;rgio de Avellar, com o advento do eSocial, na pr&aacute;tica e de forma resumida, podemos dizer que o eSocial ser&aacute; como uma folha de pagamento digital com as informa&ccedil;&otilde;es relevantes acerca do contrato de trabalho, com um maior controle sobre as informa&ccedil;&otilde;es referentes &agrave; sa&uacute;de e seguran&ccedil;a do trabalhador.</p>\r\n\r\n<p>&ldquo;Com isso, espera-se garantir aos trabalhadores o correto cumprimento das leis trabalhistas e previdenci&aacute;rias&rdquo;, afirma Paula Abidiane da Silva, assistente t&eacute;cnica em arrecada&ccedil;&atilde;o do Senar/RO.</p>\r\n\r\n<p>O evento acontece na pr&oacute;xima sexta-feira (4), de 8h &agrave;s 12h, no Teatro Banzeiros localizado na Rua Jos&eacute; do Patroc&iacute;nio, 512, Centro, em Porto Velho. As inscri&ccedil;&otilde;es s&atilde;o gratuitas. Mais informa&ccedil;&otilde;es pelo telefone (69) 3224-1399 e pelo site&nbsp;<a href="http://www.senar-ro.org.br/" target="_blank">www.senar-ro.org.br</a></p>\r\n\r\n<p>&nbsp;</p>\r\n', '2016-10-31 18:55:25', NULL, '', NULL, 0, 56, NULL, 3, NULL),
 	(11, '54we', 'artigo', '54we', '', '', NULL, '', 'nao', NULL, '<p>rwerwrew</p>\r\n', '2016-10-31 23:44:47', NULL, '', NULL, 0, 11, NULL, 3, NULL);
 /*!40000 ALTER TABLE `noticias` ENABLE KEYS */;
-
 
 -- Copiando estrutura para tabela _fonsecaeassis_2016.noticias_categoria
 DROP TABLE IF EXISTS `noticias_categoria`;
@@ -747,7 +722,6 @@ REPLACE INTO `noticias_categoria` (`id_categoria`, `categoria`, `cat_url`) VALUE
 	(2, 'Publicação', 'publicacao'),
 	(3, 'Notícia', 'noticia');
 /*!40000 ALTER TABLE `noticias_categoria` ENABLE KEYS */;
-
 
 -- Copiando estrutura para tabela _fonsecaeassis_2016.tv
 DROP TABLE IF EXISTS `tv`;
@@ -777,7 +751,6 @@ CREATE TABLE IF NOT EXISTS `tv` (
 -- Copiando dados para a tabela _fonsecaeassis_2016.tv: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `tv` DISABLE KEYS */;
 /*!40000 ALTER TABLE `tv` ENABLE KEYS */;
-
 
 -- Copiando estrutura para tabela _fonsecaeassis_2016.usuarios
 DROP TABLE IF EXISTS `usuarios`;
@@ -812,7 +785,6 @@ REPLACE INTO `usuarios` (`id`, `url_name`, `nome`, `email`, `data_nasc`, `sexo`,
 	(1, 'cw-digital-brasil', 'CW Digital - Brasil', 'admin@cwdigital.com.br', '2016-08-01', 1, 'creative', '19d910ef608e4947aa0c6dcee352a3e8', 'usuarios/2016/10/creative.jpg', 's', 1, 60, '::1', '2016-10-18 21:36:39', 1, NULL, 1, '2016-10-18 21:36:34'),
 	(3, 'anderson-batista-designer', 'Anderson Batista - Designer', 'pessoal.andersonbatista@gmail.com', '1995-07-22', 1, 'anderson', 'a30b59adfa3943b419658009c97c4fcb', 'usuarios/2016/07/anderson.png', 's', 1, 29, '::1', '2016-10-26 22:52:18', 1, '2016-07-20 14:45:24', NULL, NULL);
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
-
 
 -- Copiando estrutura para tabela _fonsecaeassis_2016.videos
 DROP TABLE IF EXISTS `videos`;
@@ -852,7 +824,6 @@ CREATE TABLE IF NOT EXISTS `videos` (
 /*!40000 ALTER TABLE `videos` DISABLE KEYS */;
 /*!40000 ALTER TABLE `videos` ENABLE KEYS */;
 
-
 -- Copiando estrutura para tabela _fonsecaeassis_2016.videos_categoria
 DROP TABLE IF EXISTS `videos_categoria`;
 CREATE TABLE IF NOT EXISTS `videos_categoria` (
@@ -868,7 +839,6 @@ CREATE TABLE IF NOT EXISTS `videos_categoria` (
 -- Copiando dados para a tabela _fonsecaeassis_2016.videos_categoria: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `videos_categoria` DISABLE KEYS */;
 /*!40000 ALTER TABLE `videos_categoria` ENABLE KEYS */;
-
 
 -- Copiando estrutura para tabela _fonsecaeassis_2016.ws_siteviews
 DROP TABLE IF EXISTS `ws_siteviews`;
@@ -911,9 +881,8 @@ REPLACE INTO `ws_siteviews` (`siteviews_id`, `siteviews_date`, `siteviews_users`
 	(24, '2016-10-31', 3, 3, 356),
 	(25, '2016-11-01', 3, 3, 472),
 	(26, '2016-11-02', 2, 4, 358),
-	(27, '2016-11-03', 3, 3, 301);
+	(27, '2016-11-03', 3, 3, 304);
 /*!40000 ALTER TABLE `ws_siteviews` ENABLE KEYS */;
-
 
 -- Copiando estrutura para tabela _fonsecaeassis_2016.ws_siteviews_agent
 DROP TABLE IF EXISTS `ws_siteviews_agent`;
@@ -932,7 +901,6 @@ REPLACE INTO `ws_siteviews_agent` (`agent_id`, `agent_name`, `agent_views`) VALU
 	(2, 'Firefox', 3);
 /*!40000 ALTER TABLE `ws_siteviews_agent` ENABLE KEYS */;
 
-
 -- Copiando estrutura para tabela _fonsecaeassis_2016.ws_siteviews_online
 DROP TABLE IF EXISTS `ws_siteviews_online`;
 CREATE TABLE IF NOT EXISTS `ws_siteviews_online` (
@@ -945,14 +913,14 @@ CREATE TABLE IF NOT EXISTS `ws_siteviews_online` (
   `online_agent` varchar(255) CHARACTER SET latin1 NOT NULL,
   `agent_name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`online_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=79 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=80 DEFAULT CHARSET=utf8;
 
--- Copiando dados para a tabela _fonsecaeassis_2016.ws_siteviews_online: ~2 rows (aproximadamente)
+-- Copiando dados para a tabela _fonsecaeassis_2016.ws_siteviews_online: ~1 rows (aproximadamente)
 /*!40000 ALTER TABLE `ws_siteviews_online` DISABLE KEYS */;
 REPLACE INTO `ws_siteviews_online` (`online_id`, `online_session`, `online_startview`, `online_endview`, `online_ip`, `online_url`, `online_agent`, `agent_name`) VALUES
-	(75, 't1hap56nvdb8qt34bjrirp17i7', '2016-11-03 00:31:18', '2016-11-03 02:03:45', '::1', '/servidor/fonsecaeassis/2016/noticia/oab-representa-sociedade-civil-em-reuniao-dos-tres-poderes-sobre-seguranca-publica', 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.87 Safari/537.36', 'Chrome'),
-	(78, 'o112q7sgabq0f15b4r7277j0c7', '2016-11-03 01:29:06', '2016-11-03 02:11:31', '::1', '/servidor/fonsecaeassis/2016/artigos', 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.76 Mobile Safari/537.36', 'Chrome');
+	(79, 'niievshh9tk95smqohk078hj34', '2016-11-03 07:45:54', '2016-11-03 08:33:02', '::1', '/servidor/fonsecaeassis/2016/noticia/oab-em-movimento', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36', 'Chrome');
 /*!40000 ALTER TABLE `ws_siteviews_online` ENABLE KEYS */;
+
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
