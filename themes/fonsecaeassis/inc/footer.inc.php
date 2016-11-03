@@ -17,7 +17,7 @@
             ?>
         </ul>
         <div class="logo-empresa">
-            <a href="http://www.cwdigital.com.br/" target="_blank"><img src="themes/fonsecaeassis/images/logo-empresa.png"></a>
+            <a href="http://www.cwdigital.com.br/" target="_blank"><img src="<?= INCLUDE_PATH; ?>/images/logo-empresa.png"></a>
         </div>
         <p class="copyrigth">
             © 2016 - <?= $Empresa['empresa']; ?> 

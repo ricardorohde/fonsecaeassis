@@ -60,7 +60,7 @@
             </section>
         </section>
         <div class="footer-noticias">
-            <a href="<?= HOME . '/noticias' ?>" class="btn">Ver mais noticias</a>
+            <a href="<?= HOME . '/noticias' ?>" class="btn btn-lg">Ver mais noticias</a>
         </div>
     </div>
     <!--BOX ARTIGOS-->
@@ -108,12 +108,12 @@
         endif;
         ?>
         <div class="footer-artigos">
-            <a href="<?= HOME . '/artigos' ?>" class="btn btn-artigos">Ver mais artigos</a>
+            <a href="<?= HOME . '/artigos' ?>" class="btn btn-lg btn-artigos">Ver mais artigos</a>
         </div>
     </div>
-    <div class="line"></div>
     <!--BOX PUBLICAÇÕES-->
     <div class="main-publicacao">
+          <div class="line"></div>
         <div class="main-header-content">
             <h1>Publicações</h1>
             <h2>Em destaque</h2>
@@ -145,7 +145,7 @@
             ?>
         </div>
         <div class="footer-publicacoes">
-            <a href="<?= HOME . '/publicacoes' ?>" class="btn">Ver mais Publicações</a>
+            <a href="<?= HOME . '/publicacoes' ?>" class="btn btn-lg btn-mais-publicacoes">Ver mais Publicações</a>
         </div>
     </div>
     <!--BOX ATUAÇÕES-->

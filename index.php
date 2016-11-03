@@ -39,7 +39,7 @@ Check::UserOnline();
     </body>
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="<?= INCLUDE_PATH; ?>/css/entypo/css/entypo.css">
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"/>
     <!-- JS -->
     <script src="<?= HOME; ?>/_cdn/jquery.js"></script>

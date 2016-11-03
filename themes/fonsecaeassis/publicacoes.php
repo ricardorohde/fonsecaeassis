@@ -10,7 +10,7 @@
                 <li class="active">Publicações</li>
             </ol>
         </div>
-
+ <div class="input-group">
         <div class="busca">
             <?php
             $buscar = filter_input(INPUT_POST, 's', FILTER_DEFAULT);
@@ -20,10 +20,11 @@
             endif;
             ?>
             <form name="search" action="" method="post">
-                <input class="fls" type="text" name="s" />
-                <input class="btn" type="submit" name="sendsearch" value="Buscar" />
+                <input class="form-control" type="text" name="s" />
+                <input class="btn btn-busca" type="submit" name="sendsearch" value="Buscar" />
             </form>
         </div>
+ </div>
     </div>
     <div class="main-box-artigos">
         <?php
