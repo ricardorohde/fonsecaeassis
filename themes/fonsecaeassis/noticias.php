@@ -19,10 +19,12 @@
                 header('Location: ' . HOME . '/noticias/busca/' . $buscar);
             endif;
             ?>
-            <form name="search" action="" method="post">
-                <input class="fls" type="text" name="s" />
-                <input class="btn" type="submit" name="sendsearch" value="Buscar" />
-            </form>
+            <div class="input-group">
+                <form name="search" action="" method="post">
+                    <input class="form-control" placeholder="Digite algo para buscar..."  type="text" name="s" />
+                    <input class="btn btn-busca" type="submit" name="sendsearch" value="Buscar" />
+                </form>
+            </div>
         </div>
     </div>
     <div class="main-box-artigos">

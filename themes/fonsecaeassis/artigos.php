@@ -10,7 +10,7 @@
                 <li class="active">Artigos</li>
             </ol>
         </div>
-      
+
         <div class="busca">
             <?php
             $buscar = filter_input(INPUT_POST, 's', FILTER_DEFAULT);
@@ -20,10 +20,10 @@
             endif;
             ?>
             <div class="input-group">
-            <form name="search" action="" method="post">
-                <input class="form-control" placeholder="Digite algo para buscar..."  type="text" name="s" />
-                <input class="btn btn-busca" type="submit" name="sendsearch" value="Buscar" />
-            </form>
+                <form name="search" action="" method="post">
+                    <input class="form-control" placeholder="Digite algo para buscar..."  type="text" name="s" />
+                    <input class="btn btn-busca" type="submit" name="sendsearch" value="Buscar" />
+                </form>
             </div>
         </div>
     </div>
@@ -45,7 +45,7 @@
             //Quando não tem busca
             $getPage = (!empty($Link->getlocal()[1]) ? $Link->getlocal()[1] : 1);
             $Pager = new Pager(HOME . "/artigos/");
-            $Pager->ExePager($getPage, 2);
+            $Pager->ExePager($getPage, 10);
 
             $Where = "WHERE titulo != :titulo AND categoria = :cat ORDER BY data DESC LIMIT :limit OFFSET :offset";
             $Places = "titulo=''&cat=artigo&limit={$Pager->getLimit()}&offset={$Pager->getOffset()}";
